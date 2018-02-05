@@ -1,0 +1,328 @@
+<resources>
+
+    <string name="infinity">&#8734;</string>
+
+    <string name="estimation_solar_panel_title">Solar panel</string>
+    <string name="estimation_walking_title">Walking</string>
+    <string name="estimation_cycling_title">Cycling</string>
+    <string name="estimation_electric_car_title">Electric car</string>
+
+    <string name="carbon_footprint_name">Carbon footprint</string>
+    <string name="carbon_footprint_unit">kgCO&#x2082;</string>
+    <string name="carbon_footprint_default">-- kgCO&#x2082;</string>
+
+    <string name="expenses_name">Expenses</string>
+    <string name="expenses_unit">kr</string>
+    <string name="expenses_explanation">The costs are a sum of your energy costs, your car fuel costs and the fixed costs your car produces, like insurance and value depreciation.</string>
+
+    <string name="calories_name">Calories</string>
+    <string name="calories_unit">kCal</string>
+    <string name="calories_explanation">Your calorie consumption. The more you walk or cycle instead of driving, the more you will burn.</string>
+
+    <string name="energy_consumption_name">Energy consumption</string>
+    <string name="energy_consumption_unit">kWh</string>
+    <string name="energy_consumption_explanation">The total amount of energy/heat your house needs in kWh. The outside temperature determines how much heat you will need to keep it warm.</string>
+
+    <string name="distance_name">Driving distance</string>
+    <string name="distance_unit">km</string>
+    <string name="driving_explanation">This is the average distance you have driven in the given period.</string>
+
+    <string name="information_co2_left_default">You have -- kgCO&#x2082; left!</string>
+    <string name="information_co2_left">You have %1$s kgCO&#x2082; left!</string>
+    <string name="information_savings">%1$s daily savings</string>
+    <string name="information_days_left_solar_panel">%1$s days to finance your solar roof</string>
+    <string name="information_own_energy">%1$s your own energy</string>
+
+    <string name="app_name">DESENT</string>
+    <string-array name="time_spinner_array">
+        <item>TODAY</item>
+        <item>THIS WEEK</item>
+        <item>THIS MONTH</item>
+    </string-array>
+
+    <string-array name="history_array">
+        <item>Carbon footprint</item>
+        <item>Transportation</item>
+        <item>Energy consumption</item>
+    </string-array>
+
+    <string name="register_housing_description">The type of energy you use for heating and the efficiency of your heating system determine 80% of your carbon footprint from energy consumption. </string>
+    <string name="register_transportation_description">Your vehicle is major source of greenhouse gas emissions. Cycling or walking instead of driving will save you money, increase your calorie count and reduce your emissions. But first tell us this:</string>
+    <string name="register_activity_description">Finally, to monitor your health gains </string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Welcome!</string>
+    <string name="slide_1_desc">By 2030 greenhouse gas emissions will have to be cut by 40%.</string>
+
+    <string name="slide_2_desc">Energy consumption and transport contribute over one half of total greenhouse gas emissions. </string>
+
+    <string name="slide_3_desc">But they are also the easiest to control.</string>
+
+    <string name="slide_4_desc">This app helps you monitor the emissions produced by your energy consumption and your driving.</string>
+
+    <string name="slide_5_desc">Try and see if you can reduce your daily emissions by 40%.</string>
+
+    <string name="slide_6_desc">The app will show you how much this can cost you or how much you can actually save doing it.</string>
+
+    <string name="slide_7_title">Enjoy!</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <!-- Toolbar titles -->
+    <string name="nav_home">Home</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_about_us">About Us</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Settings</item>
+    </string-array>
+
+
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Preferences -->
+    <string name="pref_title_personal">Personal settings</string>
+
+    <string name="pref_personal_name">Name</string>
+    <string name="pref_personal_email">Email</string>
+    <string name="pref_personal_password">Password</string>
+    <string name="pref_personal_gender">Gender</string>
+    <string name="pref_personal_age">Age</string>
+    <string name="pref_personal_weight">Weight</string>
+
+    <string name="pref_personal_dialog_name">Please enter your name</string>
+    <string name="pref_personal_dialog_email">Please enter your email</string>
+    <string name="pref_personal_dialog_password">Please enter your password</string>
+    <string name="pref_personal_dialog_age">Please enter your age</string>
+    <string name="pref_personal_dialog_weight">Please enter your weight</string>
+
+    <string name="pref_personal_summary_name">Please enter your name</string>
+    <string name="pref_personal_summary_email">Please enter your email</string>
+    <string name="pref_personal_summary_password">Please enter your password</string>
+    <string name="pref_personal_summary_age">Please enter your age</string>
+    <string name="pref_personal_summary_weight">Please enter your weight</string>
+
+    <!--Primary heating system-->
+    <string name="pref_title_heat">Primary heating system</string>
+
+    <string-array name="pref_heat_type_list">
+        <item>Electric (resistance)</item>
+        <item>Heat pump</item>
+        <item>Gas</item>
+        <item>Oil</item>
+        <item>Wood</item>
+    </string-array>
+
+    <string name="pref_heat_type">Type of heating</string>
+    <string name="pref_heat_efficiency">System efficiency (%)</string>
+    <string name="pref_heat_fuel_cost">Fuel cost</string>
+    <string name="pref_heat_prev_yr">Consumption last year</string>
+
+    <string name="pref_key_heat_type">pref_key_heat_type</string>
+    <string name="pref_key_heat_efficiency">pref_key_heat_efficiency</string>
+    <string name="pref_key_heat_fuel_cost">pref_key_heat_fuel_cost</string>
+    <string name="pref_key_heat_prev_yr">pref_key_heat_prev_yr</string>
+
+
+    <string name="pref_dialog_heat_type">Please enter fuel type</string>
+    <string name="pref_dialog_heat_efficiency">Please enter system efficiency</string>
+    <string name="pref_dialog_heat_fuel_cost">Please enter fuel cost</string>
+    <string name="pref_dialog_heat_prev_yr">Please enter consumption last year</string>
+
+    <string name="pref_summary_heat_type">Please enter fuel type</string>
+    <string name="pref_summary_heat_efficiency">Please enter system efficiency</string>
+    <string name="pref_summary_heat_fuel_cost">Please enter fuel cost</string>
+    <string name="pref_summary_heat_prev_yr">Please enter consumption last year</string>
+
+    <string name="pref_default_heat_fuel_type">Electric (resistance)</string>
+    <string name="pref_default_heat_efficiency">Please enter efficiency</string>
+    <string name="pref_default_heat_fuel_cost">Please enter fuel cost</string>
+    <string name="pref_default_heat_prev_yr">Please enter consumption for previous year</string>
+
+
+    //Car
+    <string name="pref_title_car">Car settings</string>
+
+    <string name="pref_car_owner">Car owner</string>
+    <string name="pref_car_distance">Driving distance (yearly)</string>
+    <string name="pref_car_regnr">License plate (Reg. nr.)</string>
+    <string name="pref_car_fuel_consumption">Average consumption (litre pr. 10km)</string>
+    <string name="pref_car_year_produced">Production year</string>
+    <string name="pref_car_ownership_period">Planned duration of ownership</string>
+    <string name="pref_car_price">Car value</string>
+    <string name="pref_car_fuel">Fuel type</string>
+
+    <string name="pref_car_dialog_distance">Please enter yearly driving distance</string>
+    <string name="pref_car_dialog_regnr">Please enter your license plate (reg. nr.)</string>
+    <string name="pref_car_dialog_fuel_consumption">Please enter fuel consumption</string>
+    <string name="pref_car_dialog_year_produced">Please enter production year</string>
+    <string name="pref_car_dialog_ownership_period">Please enter planned duration of ownership</string>
+    <string name="pref_car_dialog_price">Please enter car value</string>
+    <string name="pref_car_dialog_fuel">Please enter fuel type</string>
+
+    <string name="pref_car_summary_distance">Please enter yearly driving distance</string>
+    <string name="pref_car_summary_regnr">Please enter your license plate (Reg. nr.)</string>
+    <string name="pref_car_summary_year_produced">Please enter production year</string>
+    <string name="pref_car_summary_ownership_period">Please enter planned duration of ownership</string>
+    <string name="pref_car_summary_price">Please enter car value</string>
+    <string name="pref_car_summary_fuel">Please enter fuel type</string>
+
+    <string name="pref_car_default_fuel">Gasoline</string>
+
+    <string-array name="pref_car_fuel_list">
+        <item>Gasoline</item>
+        <item>Diesel</item>
+        <item>Electricity</item>
+    </string-array>
+
+    <string name="pref_title_gender">Gender</string>
+    <string name="pref_gender_summary">Please enter your gender</string>
+    <string-array name="pref_gender_list">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="pref_gender_values">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="pref_car_size_list">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+    <string-array name="pref_car_size_values">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+    <string name="pref_car_size_summary">Please enter yor car size</string>
+    <string name="pref_title_car_size">Car size</string>
+
+    <string name="pref_car_advanced_default">Custom values</string>
+    <string name="pref_car_title_advanced_settings">Advanced car settings</string>
+    <string name="pref_car_advanced_fuel_price">Fuel price (pr. litre)</string>
+    <string name="pref_car_advanced_Interest_cost">Interest cost (yearly)</string>
+    <string name="pref_car_advanced_yearly_fee">Yearly fee (norw.: veiavgift)</string>
+    <string name="pref_car_advanced_insurance_cost">Insurance cost (yearly)</string>
+    <string name="pref_car_advanced_tire_cost">Tire cost (yearly)</string>
+    <string name="pref_car_advanced_wash_accessories_cost">Yearly accessories cost (wash etc.)</string>
+    <string name="pref_car_advanced_service_cost">Service cost (yearly)</string>
+    <string name="pref_car_advanced_repair_cost">Repair cost (yearly)</string>
+    <string name="pref_car_advanced_fuel_consumption">Fuel consumption (litre pr. 100km)</string>
+    <string name="pref_car_advanced_depreciation_yr1">Depreciation year 1</string>
+    <string name="pref_car_advanced_depreciation_yr2">Depreciation year 2</string>
+    <string name="pref_car_advanced_depreciation_yr3">Depreciation year 3</string>
+    <string name="pref_car_advanced_depreciation_yr4">Depreciation year 4</string>
+    <string name="pref_car_advanced_depreciation_yr5">Depreciation year 5</string>
+    <string name="pref_car_advanced_depreciation_yr6">Depreciation year 6</string>
+
+    <string name="pref_car_key_advanced_default">pref_car_key_advanced_default</string>
+    <string name="pref_car_key_advanced_fuel_price">pref_car_key_advanced_fuel_price</string>
+    <string name="pref_car_key_advanced_Interest_cost">pref_car_key_advanced_Interest_cost</string>
+    <string name="pref_car_key_advanced_yearly_fee">pref_car_key_advanced_yearly_fee</string>
+    <string name="pref_car_key_advanced_insurance_cost">pref_car_key_advanced_insurance_cost</string>
+    <string name="pref_car_key_advanced_tire_cost">pref_car_key_advanced_tire_cost</string>
+    <string name="pref_car_key_advanced_wash_accessories_cost">pref_car_key_advanced_wash_accessories_cost</string>
+    <string name="pref_car_key_advanced_service_cost">pref_car_key_advanced_service_cost</string>
+    <string name="pref_car_key_advanced_repair_cost">pref_car_key_advanced_repair_cost</string>
+    <string name="pref_car_key_advanced_fuel_consumption">pref_car_key_advanced_fuel_consumption</string>
+    <string name="pref_car_key_advanced_depreciation_yr1">pref_car_key_advanced_depreciation_yr1</string>
+    <string name="pref_car_key_advanced_depreciation_yr2">pref_car_key_advanced_depreciation_yr2</string>
+    <string name="pref_car_key_advanced_depreciation_yr3">pref_car_key_advanced_depreciation_yr3</string>
+    <string name="pref_car_key_advanced_depreciation_yr4">pref_car_key_advanced_depreciation_yr4</string>
+    <string name="pref_car_key_advanced_depreciation_yr5">pref_car_key_advanced_depreciation_yr5</string>
+    <string name="pref_car_key_advanced_depreciation_yr6">pref_car_key_advanced_depreciation_yr6</string>
+
+    <string name="pref_car_summary_advanced_default"></string>
+    <string name="pref_car_summary_advanced_fuel_price"></string>
+    <string name="pref_car_summary_advanced_Interest_cost"></string>
+    <string name="pref_car_summary_advanced_yearly_fee"></string>
+    <string name="pref_car_summary_advanced_insurance_cost"></string>
+    <string name="pref_car_summary_advanced_tire_cost"></string>
+    <string name="pref_car_summary_advanced_wash_accessories_cost"></string>
+    <string name="pref_car_summary_advanced_service_cost"></string>
+    <string name="pref_car_summary_advanced_repair_cost"></string>
+    <string name="pref_car_summary_advanced_fuel_consumption"></string>
+    <string name="pref_car_summary_advanced_depreciation_yr1"></string>
+    <string name="pref_car_summary_advanced_depreciation_yr2"></string>
+    <string name="pref_car_summary_advanced_depreciation_yr3"></string>
+    <string name="pref_car_summary_advanced_depreciation_yr4"></string>
+    <string name="pref_car_summary_advanced_depreciation_yr5"></string>
+    <string name="pref_car_summary_advanced_depreciation_yr6"></string>
+
+    <string name="pref_car_dialog_advanced_fuel_price">Please enter fuel price</string>
+    <string name="pref_car_dialog_advanced_Interest_cost">Please enter interest cost (%)</string>
+    <string name="pref_car_dialog_advanced_yearly_fee">Please enter the yearly fee (norw.: veiavgift)</string>
+    <string name="pref_car_dialog_advanced_insurance_cost">Please enter yearly insurance cost</string>
+    <string name="pref_car_dialog_advanced_tire_cost">Please enter yearly tire cost</string>
+    <string name="pref_car_dialog_advanced_wash_accessories_cost">Please enter yearly accessories cost (wash etc.) </string>
+    <string name="pref_car_dialog_advanced_service_cost">Please enter yearly service cost</string>
+    <string name="pref_car_dialog_advanced_repair_cost">Please enter yearly repair cost</string>
+    <string name="pref_car_dialog_advanced_fuel_consumption">Pleas enter your fuel consumption (litre pr. 100km)</string>
+    <string name="pref_car_dialog_advanced_depreciation_yr1">Please enter depreciation year 1</string>
+    <string name="pref_car_dialog_advanced_depreciation_yr2">Please enter depreciation year 2</string>
+    <string name="pref_car_dialog_advanced_depreciation_yr3">Please enter depreciation year 3</string>
+    <string name="pref_car_dialog_advanced_depreciation_yr4">Please enter depreciation year 4</string>
+    <string name="pref_car_dialog_advanced_depreciation_yr5">Please enter depreciation year 5</string>
+    <string name="pref_car_dialog_advanced_depreciation_yr6">Please enter depreciation year 6</string>
+
+    <string name="pref_car_default_advanced_depreciation_yr1" format="float">0.20</string>
+    <string name="pref_car_default_advanced_depreciation_yr2" format="float">0.14</string>
+    <string name="pref_car_default_advanced_depreciation_yr3" format="float">0.13</string>
+    <string name="pref_car_default_advanced_depreciation_yr4" format="float">0.12</string>
+    <string name="pref_car_default_advanced_depreciation_yr5" format="float">0.11</string>
+    <string name="pref_car_default_advanced_depreciation_yr6" format="float">0.10</string>
+
+    <string name="pref_car_advanced_"></string>
+
+
+
+    <!-- Strings related to login -->
+
+    <string-array name="week_days">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+    <string name="prompt_name">Name</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">The email address or password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="error_invalid_name">Please enter your name</string>
+    <string name="error_invalid_email">The email address is invalid</string>
+    <string name="error_password_too_short">The password must be at least 8 characters long</string>
+    <string name="error_password_not_match">The passwords do not match</string>
+    <string name="error_invalid_price">The price must be a number</string>
+
+
+</resources>
