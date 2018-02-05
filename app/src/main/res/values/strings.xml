@@ -33,7 +33,7 @@
     <string name="information_days_left_solar_panel">%1$s days to finance your solar roof</string>
     <string name="information_own_energy">%1$s your own energy</string>
 
-    <string name="app_name">Smiling Earth</string>
+    <string name="app_name">This is you - CO2</string>
     <string-array name="time_spinner_array">
         <item>TODAY</item>
         <item>THIS WEEK</item>
