@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DESENT.iml" filepath="$PROJECT_DIR$/DESENT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DesentApp.iml" filepath="$PROJECT_DIR$/DesentApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DesentApp-master.iml" filepath="$PROJECT_DIR$/DesentApp-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file:$PROJECT_DIR$/../../../../..//sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\DESENT.iml" filepath="sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\DESENT.iml" />
+      <module fileurl="file:$PROJECT_DIR$/../../../../..//sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\DesentApp.iml" filepath="sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\DesentApp.iml" />
+      <module fileurl="file:$PROJECT_DIR$/../../../../..//sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\DesentApp-master.iml" filepath="sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\DesentApp-master.iml" />
+      <module fileurl="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/Master.iml" filepath="$PROJECT_DIR$/Master.iml" />
+      <module fileurl="file:$PROJECT_DIR$/../../../../..//sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\Master.iml" filepath="sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\Master.iml" />
+      <module fileurl="file:$PROJECT_DIR$/../../../../..//$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file:$PROJECT_DIR$/../../../../..//sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\app\app.iml" filepath="sambaad.stud.ntnu.no\..\\\\sambaad.stud.ntnu.no\ragnhlar\ragnhlar\Documents\Master\app\app.iml" />
     </modules>
   </component>
 </project>
