@@ -3,8 +3,8 @@
     <string name="infinity">&#8734;</string>
 
     <string name="estimation_solar_panel_title">Solar panel</string>
-    <string name="estimation_walking_title">Walking</string>
-    <string name="estimation_cycling_title">Cycling</string>
+    <string name="estimation_walking_title">Walk</string>
+    <string name="estimation_cycling_title">Cycle</string>
     <string name="estimation_electric_car_title">Electric car</string>
 
     <string name="carbon_footprint_name">Carbon footprint</string>
