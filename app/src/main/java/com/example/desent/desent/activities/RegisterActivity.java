@@ -1,7 +1,9 @@
 package com.example.desent.desent.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -16,10 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
+import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.fragments.RegisterActivityFragment;
 import com.example.desent.desent.fragments.RegisterGeneralFragment;
 import com.example.desent.desent.fragments.RegisterHousingFragment;
 import com.example.desent.desent.fragments.RegisterTransportationFragment;
+import com.example.desent.desent.models.PreferencesManager;
 
 import java.util.List;
 import java.util.Vector;
@@ -46,6 +50,8 @@ public class RegisterActivity extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
 
+    SessionManagement session;
+
     private LinearLayout dotsLayout;
     private Button btnPrev, btnNext;
     private PagerAdapter mPagerAdapter;
@@ -53,6 +59,8 @@ public class RegisterActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        session = new SessionManagement(getApplicationContext());
 
         List fragments = new Vector();
         fragments.add(Fragment.instantiate(this,RegisterGeneralFragment.class.getName()));
@@ -103,7 +111,7 @@ public class RegisterActivity extends FragmentActivity {
     }
 
     private void launchHomeScreen() {
-        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
         finish();
     }
 

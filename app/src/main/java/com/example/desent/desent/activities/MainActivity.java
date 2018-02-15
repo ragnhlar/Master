@@ -24,12 +24,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
+import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.fragments.CategoryFragment;
 import com.example.desent.desent.fragments.CircleFragment;
 import com.example.desent.desent.fragments.CyclingDistanceFragment;
@@ -52,10 +54,15 @@ import com.example.desent.desent.utils.EstimationType;
 import com.example.desent.desent.utils.TimeScale;
 import com.example.desent.desent.utils.Utility;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.os.Handler;
+import android.widget.Toast;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -106,6 +113,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //Energy
     Handler EnergyHandler = new Handler();
+
+    SessionManagement session;
 
     public EnergyDatabaseUpdate energyDatabaseUpdate;
     public DatabaseHelper mDatabaseHelper;
@@ -182,6 +191,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        session = new SessionManagement(getApplicationContext());
+        Toast.makeText(getApplicationContext(), "User login status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+        session.checkLogin();
 
         // Drawer "hamburger"
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -504,11 +517,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         /*
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                          */
-                        drawer.closeDrawers();
+                    case R.id.nav_log_out:
 
+                        session.logoutUser();
+                        //startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        drawer.closeDrawers();
                         return true;
                     default:
-
                 }
 
                 //Checking if the item is in checked state or not, if not make it in checked state
