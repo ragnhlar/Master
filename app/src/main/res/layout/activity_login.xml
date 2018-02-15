@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +12,7 @@
     tools:context="com.example.desent.desent.activities.LoginActivity">
 
     <!-- Login progress -->
-    <ProgressBar
+   <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
@@ -32,12 +33,52 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <!--<TextView
+            <!--<Button
+                android:id="@+id/btnSave"
+                style="@style/Widget.AppCompat.Button"
+                android:text="Save"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />-->
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/welcome"
+                android:text="Welcome!"
                 android:textSize="20sp"
-                android:layout_marginBottom="16dp"/>-->
+                android:layout_marginBottom="16dp"/>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                app:srcCompat="@drawable/earth1" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp"
+                android:text="New user?" />
+
+            <Button
+                android:id="@+id/email_sign_up_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="@color/blue"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:text="@string/action_sign_up" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Already a user, sign in below" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -48,10 +89,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
+                    android:textSize="16sp"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -62,38 +103,26 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
+
                     android:hint="@string/prompt_password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
-
+                    android:layout_marginBottom="8dp"
+                    android:singleLine="true"
+                    tools:ignore="InvalidImeActionId" />
             </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/email_sign_in_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="@color/blue"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp">
-                <Button
-                    android:id="@+id/email_sign_in_button"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/action_sign_in"
-                    android:layout_weight="1"/>
-
-                <Button
-                    android:id="@+id/email_sign_up_button"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/action_sign_up"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
+                android:text="@string/action_sign_in"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
