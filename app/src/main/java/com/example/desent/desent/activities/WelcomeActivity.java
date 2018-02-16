@@ -103,7 +103,7 @@ public class WelcomeActivity extends Activity {
     }
 
     private void launchLoginScreen() {
-        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, RegisterActivity.class));
         finish();
     }
 

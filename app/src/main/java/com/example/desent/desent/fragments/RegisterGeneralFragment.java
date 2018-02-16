@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.desent.desent.R;
+import com.example.desent.desent.models.DatabaseHelper;
 import com.example.desent.desent.utils.AESHelper;
 import com.example.desent.desent.utils.Utility;
 import com.soundcloud.android.crop.Crop;
@@ -50,10 +51,14 @@ public class RegisterGeneralFragment extends Fragment {
     private EditText confirmPasswordTextView;
     private SharedPreferences sharedPreferences;
     private Uri imageUri;
+    private DatabaseHelper myDb;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        myDb = new DatabaseHelper(getContext());
 
         getActivity().getTheme().applyStyle(R.style.AppTheme_NoActionBar_AccentColorGreen, true);
 
@@ -90,6 +95,7 @@ public class RegisterGeneralFragment extends Fragment {
         editor.putString("pref_key_profile_picture", imageUri.toString());
         editor.putString("pref_key_personal_name", String.valueOf(nameTextView.getText()));
         editor.putString("pref_key_personal_email", String.valueOf(emailTextView.getText()));
+        System.out.println("Email in registration: " + sharedPreferences.getString("pref_key_personal_email", null));
 
         try {
             editor.putString("pref_key_personal_password", AESHelper.encrypt(CIPHER_KEY, String.valueOf(passwordTextView.getText())));
@@ -97,7 +103,7 @@ public class RegisterGeneralFragment extends Fragment {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        myDb.insertData(nameTextView.getText().toString(), emailTextView.getText().toString());
         editor.commit();
 
     }

@@ -50,8 +50,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // COL's for TABLE_NAME
     // public static final String UI_COL_1 = "ID";
+    //public static final String UI_COL_1 = "EMAIL";
     public static final String UI_COL_2 = "NAME";
-    public static final String UI_COL_3 = "SURNAME";
+    public static final String UI_COL_3 = "EMAIL";
     public static final String UI_COL_4 = "WEIGHT";
     public static final String UI_COL_5 = "CAR_MAKE";
     public static final String UI_COL_6 = "YEARLY_ELECTRICITY_CONSUMPTION";
@@ -89,8 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME + " (" + UI_COL_2 + " TEXT PRIMARY KEY," + UI_COL_3 + " TEXT," + UI_COL_4 + " TEXT," + UI_COL_5 + " TEXT, " + UI_COL_6 + " TEXT)");
         db.execSQL("create table " + TABLE_DISTANCE + " (" + D_COL_1 + " TEXT PRIMARY KEY," + D_COL_2 + " FLOAT," + D_COL_3 + " FLOAT," + D_COL_4 + " FLOAT)");
-        db.execSQL("create table " + TABLE_HOME + " (" + H_COL_1 + " TEXT PRIMARY KEY," + H_COL_2 +
-                " TEXT," + H_COL_3 + " TEXT,"+ H_COL_4 + " TEXT,"+ H_COL_5 + " TEXT)");
+        db.execSQL("create table " + TABLE_HOME + " (" + H_COL_1 + " TEXT PRIMARY KEY," + H_COL_2 + " TEXT," + H_COL_3 + " TEXT,"+ H_COL_4 + " TEXT,"+ H_COL_5 + " TEXT)");
         db.execSQL("CREATE TABLE " + TABLE_ENERGY + "("
                 + EN_COL0  + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + EN_COL1  + " NUMERIC, "
@@ -115,15 +115,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name, String surname, String weight, String carMake, String elCons) {
+    //, String weight, String carMake, String elCons
+    public boolean insertData(String name, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
         if (checkIfEmpty(db, TABLE_NAME)) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(UI_COL_2, name);
-            contentValues.put(UI_COL_3, surname);
-            contentValues.put(UI_COL_4, weight);
-            contentValues.put(UI_COL_5, carMake);
-            contentValues.put(UI_COL_6, elCons);
+            contentValues.put(UI_COL_3, email);
+            //contentValues.put(UI_COL_4, weight);
+            //contentValues.put(UI_COL_5, carMake);
+            //contentValues.put(UI_COL_6, elCons);
+            Log.i(LOG, "Name: " + name);
+            Log.i(LOG, "Email: " + email);
             Log.i(LOG, "Insert data ok, put values");
             long result = db.insert(TABLE_NAME, null, contentValues);
             if (result == -1)
@@ -135,6 +138,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // the table is not empty and, it is not possible to insert a new row!
             return false;
         }
+    }
+
+    public String getUserEmail(){
+        String email;
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (checkIfEmpty(db, TABLE_NAME)) {
+            email = null;
+        } else {
+            Cursor cursor = db.rawQuery("select " + UI_COL_3 + " from " + TABLE_NAME, null);
+            cursor.moveToFirst();
+            email = cursor.getString(0);
+            cursor.close();
+        }
+        return email;
     }
 
     public boolean insertDistance(String activity, Float distance) {

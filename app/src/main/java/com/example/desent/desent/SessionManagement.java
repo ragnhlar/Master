@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.example.desent.desent.activities.LoginActivity;
+import com.example.desent.desent.activities.RegisterActivity;
+import com.example.desent.desent.activities.WelcomeActivity;
+import com.example.desent.desent.models.DatabaseHelper;
 
 import java.util.HashMap;
 
@@ -19,6 +22,7 @@ public class SessionManagement {
 
     //editor for shared preferences
     SharedPreferences.Editor editor;
+    DatabaseHelper myDB;
 
     //context
     Context _context;
@@ -44,6 +48,7 @@ public class SessionManagement {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
+        myDB = new DatabaseHelper(context);
     }
 
     //create login session
@@ -81,7 +86,18 @@ public class SessionManagement {
     //else won't do anything
     public void checkLogin() {
         //check login status
-        if (!this.isLoggedIn()){
+        String email = myDB.getUserEmail();
+
+        if (email == null){
+            Intent i = new Intent(_context, WelcomeActivity.class);
+            //closing all the activities
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //add new flag to start new activity
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //starting login activity
+            _context.startActivity(i);
+        }
+        if (!this.isLoggedIn() && email != null){
             //user is not logged in redirect him to Login Activity
             Intent i = new Intent(_context, LoginActivity.class);
             //closing all the activities

@@ -23,6 +23,7 @@ import com.example.desent.desent.fragments.RegisterActivityFragment;
 import com.example.desent.desent.fragments.RegisterGeneralFragment;
 import com.example.desent.desent.fragments.RegisterHousingFragment;
 import com.example.desent.desent.fragments.RegisterTransportationFragment;
+import com.example.desent.desent.models.DatabaseHelper;
 import com.example.desent.desent.models.PreferencesManager;
 
 import java.util.List;
@@ -51,6 +52,9 @@ public class RegisterActivity extends FragmentActivity {
      */
 
     SessionManagement session;
+    PreferencesManager pref;
+    private DatabaseHelper myDb;
+
 
     private LinearLayout dotsLayout;
     private Button btnPrev, btnNext;
@@ -61,6 +65,7 @@ public class RegisterActivity extends FragmentActivity {
         setContentView(R.layout.activity_register);
 
         session = new SessionManagement(getApplicationContext());
+        myDb = new DatabaseHelper(getApplicationContext());
 
         List fragments = new Vector();
         fragments.add(Fragment.instantiate(this,RegisterGeneralFragment.class.getName()));
@@ -111,7 +116,8 @@ public class RegisterActivity extends FragmentActivity {
     }
 
     private void launchHomeScreen() {
-        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        session.createLoginSession(myDb.getUserEmail());
+        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         finish();
     }
 
