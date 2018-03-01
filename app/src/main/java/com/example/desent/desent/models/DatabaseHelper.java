@@ -4,7 +4,6 @@ package com.example.desent.desent.models;
  * Created by magnust on 04.07.2017.
  */
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,8 +13,6 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -47,7 +44,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String D_COL_3 = "CYCLING";
     public static final String D_COL_4 = "DRIVING";
 
-
     // COL's for TABLE_NAME
     // public static final String UI_COL_1 = "ID";
     //public static final String UI_COL_1 = "EMAIL";
@@ -56,6 +52,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String UI_COL_4 = "WEIGHT";
     public static final String UI_COL_5 = "CAR_MAKE";
     public static final String UI_COL_6 = "YEARLY_ELECTRICITY_CONSUMPTION";
+    public static final String UI_COL_7 = "CONSENT";
+    public static final String UI_COL_8 = "ADDRESS";
+    public static final String UI_COL_9 = "ZIPCODE";
+    public static final String UI_COL_10 = "CITY";
 
     // Table columns for TABLE_ENERGY
     private static final String EN_COL0 = "ID";
@@ -88,7 +88,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (" + UI_COL_2 + " TEXT PRIMARY KEY," + UI_COL_3 + " TEXT," + UI_COL_4 + " TEXT," + UI_COL_5 + " TEXT, " + UI_COL_6 + " TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " (" + UI_COL_2 + " TEXT PRIMARY KEY,"
+                + UI_COL_3 + " TEXT,"
+                + UI_COL_4 + " TEXT,"
+                + UI_COL_5 + " TEXT, "
+                + UI_COL_6 + " TEXT, "
+                + UI_COL_7 + " TEXT, "
+                + UI_COL_8 + " TEXT, "
+                + UI_COL_9 + " TEXT, "
+                + UI_COL_10 + " TEXT)");
         db.execSQL("create table " + TABLE_DISTANCE + " (" + D_COL_1 + " TEXT PRIMARY KEY," + D_COL_2 + " FLOAT," + D_COL_3 + " FLOAT," + D_COL_4 + " FLOAT)");
         db.execSQL("create table " + TABLE_HOME + " (" + H_COL_1 + " TEXT PRIMARY KEY," + H_COL_2 + " TEXT," + H_COL_3 + " TEXT,"+ H_COL_4 + " TEXT,"+ H_COL_5 + " TEXT)");
         db.execSQL("CREATE TABLE " + TABLE_ENERGY + "("
@@ -115,6 +123,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public boolean insertPersonalData(String name, String address, String zipcode, String city, String weight) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (checkIfEmpty(db, TABLE_NAME)) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(UI_COL_2, name);
+            contentValues.put(UI_COL_8, address);
+            contentValues.put(UI_COL_9, zipcode);
+            contentValues.put(UI_COL_10, city);
+            contentValues.put(UI_COL_4, weight);
+            Log.i(LOG, "Name: " + name);
+            Log.i(LOG, "Address: " + address);
+            Log.i(LOG, "Zip code: " + zipcode);
+            Log.i(LOG, "City: " + city);
+            Log.i(LOG, "Weight: " + weight);
+            Log.i(LOG, "Insert data ok, put values");
+            long result = db.insert(TABLE_NAME, null, contentValues);
+            if (result == -1)
+                return false;
+            else
+                Log.i(LOG, "True returned");
+            return true;
+        } else {
+            // the table is not empty and, it is not possible to insert a new row!
+            return false;
+        }
+    }
+
     //, String weight, String carMake, String elCons
     public boolean insertData(String name, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -123,9 +158,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put(UI_COL_2, name);
             contentValues.put(UI_COL_3, email);
             //contentValues.put(UI_COL_4, weight);
+            //contentValues.put(UI_COL_7, consent);
             //contentValues.put(UI_COL_5, carMake);
             //contentValues.put(UI_COL_6, elCons);
             Log.i(LOG, "Name: " + name);
+            Log.i(LOG, "Email: " + email);
+            //Log.i(LOG, "Consent: " + consent);
+            Log.i(LOG, "Insert data ok, put values");
+            long result = db.insert(TABLE_NAME, null, contentValues);
+            if (result == -1)
+                return false;
+            else
+                Log.i(LOG, "True returned");
+            return true;
+        } else {
+            // the table is not empty and, it is not possible to insert a new row!
+            return false;
+        }
+    }
+
+    //, String weight, String carMake, String elCons
+    public boolean insertEmail(String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (checkIfEmpty(db, TABLE_NAME)) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(UI_COL_3, email);
             Log.i(LOG, "Email: " + email);
             Log.i(LOG, "Insert data ok, put values");
             long result = db.insert(TABLE_NAME, null, contentValues);
@@ -152,6 +209,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.close();
         }
         return email;
+    }
+
+    public boolean insertConsent(String consent) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (checkIfEmpty(db, TABLE_NAME)) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(UI_COL_7, consent);
+            Log.i(LOG, "Consent: " + consent);
+            Log.i(LOG, "Insert data ok, put values");
+            long result = db.insert(TABLE_NAME, null, contentValues);
+            if (result == -1)
+                return false;
+            else
+                Log.i(LOG, "Consent: True returned");
+            return true;
+        } else {
+            // the table is not empty and, it is not possible to insert a new row!
+            return false;
+        }
+    }
+
+    public String getConsent() {
+        String consent;
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (checkIfEmpty(db, TABLE_NAME)) {
+            consent = null;
+        } else {
+            Cursor cursor = db.rawQuery("select " + UI_COL_7 + " from " + TABLE_NAME, null);
+            cursor.moveToFirst();
+            consent = cursor.getString(0);
+            cursor.close();
+        }
+        return consent;
     }
 
     public boolean insertDistance(String activity, Float distance) {

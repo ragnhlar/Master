@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/circle_green" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="We have many possibilities to get from A to B. The type of transportation you use could have a lot to say on your carbon footprint."
+            tools:layout_editor_absoluteX="150dp"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="?android:attr/listDivider"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:text="What type of transportation do you normally use?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:id="@+id/cbWalk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Walk" />
+
+        <CheckBox
+            android:id="@+id/cbBicycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bicycle" />
+
+        <CheckBox
+            android:id="@+id/cbCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Car" />
+
+        <CheckBox
+            android:id="@+id/cbBus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bus" />
+
+        <CheckBox
+            android:id="@+id/cbTrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Train" />
+
+        <CheckBox
+            android:id="@+id/cbMotorcycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Motorcycle" />
+
+        <CheckBox
+            android:id="@+id/cbScooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scooter" />
+
+        <CheckBox
+            android:id="@+id/cbTram"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tram" />
+
+        <CheckBox
+            android:id="@+id/cbSubway"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subway" />
+
+        <CheckBox
+            android:id="@+id/cbFerry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ferry" />
+
+        <CheckBox
+            android:id="@+id/cbOther"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Other" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

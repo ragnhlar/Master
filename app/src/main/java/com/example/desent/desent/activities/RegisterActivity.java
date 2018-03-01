@@ -1,9 +1,7 @@
 package com.example.desent.desent.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +18,12 @@ import android.widget.TextView;
 
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
-import com.example.desent.desent.fragments.RegisterActivityFragment;
-import com.example.desent.desent.fragments.RegisterGeneralFragment;
+import com.example.desent.desent.fragments.RegisterConsentFragment;
+import com.example.desent.desent.fragments.RegisterCredentialFragment;
 import com.example.desent.desent.fragments.RegisterHousingFragment;
+import com.example.desent.desent.fragments.RegisterPersonalFragment;
 import com.example.desent.desent.fragments.RegisterTransportationFragment;
+import com.example.desent.desent.fragments.RegisterTransportationHabitsFragment;
 import com.example.desent.desent.models.DatabaseHelper;
 import com.example.desent.desent.models.PreferencesManager;
 
@@ -39,7 +40,7 @@ public class RegisterActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 6;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -50,15 +51,15 @@ public class RegisterActivity extends FragmentActivity {
     /**
      * The pager adapter, which provides the pages to the view pager widget.
      */
+    private PagerAdapter mPagerAdapter;
 
     SessionManagement session;
     PreferencesManager pref;
     private DatabaseHelper myDb;
 
-
     private LinearLayout dotsLayout;
     private Button btnPrev, btnNext;
-    private PagerAdapter mPagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +69,14 @@ public class RegisterActivity extends FragmentActivity {
         myDb = new DatabaseHelper(getApplicationContext());
 
         List fragments = new Vector();
-        fragments.add(Fragment.instantiate(this,RegisterGeneralFragment.class.getName()));
-        fragments.add(Fragment.instantiate(this,RegisterHousingFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, RegisterCredentialFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, RegisterPersonalFragment.class.getName()));
+        //fragments.add(Fragment.instantiate(this,RegisterGeneralFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, RegisterHousingFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, RegisterTransportationHabitsFragment.class.getName()));
         fragments.add(Fragment.instantiate(this, RegisterTransportationFragment.class.getName()));
-        fragments.add(Fragment.instantiate(this, RegisterActivityFragment.class.getName()));
+        fragments.add(Fragment.instantiate(this, RegisterConsentFragment.class.getName()));
+        //fragments.add(Fragment.instantiate(this, RegisterActivityFragment.class.getName()));
         this.mPagerAdapter = new MyPagerAdapter(super.getSupportFragmentManager(), fragments);
 
         // Instantiate a ViewPager and a PagerAdapter.
@@ -103,6 +108,8 @@ public class RegisterActivity extends FragmentActivity {
                 int current = getItem(+1);
                 if (current < mPagerAdapter.getCount()) {
                     // move to next screen
+                    System.out.println("Current: " + current);
+                    System.out.println("mPagerAdapter: " + mPagerAdapter);
                     mPager.setCurrentItem(current);
                 } else {
                     launchHomeScreen();
@@ -117,8 +124,18 @@ public class RegisterActivity extends FragmentActivity {
 
     private void launchHomeScreen() {
         session.createLoginSession(myDb.getUserEmail());
+        System.out.println("Consent: " + myDb.getConsent());
         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         finish();
+
+        /*if (myDb.getConsent() == "true") {
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+            finish();
+        } else if (myDb.getConsent() == "false"){
+            //må vise dialogboks å forklare, må starte aktivitet allikevel, men da kan ikke data brukes
+            startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+            finish();
+        }*/
     }
 
     @Override
@@ -168,6 +185,9 @@ public class RegisterActivity extends FragmentActivity {
                 if (position == mPagerAdapter.getCount() - 1) {
                     // last page. make button text to GOT IT
                     btnNext.setText(getString(R.string.start));
+                    //btnNext.setText("FINISH");
+                    //btnPrev.setText("DECLINE");
+                    //launch homescreen? and check and save permission
                 } else {
                     // still pages are left
                     btnNext.setText(getString(R.string.next));
@@ -190,8 +210,6 @@ public class RegisterActivity extends FragmentActivity {
             }
         };
     }
-
-
 
     class MyPagerAdapter extends FragmentPagerAdapter {
 

@@ -7,9 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.Spinner;
 
 import com.example.desent.desent.R;
 
@@ -22,6 +23,9 @@ public class RegisterHousingFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private RadioGroup heatingTypeRadioGroup;
 
+    private Spinner spinnerBuildingYear;
+    private Spinner spinnerRenovationYear;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,6 +36,19 @@ public class RegisterHousingFragment extends Fragment {
                 R.layout.fragment_register_housing, container, false);
 
         heatingTypeRadioGroup = rootView.findViewById(R.id.radio_group_heating);
+
+        spinnerBuildingYear = rootView.findViewById(R.id.spinnerRenovation);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.year_of_renovation_construction_array, android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerBuildingYear.setAdapter(adapter);
+        spinnerBuildingYear.setSelection(adapter.getPosition("1961 - 1970"));
+
+        spinnerRenovationYear = rootView.findViewById(R.id.spinnerBuilding);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(getContext(), R.array.year_of_renovation_construction_array, android.R.layout.simple_spinner_dropdown_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerRenovationYear.setAdapter(adapter2);
+        spinnerRenovationYear.setSelection(adapter.getPosition("2011 - 2015"));
+
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         restorePreferences();
@@ -74,7 +91,9 @@ public class RegisterHousingFragment extends Fragment {
             case "Wood":
                 heatingTypeRadioGroup.check(R.id.radio_button_wood);
                 break;
-
+            case "Solar panel":
+                heatingTypeRadioGroup.check(R.id.radio_button_solar_panel);
+                break;
         }
 
     }

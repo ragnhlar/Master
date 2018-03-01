@@ -46,8 +46,8 @@
         <item>Energy consumption</item>
     </string-array>
 
-    <string name="register_housing_description">The type of energy you use for heating and the efficiency of your heating system determine 80% of your carbon footprint from energy consumption. </string>
-    <string name="register_transportation_description">Your vehicle is major source of greenhouse gas emissions. Cycling or walking instead of driving will save you money, increase your calorie count and reduce your emissions. But first tell us this:</string>
+    <string name="register_housing_description">The type of energy you use for heating and the efficiency of your heating system determine 80% of your carbon footprint from energy consumption. The building year and the year of the last renovation of the house, also affects the housing emissions.</string>
+    <string name="register_transportation_description">Your vehicle is a major source of greenhouse gas emissions. Cycling or walking instead of driving will save you money, give you health benefits, and reduce your carbon footprint.</string>
     <string name="register_activity_description">Finally, to monitor your health gains </string>
 
     <string name="title_activity_welcome">Home Screen</string>
@@ -127,7 +127,7 @@
         <item>Wood</item>
     </string-array>
 
-    <string name="pref_heat_type">Type of heating</string>
+    <string name="pref_heat_type">What type of heating do you have where you live?</string>
     <string name="pref_heat_efficiency">System efficiency (%)</string>
     <string name="pref_heat_fuel_cost">Fuel cost</string>
     <string name="pref_heat_prev_yr">Consumption last year</string>
@@ -291,7 +291,6 @@
     <string name="pref_car_advanced_"></string>
 
 
-
     <!-- Strings related to login -->
 
     <string-array name="week_days">
@@ -324,5 +323,18 @@
     <string name="error_password_not_match">The passwords do not match</string>
     <string name="error_invalid_price">The price must be a number</string>
 
+    <string-array name="year_of_renovation_construction_array">
+        <item>before 1919</item>
+        <item>1919 - 1944</item>
+        <item>1945 - 1960</item>
+        <item>1961 - 1970</item>
+        <item>1971 - 1980</item>
+        <item>1981 - 1990</item>
+        <item>1991 - 2000</item>
+        <item>2001 - 2010</item>
+        <item>2011 - 2015</item>
+        <item>after 2015</item>
+        <item>not sure</item>
+    </string-array>
 
 </resources>

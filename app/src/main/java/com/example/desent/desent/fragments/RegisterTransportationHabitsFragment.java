@@ -1,9 +1,9 @@
 package com.example.desent.desent.fragments;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +11,38 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
 
 /**
- * Created by celine on 11/07/17.
+ * Created by ragnhlar on 28.02.2018.
  */
 
-public class RegisterTransportationFragment extends Fragment {
+public class RegisterTransportationHabitsFragment extends Fragment{
 
     private boolean isProfileValid;
-    private CheckBox carOwner;
+
+    private ImageView img;
+
+    private CheckBox checkBoxWalk;
+    private CheckBox checkBoxBicycle;
+    private CheckBox checkBoxCar;
+    private CheckBox checkBoxBus;
+    private CheckBox checkBoxTrain;
+    private CheckBox checkBoxMotorcycle;
+    private CheckBox checkBoxScooter;
+    private CheckBox checkBoxTram;
+    private CheckBox checkBoxSubway;
+    private CheckBox checkBoxFerry;
+    private CheckBox checkBoxOther;
+
     //private Spinner carSizeSpinner;
-    private EditText priceTextView;
-    private EditText drivingDistanceTextView;
-    private EditText ownershipPeriodTextView;
+    //private EditText priceTextView;
+    //private EditText drivingDistanceTextView;
+    //private EditText ownershipPeriodTextView;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -37,9 +52,25 @@ public class RegisterTransportationFragment extends Fragment {
         getActivity().getTheme().applyStyle(R.style.AppTheme_NoActionBar_AccentColorGreen, true);
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragment_register_transportation, container, false);
+                R.layout.fragment_register_transportation_habits, container, false);
 
-        //TODO: button
+        img = (ImageView) rootView.findViewById(R.id.image);
+        img.setImageResource(R.drawable.circle_green);
+
+        checkBoxWalk = (CheckBox) rootView.findViewById(R.id.cbWalk);
+        checkBoxBicycle = (CheckBox) rootView.findViewById(R.id.cbBicycle);
+        checkBoxCar = (CheckBox) rootView.findViewById(R.id.cbCar);
+        checkBoxBus = (CheckBox) rootView.findViewById(R.id.cbBus);
+        checkBoxTrain = (CheckBox) rootView.findViewById(R.id.cbTrain);
+        checkBoxMotorcycle = (CheckBox) rootView.findViewById(R.id.cbMotorcycle);
+        checkBoxScooter = (CheckBox) rootView.findViewById(R.id.cbScooter);
+        checkBoxTram = (CheckBox) rootView.findViewById(R.id.cbTram);
+        checkBoxSubway = (CheckBox) rootView.findViewById(R.id.cbSubway);
+        checkBoxFerry = (CheckBox) rootView.findViewById(R.id.cbFerry);
+        checkBoxOther = (CheckBox) rootView.findViewById(R.id.cbOther);
+
+
+        /*
         carOwner = rootView.findViewById(R.id.checkbox_car_owner);
         carOwner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -49,40 +80,40 @@ public class RegisterTransportationFragment extends Fragment {
 
         });
 
-        //carSizeSpinner = rootView.findViewById(R.id.spinner_car_size);
-        /*ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.pref_car_size_list, android.R.layout.simple_spinner_item);
+        carSizeSpinner = rootView.findViewById(R.id.spinner_car_size);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.pref_car_size_list, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         carSizeSpinner.setAdapter(adapter);
-        */
+
         priceTextView = rootView.findViewById(R.id.car_price);
         drivingDistanceTextView = rootView.findViewById(R.id.car_driving_distance);
         ownershipPeriodTextView = rootView.findViewById(R.id.car_ownership_period);
-
+        */
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         restorePreferences();
-        carOwner.callOnClick();
+        //carOwner.callOnClick();
 
         return rootView;
     }
 
     public void onCheckboxClicked(CompoundButton compoundButton, boolean b) {
 
-        //carSizeSpinner.setEnabled(b);
+        /*carSizeSpinner.setEnabled(b);
         priceTextView.setEnabled(b);
         drivingDistanceTextView.setEnabled(b);
         ownershipPeriodTextView.setEnabled(b);
-
+        */
     }
 
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-
+        /*
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(carOwner.isChecked()){
             editor.putBoolean("pref_key_car_owner", carOwner.isChecked());
-            //editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
+            editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
             editor.putString("pref_key_car_price", String.valueOf(priceTextView.getText()));
             editor.putString("pref_key_car_distance", String.valueOf(drivingDistanceTextView.getText()));
             editor.putString("pref_key_car_ownership_period", String.valueOf(ownershipPeriodTextView.getText()));
@@ -94,20 +125,20 @@ public class RegisterTransportationFragment extends Fragment {
             editor.putString("pref_key_car_distance", String.valueOf(drivingDistanceTextView.getText()));
             editor.putString("pref_key_car_ownership_period", String.valueOf(ownershipPeriodTextView.getText()));
         */
-        }
+        /*}
 
 
         editor.commit();
-
+        */
     }
 
     private void restorePreferences(){
 
-        carOwner.setChecked(sharedPreferences.getBoolean("pref_key_car_owner", true));
-        //carSizeSpinner.setSelection(((ArrayAdapter<String>) carSizeSpinner.getAdapter()).getPosition(sharedPreferences.getString("pref_key_car_size", "Small")));
+        /*carOwner.setChecked(sharedPreferences.getBoolean("pref_key_car_owner", true));
+        carSizeSpinner.setSelection(((ArrayAdapter<String>) carSizeSpinner.getAdapter()).getPosition(sharedPreferences.getString("pref_key_car_size", "Small")));
         priceTextView.setText(sharedPreferences.getString("pref_key_car_price", "300000"), TextView.BufferType.EDITABLE);
         drivingDistanceTextView.setText(sharedPreferences.getString("pref_key_car_distance", "8000"), TextView.BufferType.EDITABLE);
         ownershipPeriodTextView.setText(sharedPreferences.getString("pref_key_car_ownership_period", "3"), TextView.BufferType.EDITABLE);
-
+        */
     }
 }

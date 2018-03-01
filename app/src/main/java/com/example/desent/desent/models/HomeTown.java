@@ -82,6 +82,7 @@ public class HomeTown {
                     // HER ER DET NOE FEIL
                     //City equals home town
                     //Do nothing
+                    System.out.println("City: " + city);
                 }else{
                     //City does not equal home town
                     //askIfHomeTown();

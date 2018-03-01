@@ -163,10 +163,12 @@ public class DistanceTracker extends MainActivity implements GoogleApiClient.Con
         this.activityContext = activityContext;
         this.context = context;
         Log.i(LOG,"constructor");
+        Log.i(LOG, "ActivityContext: " + activityContext);
+        Log.i(LOG, "Context: " + context);
 
         onCreate();
         String locationProvider = LocationManager.GPS_PROVIDER;
-        Log.i(LOG,locationProvider);
+        Log.i(LOG,"LocationProvider: " + locationProvider);
         //startActivity(new Intent(android.provider.SettingsActivity.ACTION_LOCATION_SOURCE_SETTINGS))
     }
 
@@ -252,6 +254,8 @@ public class DistanceTracker extends MainActivity implements GoogleApiClient.Con
     @Override
     public void onLocationChanged(Location location) {
         double distance;
+        Log.i(LOG, "Location: " + location);
+
         if(mLastLocation == null){
             mLastLocation = location;
             distance = 0;
