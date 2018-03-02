@@ -1,27 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/bg_screen1">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:background="@color/bg_screen1">
 
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-        <!--<ImageView
+        <!--Must change this picture to an updated version-->
+        <!--
+        <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:paddingLeft="@dimen/desc_padding"
                 android:paddingRight="@dimen/desc_padding"
-                android:src="@drawable/slide1" />-->
+                android:src="@drawable/slide1" />
+        -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/earth1" />
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:src="@drawable/earth2" />
+
+            <ImageView
+                android:layout_width="66dp"
+                android:layout_height="66dp"
+                android:src="@drawable/earth3" />
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/earth4" />
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/earth5" />
+        </LinearLayout>
 
         <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="@dimen/desc_padding"
@@ -31,5 +62,4 @@
                 android:textColor="@color/dark_grey"
                 android:textSize="@dimen/slide_desc" />
 
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

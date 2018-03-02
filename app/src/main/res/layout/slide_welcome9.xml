@@ -16,14 +16,12 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView10"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:tint="@color/blue"
             android:src="@drawable/ic_solar_installation" />
 
         <ImageView
-            android:id="@+id/imageView11"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:tint="@color/blue"
@@ -31,25 +29,25 @@
 
     </LinearLayout>
 
-        <!--<ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:src="@drawable/slide6" />-->
+    <!--<ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/slide6" />-->
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="@dimen/desc_padding"
-            android:paddingRight="@dimen/desc_padding"
-            android:text="@string/slide_6_desc"
-            android:gravity="center"
-            android:textColor="@color/dark_grey"
-            android:textSize="@dimen/slide_desc" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="@dimen/desc_padding"
+        android:paddingRight="@dimen/desc_padding"
+        android:text="@string/slide_9_desc"
+        android:gravity="center"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/slide_desc" />
 
 </LinearLayout>

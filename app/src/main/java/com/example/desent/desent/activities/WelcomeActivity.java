@@ -36,8 +36,7 @@ public class WelcomeActivity extends Activity {
         btnSkip = findViewById(R.id.btn_skip);
         btnNext = findViewById(R.id.btn_next);
 
-
-        // layouts of all welcome sliders
+        // layouts of all welcome slides
         // add few more layouts if you want
         layouts = new int[]{
                 R.layout.slide_welcome0,
@@ -47,7 +46,11 @@ public class WelcomeActivity extends Activity {
                 R.layout.slide_welcome4,
                 R.layout.slide_welcome5,
                 R.layout.slide_welcome6,
-                R.layout.slide_welcome7};
+                R.layout.slide_welcome7,
+                R.layout.slide_welcome8,
+                R.layout.slide_welcome9,
+                R.layout.slide_welcome10};
+        System.out.println("Layouts: " + layouts.length);
 
         // adding bottom dots
         addBottomDots(0);
@@ -81,6 +84,7 @@ public class WelcomeActivity extends Activity {
 
     private void addBottomDots(int currentPage) {
         TextView[] dots = new TextView[layouts.length];
+        System.out.println("Dots: " + dots.length);
 
         int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
         int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);

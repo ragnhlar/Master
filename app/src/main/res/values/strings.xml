@@ -56,19 +56,26 @@
     <string name="start">GOT IT</string>
 
     <string name="slide_1_title">Welcome!</string>
-    <string name="slide_1_desc">By 2030 greenhouse gas emissions will have to be cut by 40%.</string>
+    <string name="slide_1_desc">The goal of this app is to make you more aware of how your daily habits and energy use affect the environment. The Earth is happy when you have a carbon footprint below 4 kgCO&#x2082; per day. If you cross the limit of 4 kgCO&#x2082;, the Earth´s mood and health changes accordingly.</string>
 
-    <string name="slide_2_desc">Energy consumption and transport contribute over one half of total greenhouse gas emissions. </string>
+    <string name="slide_2_desc">The app does this by tracking your movement and automatically detectign whether you walk, cycle or drive a car. If the app detects that you are driving, the CO&#x2082; emission from the drive is calculated.</string>
 
-    <string name="slide_3_desc">But they are also the easiest to control.</string>
+    <string name="slide_3_desc">The app also checks the outside temperature where you live and calculates how much energy is needed to heat your home and how much CO&#x2082; are emitted to produce this amount of energy, based on heating type you have in your home.</string>
 
-    <string name="slide_4_desc">This app helps you monitor the emissions produced by your energy consumption and your driving.</string>
+    <string name="slide_4_desc">The emissions from transportation and heating  are added to calculate your carbon footprint. This is visualized in the circular indicator around the Earth on the dashboard.</string>
 
-    <string name="slide_5_desc">Try and see if you can reduce your daily emissions by 40%.</string>
+    <string name="slide_5_desc">There are many benefits of choosing green transportation types to reduce your carbon footprint. In addition to help save the planet and meet the 2 degree goal of the United Nation, you can save money, and gain health benefits if you choose to walk or cycle instead of driving.</string>
 
-    <string name="slide_6_desc">The app will show you how much this can cost you or how much you can actually save doing it.</string>
+    <string name="slide_6_desc">You can also reduce your emissions by changing to an electric car, or by installing a solar panel to provide your house with energy. Estimate how much you can save by clicking the estimation buttons at the bottom of the screen on the dashboard.</string>
 
-    <string name="slide_7_title">Enjoy!</string>
+    <!-- mangler litt beskrivelse her ettersom hva game mechanics jeg bruker -->
+    <string name="slide_7_desc">Collect points by making green choices.</string>
+
+    <string name="slide_8_desc">Connect with your neighbors and friends, and challenge each other on who can reduce their carbon footprint the most.</string>
+
+    <string name="slide_9_desc">See your historic data and check to see if you change your behavior, or just to see how your emissions change throughout the day, week or month.                                                                                                                                                                                                                                                                                 </string>
+
+    <string name="slide_10_title">Connect, compete, and take action with your friends, family and neighbors. Together we can build a healthier, happier planet!</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
