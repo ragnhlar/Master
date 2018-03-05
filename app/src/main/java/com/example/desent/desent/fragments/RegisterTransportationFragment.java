@@ -22,12 +22,13 @@ import com.example.desent.desent.R;
 
 public class RegisterTransportationFragment extends Fragment {
 
-    private boolean isProfileValid;
+    //private boolean isProfileValid;
     private CheckBox carOwner;
     //private Spinner carSizeSpinner;
     private EditText priceTextView;
     private EditText drivingDistanceTextView;
     private EditText ownershipPeriodTextView;
+    private EditText editTextRegNr;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -41,6 +42,7 @@ public class RegisterTransportationFragment extends Fragment {
 
         //TODO: button
         carOwner = rootView.findViewById(R.id.checkbox_car_owner);
+        //carOwner.setChecked(true);
         carOwner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -54,36 +56,46 @@ public class RegisterTransportationFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         carSizeSpinner.setAdapter(adapter);
         */
+        editTextRegNr = rootView.findViewById(R.id.reg_nr);
         priceTextView = rootView.findViewById(R.id.car_price);
         drivingDistanceTextView = rootView.findViewById(R.id.car_driving_distance);
         ownershipPeriodTextView = rootView.findViewById(R.id.car_ownership_period);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         restorePreferences();
-        carOwner.callOnClick();
+        //carOwner.callOnClick();
 
         return rootView;
     }
 
     public void onCheckboxClicked(CompoundButton compoundButton, boolean b) {
-
         //carSizeSpinner.setEnabled(b);
+        editTextRegNr.setEnabled(b);
         priceTextView.setEnabled(b);
         drivingDistanceTextView.setEnabled(b);
         ownershipPeriodTextView.setEnabled(b);
-
     }
 
     @Override
     public void onDestroyView(){
         super.onDestroyView();
 
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if(carOwner.isChecked()){
+        editor.putBoolean("pref_key_car_owner", carOwner.isChecked());
+        System.out.println("Car owner ODW: " + carOwner.isChecked());
+        //editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
+        //editor.putString("pref_key_car_price", priceTextView.getText().toString());
+        editor.putString("pref_key_car_price", String.valueOf(priceTextView).toString());
+        System.out.println("Car price ODW: " + priceTextView.getText());
+        editor.putString("pref_key_reg_nr", editTextRegNr.getText().toString());
+        System.out.println("Car reg nr ODW: " + editTextRegNr.getText());
+        editor.putString("pref_key_car_distance", drivingDistanceTextView.getText().toString());
+        editor.putString("pref_key_car_ownership_period", ownershipPeriodTextView.getText().toString());
+        /*if(carOwner.isChecked()){
             editor.putBoolean("pref_key_car_owner", carOwner.isChecked());
             //editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
             editor.putString("pref_key_car_price", String.valueOf(priceTextView.getText()));
+            editor.putString("pref_key_reg_nr", String.valueOf(editTextRegNr.getText()));
             editor.putString("pref_key_car_distance", String.valueOf(drivingDistanceTextView.getText()));
             editor.putString("pref_key_car_ownership_period", String.valueOf(ownershipPeriodTextView.getText()));
         }else{
@@ -94,20 +106,15 @@ public class RegisterTransportationFragment extends Fragment {
             editor.putString("pref_key_car_distance", String.valueOf(drivingDistanceTextView.getText()));
             editor.putString("pref_key_car_ownership_period", String.valueOf(ownershipPeriodTextView.getText()));
         */
-        }
-
-
         editor.commit();
-
     }
 
     private void restorePreferences(){
-
         carOwner.setChecked(sharedPreferences.getBoolean("pref_key_car_owner", true));
         //carSizeSpinner.setSelection(((ArrayAdapter<String>) carSizeSpinner.getAdapter()).getPosition(sharedPreferences.getString("pref_key_car_size", "Small")));
+        editTextRegNr.setText(sharedPreferences.getString("pref_key_reg_nr", "HJ 20005"), TextView.BufferType.EDITABLE);
         priceTextView.setText(sharedPreferences.getString("pref_key_car_price", "300000"), TextView.BufferType.EDITABLE);
         drivingDistanceTextView.setText(sharedPreferences.getString("pref_key_car_distance", "8000"), TextView.BufferType.EDITABLE);
         ownershipPeriodTextView.setText(sharedPreferences.getString("pref_key_car_ownership_period", "3"), TextView.BufferType.EDITABLE);
-
     }
 }

@@ -45,6 +45,8 @@ public class RegisterTransportationHabitsFragment extends Fragment{
     //private EditText ownershipPeriodTextView;
     private SharedPreferences sharedPreferences;
 
+    private String habits;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,17 +59,107 @@ public class RegisterTransportationHabitsFragment extends Fragment{
         img = (ImageView) rootView.findViewById(R.id.image);
         img.setImageResource(R.drawable.circle_green);
 
+        habits = "";
+
         checkBoxWalk = (CheckBox) rootView.findViewById(R.id.cbWalk);
+        checkBoxWalk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Walk, ";
+                }
+            }
+        });
         checkBoxBicycle = (CheckBox) rootView.findViewById(R.id.cbBicycle);
+        checkBoxBicycle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Cycle, ";
+                }
+            }
+        });
         checkBoxCar = (CheckBox) rootView.findViewById(R.id.cbCar);
+        checkBoxCar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Car, ";
+                }
+            }
+        });
         checkBoxBus = (CheckBox) rootView.findViewById(R.id.cbBus);
+        checkBoxBus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Bus, ";
+                }
+            }
+        });
         checkBoxTrain = (CheckBox) rootView.findViewById(R.id.cbTrain);
+        checkBoxTrain.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Train, ";
+                }
+            }
+        });
         checkBoxMotorcycle = (CheckBox) rootView.findViewById(R.id.cbMotorcycle);
+        checkBoxMotorcycle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Motorcycle, ";
+                }
+            }
+        });
         checkBoxScooter = (CheckBox) rootView.findViewById(R.id.cbScooter);
+        checkBoxScooter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Scooter, ";
+                }
+            }
+        });
         checkBoxTram = (CheckBox) rootView.findViewById(R.id.cbTram);
+        checkBoxTram.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Tram, ";
+                }
+            }
+        });
         checkBoxSubway = (CheckBox) rootView.findViewById(R.id.cbSubway);
+        checkBoxSubway.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Subway, ";
+                }
+            }
+        });
         checkBoxFerry = (CheckBox) rootView.findViewById(R.id.cbFerry);
+        checkBoxFerry.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Ferry, ";
+                }
+            }
+        });
         checkBoxOther = (CheckBox) rootView.findViewById(R.id.cbOther);
+        checkBoxOther.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (checkBoxWalk.isChecked()){
+                    habits += "Other.";
+                }
+            }
+        });
 
 
         /*
@@ -90,11 +182,52 @@ public class RegisterTransportationHabitsFragment extends Fragment{
         ownershipPeriodTextView = rootView.findViewById(R.id.car_ownership_period);
         */
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //checked(getView());
         restorePreferences();
         //carOwner.callOnClick();
 
         return rootView;
     }
+
+    /*public String checked(View v){
+        switch (v.getId()) {
+            case R.id.cbWalk:
+                habits += "Walk, ";
+                break;
+            case R.id.cbBicycle:
+                habits += "Bicycle, ";
+                break;
+            case R.id.cbCar:
+                habits += "Car, ";
+                break;
+            case R.id.cbBus:
+                habits += "Bus, ";
+                break;
+            case R.id.cbTrain:
+                habits += "Train, ";
+                break;
+            case R.id.cbMotorcycle:
+                habits += "Motorcycle, ";
+                break;
+            case R.id.cbScooter:
+                habits += "Scooter, ";
+                break;
+            case R.id.cbTram:
+                habits += "Tram, ";
+                break;
+            case R.id.cbSubway:
+                habits += "Subway, ";
+                break;
+            case R.id.cbFerry:
+                habits += "Ferry, ";
+                break;
+            case R.id.cbOther:
+                habits += "Other.";
+                break;
+        }
+        System.out.println("Habits: " + habits);
+        return habits;
+    }*/
 
     public void onCheckboxClicked(CompoundButton compoundButton, boolean b) {
 
@@ -108,9 +241,11 @@ public class RegisterTransportationHabitsFragment extends Fragment{
     @Override
     public void onDestroyView(){
         super.onDestroyView();
-        /*
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        System.out.println("Habits: " + habits);
+        editor.putString("pref_key_transportation_habits",habits);
+        /*
         if(carOwner.isChecked()){
             editor.putBoolean("pref_key_car_owner", carOwner.isChecked());
             editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
@@ -126,10 +261,8 @@ public class RegisterTransportationHabitsFragment extends Fragment{
             editor.putString("pref_key_car_ownership_period", String.valueOf(ownershipPeriodTextView.getText()));
         */
         /*}
-
-
-        editor.commit();
         */
+        editor.commit();
     }
 
     private void restorePreferences(){

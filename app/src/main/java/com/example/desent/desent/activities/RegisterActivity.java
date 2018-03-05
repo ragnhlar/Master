@@ -1,7 +1,10 @@
 package com.example.desent.desent.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
@@ -55,6 +59,7 @@ public class RegisterActivity extends FragmentActivity {
 
     SessionManagement session;
     PreferencesManager pref;
+    SharedPreferences sharedPreferences;
     private DatabaseHelper myDb;
 
     private LinearLayout dotsLayout;
@@ -67,6 +72,7 @@ public class RegisterActivity extends FragmentActivity {
 
         session = new SessionManagement(getApplicationContext());
         myDb = new DatabaseHelper(getApplicationContext());
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         List fragments = new Vector();
         fragments.add(Fragment.instantiate(this, RegisterCredentialFragment.class.getName()));
@@ -125,6 +131,46 @@ public class RegisterActivity extends FragmentActivity {
     private void launchHomeScreen() {
         session.createLoginSession(myDb.getUserEmail());
         System.out.println("Consent: " + myDb.getConsent());
+        //maybe in async task?
+        Boolean reg = myDb.registerUser(sharedPreferences.getString("pref_key_personal_email",""),
+                sharedPreferences.getString("pref_key_personal_name", ""),
+                sharedPreferences.getString("pref_key_personal_gender", ""),
+                sharedPreferences.getString("pref_key_personal_weight", ""),
+                sharedPreferences.getString("pref_key_personal_birthdate", ""),
+                sharedPreferences.getBoolean("pref_key_personal_consent", false));
+        if (reg == true) {
+            Toast.makeText(getApplicationContext(),"User registered in db", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(),"User not registered in db", Toast.LENGTH_LONG).show();
+        }
+
+        Boolean reg2 = myDb.registerHome2(sharedPreferences.getString("pref_key_personal_address",""),
+                sharedPreferences.getString("pref_key_personal_zip_code", ""),
+                sharedPreferences.getString("pref_key_personal_city", ""),
+                sharedPreferences.getString("pref_key_b_year", ""),
+                sharedPreferences.getString("pref_key_r_year", ""),
+                sharedPreferences.getString("pref_key_heat_type", ""));
+        if (reg2 == true) {
+            Toast.makeText(getApplicationContext(),"Home registered in db", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(),"Home not registered in db", Toast.LENGTH_LONG).show();
+        }
+
+        Boolean reg3 = myDb.registerTHabits(sharedPreferences.getString("pref_key_transportation_habits", ""),
+                sharedPreferences.getBoolean("pref_key_car_owner", false),
+                sharedPreferences.getString("pref_key_car_reg_nr", ""),
+                sharedPreferences.getString("pref_key_car_price", ""),
+                sharedPreferences.getString("pref_key_car_distance", ""),
+                sharedPreferences.getString("pref_key_car_ownership_period", ""));
+        System.out.println("Car owner: " + sharedPreferences.getBoolean("pref_key_car_owner", false));
+        System.out.println("Reg nr car: " + sharedPreferences.getString("pref_key_car_reg_nr", ""));
+        if (reg3 == true) {
+            Toast.makeText(getApplicationContext(),"Transportation habits registered in db", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(),"Transportation habits not registered in db", Toast.LENGTH_LONG).show();
+        }
+
+        //myDb.registerUser();
         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         finish();
 

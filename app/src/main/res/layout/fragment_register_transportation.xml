@@ -97,7 +97,7 @@
             android:id="@+id/car_driving_distance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Yearly driving distance"
+            android:hint="Yearly driving distance (km)"
             android:inputType="number"
             android:maxLines="1" />
 

@@ -63,8 +63,14 @@ public class RegisterHousingFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         String heatType = (String) ((RadioButton) getView().findViewById(heatingTypeRadioGroup.getCheckedRadioButtonId())).getText();
+        String b_year = (String) spinnerBuildingYear.getSelectedItem();
+        System.out.println("Building year: " + b_year);
+        String r_year = (String) spinnerRenovationYear.getSelectedItem();
+        System.out.println("Renovation year: " + r_year);
 
         editor.putString("pref_key_heat_type", heatType);
+        editor.putString("pref_key_b_year", b_year);
+        editor.putString("pref_key_r_year", r_year);
 
         editor.commit();
 

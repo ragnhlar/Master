@@ -6,9 +6,11 @@ package com.example.desent.desent.models;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
@@ -37,6 +39,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_ENERGY = "ENERGY";
     public static final String TABLE_HOME = "HOME";
     public static final String TABLE_FORECAST = "FORECAST";
+
+    public static final String TABLE_USER = "USER";
+
+    public static final String U_COL_1 = "EMAIL";
+    public static final String U_COL_2 = "NAME";
+    //public static final String U_COL_3 = "ADDRESS";
+    //public static final String U_COL_4 = "ZIP_CODE";
+    //public static final String U_COL_5 = "CITY";
+    public static final String U_COL_3 = "GENDER";
+    public static final String U_COL_4 = "WEIGHT";
+    public static final String U_COL_5 = "BIRTHDATE";
+    public static final String U_COL_6 = "CONSENT";
+
+    public static final String TABLE_HOME2 = "HOME2";
+
+    public static final String H2_COL_1 = "ADDRESS";
+    public static final String H2_COL_2 = "ZIP_CODE";
+    public static final String H2_COL_3 = "CITY";
+    public static final String H2_COL_4 = "B_YEAR";
+    public static final String H2_COL_5 = "R_YEAR";
+    public static final String H2_COL_6 = "HEAT_TYPE";
+
+    public static final String TABLE_TRANSPORTATION = "TRANSPORTATION";
+
+    public static final String T_COL_1 = "HABITS"; //list of transportation types
+    public static final String T_COL_2 = "CAR_OWNER"; //True/False
+    public static final String T_COL_3 = "REG_NR";
+    public static final String T_COL_4 = "CAR_VALUE";
+    public static final String T_COL_5 = "YEARLY_D_DIST";
+    public static final String T_COL_6 = "DUR_OWNERSHIP";
 
     // COL's for TABLE_DISTANCE
     public static final String D_COL_1 = "DATE";
@@ -81,9 +113,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String FO_COL3 = "CLOUDS_FORECAST";
     private static final String FO_COL4 = "IRRADIANCE_FORECAST";
 
+    SharedPreferences sharedPreferences;
+    private Context appContext;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
+        this.appContext = context;
     }
 
     @Override
@@ -113,6 +148,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + FO_COL2 + " NUMERIC, "
                 + FO_COL3 + " NUMERIC, "
                 + FO_COL4 + " NUMERIC )");
+        db.execSQL("create table " + TABLE_USER + " ("
+                + U_COL_1 + " TEXT PRIMARY KEY,"
+                + U_COL_2 + " TEXT,"
+                + U_COL_3 + " TEXT,"
+                + U_COL_4 + " TEXT, "
+                + U_COL_5 + " TEXT, "
+                + U_COL_6 + " BOOLEAN)");
+        db.execSQL("create table " + TABLE_HOME2 + " ("
+                + H2_COL_1 + " TEXT PRIMARY KEY,"
+                + H2_COL_2 + " TEXT,"
+                + H2_COL_3 + " TEXT,"
+                + H2_COL_4 + " TEXT,"
+                + H2_COL_5 + " TEXT, "
+                + H2_COL_6 + " TEXT)");
+        db.execSQL("create table " + TABLE_TRANSPORTATION + " ("
+                + T_COL_1 + " TEXT PRIMARY KEY,"
+                + T_COL_2 + " BOOLEAN,"
+                + T_COL_3 + " TEXT,"
+                + T_COL_4 + " TEXT,"
+                + T_COL_5 + " TEXT,"
+                + T_COL_6 + " TEXT)");
     }
 
     @Override
@@ -955,5 +1011,98 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean registerUser(String email, String name, String gender, String weight, String birthdate, Boolean consent) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //sharedPreferences = appContext.getSharedPreferences("PreferencesManager", Context.MODE_PRIVATE);
+        //put user info
+        /*contentValues.put(U_COL_1, sharedPreferences.getString("pref_key_personal_email", ""));
+        System.out.println("SharedPref mail: " + sharedPreferences.getString("pref_key_personal_email", ""));
+        contentValues.put(U_COL_2, sharedPreferences.getString("pref_key_personal_name", ""));
+        contentValues.put(U_COL_3, sharedPreferences.getString("pref_key_personal_gender", ""));
+        contentValues.put(U_COL_4, sharedPreferences.getString("pref_key_personal_weight", ""));
+        contentValues.put(U_COL_5, sharedPreferences.getString("pref_key_personal_birthdate", ""));
+        contentValues.put(U_COL_6, sharedPreferences.getString("pref_key_personal_consent", ""));*/
+        contentValues.put(U_COL_1, email);
+        //System.out.println("SharedPref mail: " + sharedPreferences.getString("pref_key_personal_email", ""));
+        System.out.println("SharedPref mail: " + email);
+        contentValues.put(U_COL_2, name);
+        contentValues.put(U_COL_3, gender);
+        contentValues.put(U_COL_4, weight);
+        contentValues.put(U_COL_5, birthdate);
+        contentValues.put(U_COL_6, consent);
 
+        System.out.println("Koden kommer hit");
+        long result = db.insert(TABLE_USER, null, contentValues);
+        //db.close();
+        System.out.println("Koden kommer hit ogsaa");
+        /*if (result == -1) {
+            Log.i(LOG, "False user not registered");
+            return false;
+        }
+        else {
+            Log.i(LOG, "True registered user");
+            return true;
+        }*/
+
+        //long result = db.insert(TABLE_ENERGY, null, contentValues);
+        db.close();
+        return result != -1;
+    }
+    public boolean registerHome2(String address, String zipCode, String city, String b_year, String r_year, String heatType) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        //sharedPreferences = appContext.getSharedPreferences("PreferencesManager", Context.MODE_PRIVATE);
+        //put user info
+        /*contentValues.put(U_COL_1, sharedPreferences.getString("pref_key_personal_email", ""));
+        System.out.println("SharedPref mail: " + sharedPreferences.getString("pref_key_personal_email", ""));
+        contentValues.put(U_COL_2, sharedPreferences.getString("pref_key_personal_name", ""));
+        contentValues.put(U_COL_3, sharedPreferences.getString("pref_key_personal_gender", ""));
+        contentValues.put(U_COL_4, sharedPreferences.getString("pref_key_personal_weight", ""));
+        contentValues.put(U_COL_5, sharedPreferences.getString("pref_key_personal_birthdate", ""));
+        contentValues.put(U_COL_6, sharedPreferences.getString("pref_key_personal_consent", ""));*/
+        contentValues.put(H2_COL_1, address);
+        //System.out.println("SharedPref mail: " + sharedPreferences.getString("pref_key_personal_email", ""));
+        System.out.println("SharedPref address: " + address);
+        contentValues.put(H2_COL_2, zipCode);
+        contentValues.put(H2_COL_3, city);
+        contentValues.put(H2_COL_4, b_year);
+        contentValues.put(H2_COL_5, r_year);
+        contentValues.put(H2_COL_6, heatType);
+
+        System.out.println("Koden kommer hit");
+        long result = db.insert(TABLE_HOME2, null, contentValues);
+        //db.close();
+        System.out.println("Koden kommer hit ogsaa");
+        /*if (result == -1) {
+            Log.i(LOG, "False user not registered");
+            return false;
+        }
+        else {
+            Log.i(LOG, "True registered user");
+            return true;
+        }*/
+
+        //long result = db.insert(TABLE_ENERGY, null, contentValues);
+        db.close();
+        return result != -1;
+    }
+
+    public Boolean registerTHabits(String habits, Boolean car_owner, String reg_nr, String car_value, String yearly_d_dist, String dur_ownership) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(T_COL_1, habits);
+        System.out.println("SharedPref habits: " + habits);
+        contentValues.put(T_COL_2, car_owner);
+        contentValues.put(T_COL_3, reg_nr);
+        contentValues.put(T_COL_4, car_value);
+        contentValues.put(T_COL_5, yearly_d_dist);
+        contentValues.put(T_COL_6, dur_ownership);
+
+        System.out.println("Koden kommer hit");
+        long result = db.insert(TABLE_TRANSPORTATION, null, contentValues);
+        System.out.println("Koden kommer hit ogsaa");
+        db.close();
+        return result != -1;
+    }
 }

@@ -27,6 +27,7 @@ import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Calendar;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
@@ -38,7 +39,7 @@ import static com.example.desent.desent.R.color.colorPrimary;
 
 public class RegisterPersonalFragment extends Fragment {
 
-    //Profile picure
+    //Profile picture
     private ImageView profilePic;
     private ImageView cameraIcon;
     private TextView textViewChangePicture;
@@ -51,8 +52,8 @@ public class RegisterPersonalFragment extends Fragment {
     private EditText editTextWeight;
 
     private RadioGroup radioGroupGender;
-    private RadioButton radioButtonFemale;
-    private RadioButton radioButtonMale;
+    //private RadioButton radioButtonFemale;
+    //private RadioButton radioButtonMale;
 
     //Datepicker for birthdate
     private DatePicker datePicker;
@@ -79,7 +80,6 @@ public class RegisterPersonalFragment extends Fragment {
         cameraIcon = rootView.findViewById(R.id.imageButton);
         cameraIcon.setImageResource(R.drawable.ic_menu_camera);
         textViewChangePicture = rootView.findViewById(R.id.textViewChangePicture);
-        //could maybe gather these on a group instead?
         profilePic.setOnClickListener(new View.OnClickListener(){ //TODO:request permission
             @Override
             public void onClick(View arg0) {
@@ -103,30 +103,27 @@ public class RegisterPersonalFragment extends Fragment {
         editTextWeight = rootView.findViewById(R.id.weightInput);
 
         radioGroupGender = (RadioGroup) rootView.findViewById(R.id.radioGroup);
-        radioGroupGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                RadioButton checkedRadioButton = (RadioButton) radioGroupGender.findViewById(checkedId);
-                int checkedIndex = radioGroupGender.indexOfChild(checkedRadioButton);
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("pref_key_personal_gender", checkedIndex);
-            }
-        });
-        /*
-        radioButtonFemale = rootView.findViewById(R.id.radio_button_female);
-        radioButtonMale = rootView.findViewById(R.id.radio_button_male);
-        */
         datePicker = rootView.findViewById(R.id.datePicker);
         //set max birth date to today's date
         datePicker.setMaxDate(new Date().getTime());
 
         restorePreferences();
 
+        updateDatePicker();
+
+
         //setErrors();
 
         return rootView;
+    }
+
+    private void updateDatePicker() {
+        if (sharedPreferences.getString("pref_key_personal_birthdate", "") == "") {
+            datePicker.updateDate(1990,7,15);
+        } else {
+            datePicker.updateDate(sharedPreferences.getInt("pref_key_personal_birth_year", 0), (sharedPreferences.getInt("pref_key_personal_birth_month",0))-1, sharedPreferences.getInt("pref_key_personal_birth_day",0));
+        }
     }
 
     @Override
@@ -141,12 +138,16 @@ public class RegisterPersonalFragment extends Fragment {
         editor.putString("pref_key_personal_zip_code", String.valueOf(editTextZipCode.getText()));
         editor.putString("pref_key_personal_city", String.valueOf(editTextCity.getText()));
         editor.putString("pref_key_personal_weight", String.valueOf(editTextWeight.getText()));
-        //editor.putBoolean("pref_key_personal_male", radioButtonMale.isChecked());
-        //editor.putBoolean("pref_key_personal_female", radioButtonFemale.isChecked());
-        //editor.putInt("pref_key_personal_gender", radioGroupGender.)
-        editor.putInt("pref_key_personal_birth_month", datePicker.getMonth());
+        editor.putString("pref_key_personal_gender", (radioGroupGender.getCheckedRadioButtonId() == R.id.rbFemale) ? "Female" : "Male");
+
+        editor.putString("pref_key_personal_age", getAge());
+        int month = (Integer) datePicker.getMonth();
+        int correctMonth = month + 1;
+        editor.putInt("pref_key_personal_birth_month", correctMonth);
         editor.putInt("pref_key_personal_birth_year", datePicker.getYear());
         editor.putInt("pref_key_personal_birth_day", datePicker.getDayOfMonth());
+        editor.putString("pref_key_personal_birthdate", datePicker.getYear() + "-" + correctMonth + "-" + datePicker.getDayOfMonth());
+        System.out.println("Birthday: " + datePicker.getYear() + "-" + correctMonth + "-" + datePicker.getDayOfMonth());
         editor.commit();
 
         myDb.insertPersonalData(editTextName.getText().toString(), editTextAddress.getText().toString(),
@@ -302,10 +303,44 @@ public class RegisterPersonalFragment extends Fragment {
             e.printStackTrace();
         }
 
+        if (sharedPreferences.getString("pref_key_personal_gender", "").equals("Female")){
+            radioGroupGender.check(R.id.rbFemale);
+        } else {
+            radioGroupGender.check(R.id.rbMale);
+        }
+
         editTextName.setText(sharedPreferences.getString("pref_key_personal_name", ""), TextView.BufferType.EDITABLE);
         editTextAddress.setText(sharedPreferences.getString("pref_key_personal_address", ""), TextView.BufferType.EDITABLE);
         editTextZipCode.setText(sharedPreferences.getString("pref_key_personal_zip_code", ""), TextView.BufferType.EDITABLE);
         editTextCity.setText(sharedPreferences.getString("pref_key_personal_city", ""), TextView.BufferType.EDITABLE);
         editTextWeight.setText(sharedPreferences.getString("pref_key_personal_weight", ""), TextView.BufferType.EDITABLE);
+
+        datePicker.init(sharedPreferences.getInt("pref_key_personal_birth_year", 0),
+                sharedPreferences.getInt("pref_key_personal_birth_month", 0),
+                sharedPreferences.getInt("pref_key_personal_birth_day", 0),
+                null);
+    }
+
+    public String getAge() {
+        Calendar dateOfBirth = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth();
+        int day = datePicker.getDayOfMonth();
+
+        dateOfBirth.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dateOfBirth.get(Calendar.DAY_OF_YEAR)) {
+            age --;
+        }
+
+        Integer ageInt = new Integer(age);
+        String ageS = ageInt.toString();
+
+        System.out.println("Age: " + ageS);
+        return ageS;
     }
 }
