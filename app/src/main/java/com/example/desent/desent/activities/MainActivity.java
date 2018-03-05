@@ -601,7 +601,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView co2Left = (TextView) findViewById(R.id.text_view_information_co2_left);
         if (carbonFootprint.getDailyValue() < carbonFootprint.getLimitValue()) {
             co2Left.setVisibility(VISIBLE);
-            co2Left.setText(String.format(getResources().getString(R.string.information_co2_left), Utility.doubleToStringNDecimals(carbonFootprint.getLimitValue() - carbonFootprint.getDailyValue(), carbonFootprint.getDecimalsNumber())));
+            co2Left.setText(String.format(getResources().getString(R.string.information_co2_left2), Utility.doubleToStringNDecimals(carbonFootprint.getLimitValue() - carbonFootprint.getDailyValue(), carbonFootprint.getDecimalsNumber())));
         } else
             co2Left.setVisibility(GONE);
     }

@@ -31,6 +31,25 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"/>
 
+    <LinearLayout
+        android:id="@+id/information_co2_left"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/progress_bar"
+        android:layout_height="48dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_view_information_co2_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textColor="@color/dark_grey"
+            android:textStyle="bold"
+            android:text="@string/information_co2_left_default2"/>
+    </LinearLayout>
 
     <ScrollView
         android:layout_height="match_parent"
@@ -91,25 +110,6 @@
                     android:layout_width="0dp"
                     tools:layout="@layout/fragment_category" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/information_co2_left"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center"
-                android:background="@drawable/background_text_view">
-
-                <TextView
-                    android:id="@+id/text_view_information_co2_left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:text="@string/information_co2_left_default"/>
             </LinearLayout>
 
             <View
@@ -200,9 +200,7 @@
 
         </LinearLayout>
 
-
     </ScrollView>
-
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
