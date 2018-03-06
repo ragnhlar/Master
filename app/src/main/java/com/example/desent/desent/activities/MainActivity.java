@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     Spinner timeSpinner;
     TextView textViewTimeScale;
+
+    TableLayout tableInfo;
 
     //Fragments
     CircleFragment carbonFootprintCircleFragment;
@@ -192,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         timeSpinner.setSelection(0);
 
         // Implement when back button is pressed show "dashboard"
+
+        //not a good way to solve this...
         startActivity(new Intent(MainActivity.this, MainActivity.class));
 
         /*
@@ -247,6 +252,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         textViewTimeScale = (TextView) findViewById(R.id.textViewTimeScale);
 
+        tableInfo = (TableLayout) findViewById(R.id.tableInfo);
+
         //Bottom navigation
 
         //final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -281,6 +288,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             case R.id.navigation_none:
 
+                                tableInfo.setVisibility(View.GONE);
+
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.NONE);
 
@@ -304,12 +313,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
 
+                                tableInfo.setVisibility(View.VISIBLE);
+
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.SOLAR_INSTALLATION);
 
                                 informationCO2Left.setVisibility(View.GONE);
                                 informationSavings.setVisibility(View.VISIBLE);
-                                informationDaysLeftSolarPanel.setVisibility(View.GONE);
+                                informationDaysLeftSolarPanel.setVisibility(View.VISIBLE);
                                 informationSeparator.setVisibility(VISIBLE);
                                 informationOwnEnergy.setVisibility(VISIBLE);
 
@@ -323,6 +334,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+
+                                tableInfo.setVisibility(View.VISIBLE);
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.WALKING);
@@ -353,6 +366,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
+                                tableInfo.setVisibility(View.VISIBLE);
+
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.CYCLING);
 
@@ -382,6 +397,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
+                                tableInfo.setVisibility(View.VISIBLE);
+
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.ELECTRIC_CAR);
 
@@ -397,7 +414,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 ft.commit();
 
                                 break;
-
                         }
                         refreshAll();
                         return true;
@@ -545,6 +561,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_home:
 
+                        //not a good way to solve this...
                         startActivity(new Intent(MainActivity.this, MainActivity.class));
 
 
@@ -671,11 +688,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void updateSavings() {
-        ((TextView) findViewById(R.id.text_view_information_daily_savings)).setText(String.format(getResources().getString(R.string.information_savings), Utility.floatToStringNDecimals(expenses.calculateSavings(), expenses.getDecimalsNumber()) + expenses.getUnit()));
+        ((TextView) findViewById(R.id.text_view_information_daily_savings)).setText(String.format(getResources().getString(R.string.information_savings), Utility.floatToStringNDecimals(expenses.calculateSavings(), expenses.getDecimalsNumber()) + " " + expenses.getUnit()));
     }
 
     public void updateOwnEnergy(){
-        ((TextView) findViewById(R.id.text_view_information_own_energy)).setText(String.format(getResources().getString(R.string.information_own_energy), String.valueOf(energyConsumption.calculatePercentageSelfConsumption()) + "%"));
+        ((TextView) findViewById(R.id.text_view_information_own_energy)).setText(String.format(getResources().getString(R.string.information_own_energy), String.valueOf(energyConsumption.calculatePercentageSelfConsumption()) + " %"));
     }
 
     public void refreshAll(){
