@@ -85,7 +85,7 @@ public class RegisterTransportationFragment extends Fragment {
         System.out.println("Car owner ODW: " + carOwner.isChecked());
         //editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
         //editor.putString("pref_key_car_price", priceTextView.getText().toString());
-        editor.putString("pref_key_car_price", String.valueOf(priceTextView).toString());
+        editor.putString("pref_key_car_price", String.valueOf(priceTextView.getText()));
         System.out.println("Car price ODW: " + priceTextView.getText());
         editor.putString("pref_key_reg_nr", editTextRegNr.getText().toString());
         System.out.println("Car reg nr ODW: " + editTextRegNr.getText());

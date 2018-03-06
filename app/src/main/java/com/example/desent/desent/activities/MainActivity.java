@@ -70,6 +70,7 @@ import static android.view.View.VISIBLE;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Spinner timeSpinner;
+    TextView textViewTimeScale;
 
     //Fragments
     CircleFragment carbonFootprintCircleFragment;
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public DatabaseHelper mDatabaseHelper;
 
     private boolean isFirstDisplay = true;
+    private boolean receiversRegistered;
 
     public boolean isFirstDisplay() {
         return isFirstDisplay;
@@ -217,6 +219,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.time_spinner_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         timeSpinner.setAdapter(adapter);
+
+        textViewTimeScale = (TextView) findViewById(R.id.textViewTimeScale);
 
         //Bottom navigation
 
@@ -382,14 +386,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Activity activityContext = this;
         distanceTracking = new DistanceTracker(activityContext, this);
         distanceTracking.setActivity(activity);
-
+        registerReceivers();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         distanceTracking.start();
-        registerReceiver(distanceTracking.getFenceReceiver(), new IntentFilter(FENCE_RECEIVER_ACTION));
+        registerReceivers();
+        //registerReceiver(distanceTracking.getFenceReceiver(), new IntentFilter(FENCE_RECEIVER_ACTION));
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
         AsyncMainSetup asyncMainSetup = new AsyncMainSetup(this,
@@ -415,8 +420,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         EnergyUpdatesRunnableCode.run();
     }
 
+    private void registerReceivers() {
+        //only register if not already registered
+        if (!receiversRegistered){
+           registerReceiver(distanceTracking.getFenceReceiver(), new IntentFilter(FENCE_RECEIVER_ACTION));
+           receiversRegistered = true;
+        }
+    }
+
     @Override
     protected void onResume() {
+        registerReceivers();
         super.onResume();
         if(gpsFlag == true) {
             distanceTracking.askForGps();
@@ -430,6 +444,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStop();
         //distanceTracking.stop();
         //unregisterReceiver(distanceTracking.getFenceReceiver());
+        if (receiversRegistered) {
+            unregisterReceiver(distanceTracking.getFenceReceiver());
+            receiversRegistered = false;
+        }
     }
 
 
@@ -569,16 +587,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case 0:
                     if (carbonFootprint.getEstimationType() == EstimationType.NONE)
                         informationCO2Left.setVisibility(VISIBLE);
+                        textViewTimeScale.setVisibility(View.GONE);
                     for (Indicator indicator: indicators)
                         indicator.setTimeScale(TimeScale.TODAY);
                     break;
                 case 1:
                     informationCO2Left.setVisibility(GONE);
+                    textViewTimeScale.setVisibility(View.VISIBLE);
+                    textViewTimeScale.setText("Average this week");
                     for (Indicator indicator: indicators)
                         indicator.setTimeScale(TimeScale.WEEK);
                     break;
                 case 2:
                     informationCO2Left.setVisibility(GONE);
+                    textViewTimeScale.setVisibility(View.VISIBLE);
+                    textViewTimeScale.setText("Average this month");
                     for (Indicator indicator: indicators)
                         indicator.setTimeScale(TimeScale.MONTH);
             }

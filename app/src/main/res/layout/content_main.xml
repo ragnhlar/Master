@@ -35,6 +35,7 @@
         android:id="@+id/information_co2_left"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_below="@+id/progress_bar"
         android:layout_height="48dp"
@@ -49,6 +50,7 @@
             android:textColor="@color/dark_grey"
             android:textStyle="bold"
             android:text="@string/information_co2_left_default2"/>
+
     </LinearLayout>
 
     <ScrollView
@@ -65,6 +67,17 @@
             android:orientation="vertical"
             android:padding="10dp"
             android:gravity="center">
+
+            <TextView
+                android:id="@+id/textViewTimeScale"
+                android:visibility="invisible"
+                android:text="Average this week"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:textStyle="italic|bold"
+                android:textColor="@color/dark_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <fragment android:name="com.example.desent.desent.fragments.WalkingDistanceFragment"
                 android:id="@+id/walking_distance"
