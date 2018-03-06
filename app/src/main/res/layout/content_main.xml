@@ -86,8 +86,8 @@
 
             <fragment android:name="com.example.desent.desent.fragments.CircleFragment"
                 android:id="@+id/dailyCarbonFootprint"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 tools:layout="@layout/fragment_circle">
             </fragment>
 

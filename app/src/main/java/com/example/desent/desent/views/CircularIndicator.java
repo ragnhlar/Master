@@ -29,9 +29,8 @@ public class CircularIndicator extends View {
     protected RectF mCircleBounds;
 
     //Sizes
-    protected int mBackgroundThicknessFactor = 30;
-    protected int mProgressThicknessFactor = 25;
-
+    protected int mBackgroundThicknessFactor = 20;
+    protected int mProgressThicknessFactor = 15;
 
     //Angles
     protected int startAngle;
@@ -107,7 +106,6 @@ public class CircularIndicator extends View {
             canvas.drawArc(mCircleBounds, tempStartAngle, tempSweepAngle, false, mProgressPaint);
             tempStartAngle = tempStartAngle + tempSweepAngle;
         }
-
     }
 
     protected void updateValues() {
@@ -118,7 +116,6 @@ public class CircularIndicator extends View {
     }
 
     protected void setUpBounds(Canvas canvas){
-
         //Bounds
         int x = this.getWidth();
         int y = this.getHeight();
@@ -157,8 +154,6 @@ public class CircularIndicator extends View {
 
         int r = (x<y) ? x : y;
         setMeasuredDimension(r,r);
-
-
     }
 
 
