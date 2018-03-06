@@ -31,27 +31,7 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"/>
 
-    <LinearLayout
-        android:id="@+id/information_co2_left"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/progress_bar"
-        android:layout_height="48dp"
-        android:gravity="center">
 
-        <TextView
-            android:id="@+id/text_view_information_co2_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textColor="@color/dark_grey"
-            android:textStyle="bold"
-            android:text="@string/information_co2_left_default2"/>
-
-    </LinearLayout>
 
     <ScrollView
         android:layout_height="match_parent"
@@ -68,13 +48,34 @@
             android:padding="10dp"
             android:gravity="center">
 
+            <LinearLayout
+                android:id="@+id/information_co2_left"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/progress_bar"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/text_view_information_co2_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_grey"
+                    android:textStyle="bold"
+                    android:text="@string/information_co2_left_default2"/>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/textViewTimeScale"
                 android:visibility="invisible"
                 android:text="Average this week"
                 android:textAlignment="center"
-                android:textSize="16sp"
-                android:textStyle="italic|bold"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 android:textColor="@color/dark_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -215,13 +216,27 @@
 
     </ScrollView>
 
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+        android:id="@+id/bnve"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/selector_bottom_navigation_blue"
+        app:itemTextColor="@color/selector_bottom_navigation_blue"
+        app:menu="@menu/activity_main_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
+
+    <!--
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
+        app:itemIconTint="@color/dark_grey"
+        app:itemTextColor="@color/dark_grey"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/activity_main_bottom_navigation" />
+        app:menu="@menu/activity_main_bottom_navigation" />-->
 
 </RelativeLayout>

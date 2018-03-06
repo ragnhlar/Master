@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
@@ -53,6 +55,7 @@ import com.example.desent.desent.models.VehicleCost;
 import com.example.desent.desent.utils.EstimationType;
 import com.example.desent.desent.utils.TimeScale;
 import com.example.desent.desent.utils.Utility;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -187,6 +190,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         timeSpinner.setSelection(0);
+
+        // Implement when back button is pressed show "dashboard"
+        startActivity(new Intent(MainActivity.this, MainActivity.class));
+
+        /*
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        for (Indicator indicator:indicators)
+            indicator.setEstimationType(EstimationType.NONE);
+
+        if (timeSpinner.getSelectedItemPosition() == 0)
+            informationCO2Left.setVisibility(View.VISIBLE);
+
+        informationSavings.setVisibility(View.GONE);
+        informationDaysLeftSolarPanel.setVisibility(View.GONE);
+        informationSeparator.setVisibility(GONE);
+        informationOwnEnergy.setVisibility(GONE);
+
+        ft.hide(walkingDistanceFragment);
+        ft.hide(cyclingDistanceFragment);
+        ft.hide(solarPanelSizeFragment);
+        ft.commit();
+        */
     }
 
     @Override
@@ -224,13 +249,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Bottom navigation
 
-        final BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottom_navigation);
+        //final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        final BottomNavigationViewEx bnve = (BottomNavigationViewEx) findViewById(R.id.bnve);
+        bnve.enableAnimation(false);
+        bnve.enableShiftingMode(false);
+        bnve.enableItemShiftingMode(false);
+        bnve.setIconSize(30,30);
+        bnve.setTextSize(14);
+        bnve.setIconsMarginTop(5);
+
+        /*
+        BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        for (int i = 0; i < menuView.getChildCount(); i++) {
+            BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
+            itemView.setShiftingMode(false);
+            itemView.setChecked(false);
+        }*/
 
         findViewById(R.id.navigation_none).setVisibility(GONE);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bnve.setOnNavigationItemSelectedListener(
+                new BottomNavigationViewEx.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -257,13 +297,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 ft.hide(solarPanelSizeFragment);
                                 ft.commit();
 
-
                                 break;
 
                             case R.id.navigation_solar_installation:
 
-                                bottomNavigationView.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
-                                bottomNavigationView.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
+                                bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
+                                bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.SOLAR_INSTALLATION);
@@ -282,8 +321,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 break;
                             case R.id.navigation_walking:
 
-                                bottomNavigationView.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
-                                bottomNavigationView.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+                                bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+                                bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.WALKING);
@@ -311,8 +350,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 break;
                             case R.id.navigation_cycling:
 
-                                bottomNavigationView.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
-                                bottomNavigationView.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+                                bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+                                bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.CYCLING);
@@ -340,8 +379,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 break;
                             case R.id.navigation_electric_car:
 
-                                bottomNavigationView.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
-                                bottomNavigationView.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+                                bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+                                bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.ELECTRIC_CAR);
@@ -365,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
-        bottomNavigationView.setOnNavigationItemReselectedListener(
+        bnve.setOnNavigationItemReselectedListener(
                 new BottomNavigationView.OnNavigationItemReselectedListener() {
                     @Override
                     public void onNavigationItemReselected(@NonNull MenuItem item) {
@@ -505,6 +544,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_home:
+
+                        startActivity(new Intent(MainActivity.this, MainActivity.class));
 
 
                         // launch new intent instead of loading fragment
