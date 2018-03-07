@@ -16,6 +16,7 @@ import com.example.desent.desent.fragments.CyclingDistanceFragment;
 import com.example.desent.desent.fragments.IndicatorsBarFragment;
 import com.example.desent.desent.fragments.SolarPanelSizeFragment;
 import com.example.desent.desent.fragments.WalkingDistanceFragment;
+import com.example.desent.desent.models.ActiveMinutes;
 import com.example.desent.desent.models.Calories;
 import com.example.desent.desent.models.CarRegNr;
 import com.example.desent.desent.models.CarbonFootprint;
@@ -49,6 +50,7 @@ public class AsyncMainSetup extends AsyncTask {
 
     private ArrayList<Indicator> indicators;
     private Calories calories;
+    private ActiveMinutes activeMinutes;
     private Expenses expenses;
     private CarbonFootprint carbonFootprint;
     private DrivingDistance drivingDistance;
@@ -107,6 +109,7 @@ public class AsyncMainSetup extends AsyncTask {
 
         activity.setCarbonFootprint(carbonFootprint);
         activity.setCalories(calories);
+        activity.setActiveMinutes(activeMinutes);
         activity.setExpenses(expenses);
         activity.setDrivingDistance(drivingDistance);
         activity.setEnergyConsumption(energyConsumption);
@@ -143,6 +146,11 @@ public class AsyncMainSetup extends AsyncTask {
                 activity.getString(R.string.calories_explanation),
                 transport,
                 activity));
+        indicators.add(activeMinutes = new ActiveMinutes(activity.getString(R.string.active_minutes_name),
+                activity.getString(R.string.active_minutes_unit),
+                activity.getString(R.string.active_minutes_explanation),
+                transport,
+                activity));
         indicators.add(expenses = new Expenses(activity.getString(R.string.expenses_name),
                 activity.getString(R.string.expenses_unit),
                 activity.getString(R.string.expenses_explanation),
@@ -163,6 +171,7 @@ public class AsyncMainSetup extends AsyncTask {
         carbonFootprint.setLimitValue(limitCarbonFootprint);
 
         calories.setDecimalsNumber(0);
+        activeMinutes.setDecimalsNumber(0);
         expenses.setDecimalsNumber(0);
         carbonFootprint.setDecimalsNumber(1);
         drivingDistance.setDecimalsNumber(1);
@@ -173,8 +182,9 @@ public class AsyncMainSetup extends AsyncTask {
             indicator.setEstimationType(EstimationType.NONE);
         }
 
-        indicatorsBarFragment.setLength(4);
+        indicatorsBarFragment.setLength(5);
         indicatorsBarFragment.addIndicator(calories);
+        indicatorsBarFragment.addIndicator(activeMinutes);
         indicatorsBarFragment.addIndicator(expenses);
         indicatorsBarFragment.addIndicator(drivingDistance);
         indicatorsBarFragment.addIndicator(energyConsumption);

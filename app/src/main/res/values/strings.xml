@@ -19,6 +19,10 @@
     <string name="calories_unit">kCal</string>
     <string name="calories_explanation">Your calorie consumption. The more you walk or cycle instead of driving, the more you will burn.</string>
 
+    <string name="active_minutes_name">Active minutes</string>
+    <string name="active_minutes_unit">min</string>
+    <string name="active_minutes_explanation">Explanation is coming</string>
+
     <string name="energy_consumption_name">Energy consumption</string>
     <string name="energy_consumption_unit">kWh</string>
     <string name="energy_consumption_explanation">The total amount of energy/heat your house needs in kWh. The outside temperature determines how much heat you will need to keep it warm.</string>
