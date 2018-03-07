@@ -23,5 +23,14 @@
             android:title="Log Out"
             android:icon="@drawable/ic_clear_black_24dp"
             />
+
+        <item
+            android:id="@+id/nav_history_graph"
+            android:title="History Graph"
+            android:icon="@drawable/ic_history_black_24dp"/>
+
+        <item android:id="@+id/nav_info_app"
+            android:title="How does this app work?"
+            android:icon="@drawable/ic_menu_info"/>
     </group>
 </menu>

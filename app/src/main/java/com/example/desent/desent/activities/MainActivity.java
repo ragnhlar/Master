@@ -599,6 +599,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         //startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         drawer.closeDrawers();
                         return true;
+                    case R.id.nav_history_graph:
+
+                        startActivity(new Intent(MainActivity.this, HistoryGraphActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_info_app:
+
+                        startActivity(new Intent(MainActivity.this, InformationActivity.class));
+                        drawer.closeDrawers();
+                        return true;
                     default:
                 }
 

@@ -211,9 +211,8 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         String barColor1 = "#03a9f4";
         String barColor2 = "#64dd17";
 
-        String labelText1 = "Energy";
-        String labelText2 = "Transportation"; //TODO: string
-
+        String labelText1 = "From energy";
+        String labelText2 = "From transportation"; //TODO: string
 
         value.add(new ChartData(value1, labelText1, barColor1));
         value.add(new ChartData(value2, labelText2, barColor2));
@@ -306,9 +305,9 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         String barColor2 = "#4f8714";
         String barColor3 = "#875c14";
 
-        String labelText1 = "Walking";
-        String labelText2 = "Cycling";
-        String labelText3 = "Driving";
+        String labelText1 = "Distance walked (km)";
+        String labelText2 = "Distance cycled (km)";
+        String labelText3 = "Distance driven (km)";
 
 
         value.add(new ChartData(value1, labelText1, barColor1));
