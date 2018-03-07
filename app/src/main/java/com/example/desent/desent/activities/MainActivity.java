@@ -615,6 +615,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(new Intent(MainActivity.this, InformationActivity.class));
                         drawer.closeDrawers();
                         return true;
+
+                    case R.id.nav_user_profile:
+
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        drawer.closeDrawers();
+                        return true;
                     default:
                 }
 

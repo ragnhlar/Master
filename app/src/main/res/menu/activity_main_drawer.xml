@@ -32,5 +32,10 @@
         <item android:id="@+id/nav_info_app"
             android:title="How does this app work?"
             android:icon="@drawable/ic_menu_info"/>
+
+        <item
+            android:id="@+id/nav_user_profile"
+            android:title="User Profile"
+            android:icon="@drawable/earth"/>
     </group>
 </menu>

@@ -24,11 +24,11 @@
         </activity>
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.HistoryActivity"></activity>
+        <activity android:name=".activities.HistoryActivity" />
         <activity
             android:name=".activities.WelcomeActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.awareness.API_KEY"
@@ -37,10 +37,11 @@
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar.Settings"></activity>
+            android:theme="@style/AppTheme.NoActionBar.Settings" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name=".activities.HistoryGraphActivity"></activity>
-        <activity android:name=".activities.InformationActivity"></activity>
+        <activity android:name=".activities.HistoryGraphActivity" />
+        <activity android:name=".activities.InformationActivity" />
+        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>
