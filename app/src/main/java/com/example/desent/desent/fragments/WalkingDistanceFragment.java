@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import com.example.desent.desent.R;
 import com.example.desent.desent.activities.MainActivity;
 import com.example.desent.desent.models.Indicator;
+import com.example.desent.desent.models.Transportation;
+import com.example.desent.desent.utils.EstimationType;
 
 /**
  * Created by celine on 22/06/17.
@@ -24,6 +27,10 @@ public class WalkingDistanceFragment extends Fragment {
     private SeekBar seekBar;
     private TextView walkingTextView;
     private TextView drivingTextView;
+
+    NumberPicker numberPicker;
+    TextView textViewChosenDist;
+    TextView textViewDrivingDist;
 
     protected int walkingDistance = 20; //TODO:test
     protected int drivingDistance = 100; //TODO:test
@@ -52,7 +59,29 @@ public class WalkingDistanceFragment extends Fragment {
     }
 
     public void setUp() {
-        
+        /*textViewDrivingDist = getView().findViewById(R.id.textViewDrivingDistance);
+        textViewChosenDist = getView().findViewById(R.id.textViewChosenDist);
+
+        numberPicker = getView().findViewById(R.id.numberPicker);
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(100);
+        numberPicker.setValue(4);
+        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int oldVal, int newVal) {
+                textViewChosenDist.setText("Selected value is: " + newVal);
+                MainActivity main = (MainActivity) getActivity();
+                for(Indicator indicator : main.getIndicators()) {
+                    indicator.setWalkingDistance((float) newVal);
+                    indicator.setEstimationType(EstimationType.NONE);
+                    textViewDrivingDist.setText("Todays driving distance: " + indicator.getDrivingDistance());
+                    indicator.setDrivingDistance((float) indicator.getDrivingDistance());
+                }
+                main.refreshAll();
+
+            }
+        });*/
+
         seekBar = getView().findViewById(R.id.seekbar_walking_distance);
         walkingTextView = getView().findViewById(R.id.text_view_walking_distance);
         drivingTextView = getView().findViewById(R.id.text_view_driving_distance);

@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
         city.setText(sharedPreferences.getString("pref_key_personal_city",""));
 
         birthdate = findViewById(R.id.tvBirthdate);
-        birthdate.setText(sharedPreferences.getString("pref_key_personal_birthdate", ""));
+        birthdate.setText((sharedPreferences.getString("pref_key_personal_birthdate", "")));
 
         gender = findViewById(R.id.tvGender);
         gender.setText(sharedPreferences.getString("pref_key_personal_gender",""));

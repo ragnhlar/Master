@@ -6,8 +6,8 @@
     <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="14sp"
-    android:text="My potential savings from cycling"
+    android:textSize="13sp"
+    android:text="See how much you can save by cycling instead of driving:"
     android:paddingBottom="6dp"/>
 
     <LinearLayout

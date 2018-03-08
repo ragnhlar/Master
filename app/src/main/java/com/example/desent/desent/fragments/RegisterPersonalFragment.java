@@ -143,11 +143,11 @@ public class RegisterPersonalFragment extends Fragment {
         editor.putString("pref_key_personal_age", getAge());
         int month = (Integer) datePicker.getMonth();
         int correctMonth = month + 1;
+        System.out.println("Correct year: " + datePicker.getYear());
         editor.putInt("pref_key_personal_birth_month", correctMonth);
         editor.putInt("pref_key_personal_birth_year", datePicker.getYear());
         editor.putInt("pref_key_personal_birth_day", datePicker.getDayOfMonth());
         editor.putString("pref_key_personal_birthdate", datePicker.getYear() + "-" + correctMonth + "-" + datePicker.getDayOfMonth());
-        System.out.println("Birthday: " + datePicker.getYear() + "-" + correctMonth + "-" + datePicker.getDayOfMonth());
         editor.commit();
 
         myDb.insertPersonalData(editTextName.getText().toString(), editTextAddress.getText().toString(),

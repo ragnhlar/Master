@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView textViewTimeScale;
 
     TableLayout tableInfo;
+    //TextView tvWalkInfo;
 
     //Fragments
     CircleFragment carbonFootprintCircleFragment;
@@ -259,6 +260,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         textViewTimeScale = (TextView) findViewById(R.id.textViewTimeScale);
 
         tableInfo = (TableLayout) findViewById(R.id.tableInfo);
+        //tvWalkInfo = (TextView) findViewById(R.id.tvWalkInfo);
 
         //Bottom navigation
 
@@ -295,6 +297,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             case R.id.navigation_none:
 
                                 tableInfo.setVisibility(View.GONE);
+                                //tvWalkInfo.setVisibility(View.GONE);
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.NONE);
@@ -320,6 +323,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
 
                                 tableInfo.setVisibility(View.VISIBLE);
+                                //tvWalkInfo.setVisibility(View.GONE);
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.SOLAR_INSTALLATION);
@@ -342,6 +346,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
                                 tableInfo.setVisibility(View.VISIBLE);
+                                //tvWalkInfo.setVisibility(View.VISIBLE);
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.WALKING);
@@ -373,6 +378,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
                                 tableInfo.setVisibility(View.VISIBLE);
+                                //tvWalkInfo.setVisibility(View.GONE);
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.CYCLING);
@@ -404,6 +410,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
                                 tableInfo.setVisibility(View.VISIBLE);
+                                //tvWalkInfo.setVisibility(View.GONE);
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.ELECTRIC_CAR);
