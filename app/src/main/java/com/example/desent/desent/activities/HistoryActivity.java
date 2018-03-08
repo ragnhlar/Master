@@ -115,12 +115,9 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(HistoryActivity.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-
         } else if (id == R.id.nav_about_us) {
             drawer.closeDrawer(GravityCompat.START);
-
         }
-
         return true;
     }
 
@@ -143,16 +140,13 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
                     displayEnergyConsumptionGraph();
                     break;
             }
-
             stackBarChart.invalidate();
             labelOrganizer.invalidate();
             yaxis.invalidate();
-
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
         }
-
     };
 
     protected void setUpNavigationView(){
@@ -190,7 +184,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         for (int i=7; i>0; i--){
             weekLabels.add(ref[(today-i)>=0 ? today-i : today-i+7]);
         }
-
         return weekLabels;
     }
 
@@ -240,7 +233,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         yaxis = (Yaxis) findViewById(R.id.y_axis);
         yaxis.setBorder(60);
         yaxis.setFirstValueSet(value);
-
     }
 
     public void displayEnergyConsumptionGraph() {
@@ -255,7 +247,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         String barColor1 = "#FF53BCD6";
 
         String labelText1 = "Energy consumption (kWh)";
-
 
         value.add(new ChartData(value1, labelText1, barColor1));
 
@@ -280,7 +271,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         yaxis = (Yaxis) findViewById(R.id.y_axis);
         yaxis.setBorder(60);
         yaxis.setFirstValueSet(value);
-
     }
 
     public void displayDistanceGraph() {
@@ -309,7 +299,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         String labelText2 = "Distance cycled (km)";
         String labelText3 = "Distance driven (km)";
 
-
         value.add(new ChartData(value1, labelText1, barColor1));
         value.add(new ChartData(value2, labelText2, barColor2));
         value.add(new ChartData(value3, labelText3, barColor3));
@@ -331,7 +320,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         labelOrganizer.addColorLabels(barColor1);
         labelOrganizer.addColorLabels(barColor2);
         labelOrganizer.addColorLabels(barColor3);
-
 
         // Set label text
         labelOrganizer.addLabelText(labelText1);

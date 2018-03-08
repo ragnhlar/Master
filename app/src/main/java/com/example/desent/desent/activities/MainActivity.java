@@ -447,8 +447,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         findViewById(R.id.navigation_none).performClick();
                     }
                 });
-
-
         init();
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -527,8 +525,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -586,7 +582,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         //not a good way to solve this...
                         startActivity(new Intent(MainActivity.this, MainActivity.class));
 
-
                         // launch new intent instead of loading fragment
                         /*
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
@@ -596,20 +591,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         return true;
                     case R.id.nav_history:
 
-
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(MainActivity.this, HistoryActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_settings:
 
-
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_about_us:
-
 
                         // launch new intent instead of loading fragment
                         /*
@@ -639,7 +631,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         return true;
                     default:
                 }
-
                 //Checking if the item is in checked state or not, if not make it in checked state
                 if (menuItem.isChecked()) {
                     menuItem.setChecked(false);
@@ -651,7 +642,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 return true;
             }
         });
-
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
 
@@ -701,14 +691,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     for (Indicator indicator: indicators)
                         indicator.setTimeScale(TimeScale.MONTH);
             }
-
             refreshAll();
-
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
         }
-
     };
 
     public void updateDaysLeftSolarPanel() {
@@ -775,8 +762,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         categoriesBar = findViewById(R.id.categories_bar);
 
-        //Fragments
-
+        //Fragment
         carbonFootprintCircleFragment = (CircleFragment) getFragmentManager().findFragmentById(R.id.dailyCarbonFootprint);
         carbonFootprintCircleFragment.setStartAngle(135);
         carbonFootprintCircleFragment.setSweepAngle(270);
@@ -820,7 +806,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             // Runnable code repeated twice per hour (1700.000 ms)
             EnergyHandler.postDelayed(EnergyUpdatesRunnableCode, 1700000);
-
         }
     };
 }

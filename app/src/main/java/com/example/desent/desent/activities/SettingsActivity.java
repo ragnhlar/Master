@@ -60,8 +60,6 @@ public class SettingsActivity extends AppCompatActivity
         toggle.syncState();
 
        setUpNavigationView();
-
-
     }
 
     private void pickImage() {
@@ -129,7 +127,6 @@ public class SettingsActivity extends AppCompatActivity
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -160,7 +157,6 @@ public class SettingsActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -210,9 +206,7 @@ public class SettingsActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_about_us) {
             drawer.closeDrawer(GravityCompat.START);
-
         }
-
         return true;
     }
 }

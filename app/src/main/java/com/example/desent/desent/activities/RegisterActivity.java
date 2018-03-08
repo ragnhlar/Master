@@ -275,8 +275,5 @@ public class RegisterActivity extends FragmentActivity {
         public int getCount() {
             return this.fragments.size();
         }
-
-
     }
-
 }

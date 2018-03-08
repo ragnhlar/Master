@@ -167,7 +167,6 @@ public class HistoryGraphActivity extends AppCompatActivity implements Navigatio
         //pointsGraphSeries = new PointsGraphSeries<>(getDataPoint());
         //pointsGraphSeries.setColor(R.color.green);
         //graph.addSeries(pointsGraphSeries);
-
     }
 
     @Override
@@ -228,7 +227,6 @@ public class HistoryGraphActivity extends AppCompatActivity implements Navigatio
             labelOrganizer.invalidate;
             yaxis.invalidate;
              */
-
         }
 
         @Override
@@ -285,7 +283,6 @@ public class HistoryGraphActivity extends AppCompatActivity implements Navigatio
                 }
             }
         });
-
         //graph.getLegendRenderer().setFixedPosition(12,45);
         /*
         DataPoint[] dp = new DataPoint[carbonFootprintTransportation.length];
@@ -310,7 +307,6 @@ public class HistoryGraphActivity extends AppCompatActivity implements Navigatio
         for (int i = 0; i < dp2.length; i++){
             dp[i] = new DataPoint(i, dp2[i]);
         }*/
-
     }
 
     private void displayDistanceGraph() {

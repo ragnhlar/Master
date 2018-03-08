@@ -78,7 +78,6 @@ public class AsyncHistorySetup extends AsyncTask {
         labelText1 = "Energy";
         labelText2 = "Transportation"; //TODO: string
 
-
         value.add(new ChartData(value1, labelText1, barColor1));
         value.add(new ChartData(value2, labelText2, barColor2));
 
@@ -117,7 +116,6 @@ public class AsyncHistorySetup extends AsyncTask {
         historyActivity.setTransportation(transportation);
 
         historyActivity.initSpinner();
-
     }
 
 }
