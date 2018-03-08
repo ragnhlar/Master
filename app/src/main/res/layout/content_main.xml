@@ -96,6 +96,12 @@
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_solar_panel_size" />
 
+            <fragment android:name="com.example.desent.desent.fragments.ElectricCarFragment"
+                android:id="@+id/electric_car"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layou="@layout/fragment_electric_car"/>
+
             <fragment android:name="com.example.desent.desent.fragments.CircleFragment"
                 android:id="@+id/dailyCarbonFootprint"
                 android:layout_width="190dp"

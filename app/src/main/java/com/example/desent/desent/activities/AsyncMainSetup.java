@@ -13,6 +13,7 @@ import com.example.desent.desent.R;
 import com.example.desent.desent.fragments.CategoryFragment;
 import com.example.desent.desent.fragments.CircleFragment;
 import com.example.desent.desent.fragments.CyclingDistanceFragment;
+import com.example.desent.desent.fragments.ElectricCarFragment;
 import com.example.desent.desent.fragments.IndicatorsBarFragment;
 import com.example.desent.desent.fragments.SolarPanelSizeFragment;
 import com.example.desent.desent.fragments.WalkingDistanceFragment;
@@ -65,6 +66,7 @@ public class AsyncMainSetup extends AsyncTask {
     private WalkingDistanceFragment walkingDistanceFragment;
     private CyclingDistanceFragment cyclingDistanceFragment;
     private SolarPanelSizeFragment solarPanelSizeFragment;
+    private ElectricCarFragment electricCarFragment;
 
     public AsyncMainSetup(MainActivity activity,
                           ProgressBar progress,
@@ -75,7 +77,7 @@ public class AsyncMainSetup extends AsyncTask {
                           CategoryFragment housingFragment,
                           WalkingDistanceFragment walkingDistanceFragment,
                           CyclingDistanceFragment cyclingDistanceFragment,
-                          SolarPanelSizeFragment solarPanelSizeFragment) {
+                          SolarPanelSizeFragment solarPanelSizeFragment, ElectricCarFragment electricCarFragment) {
         this.activity = activity;
         this.progress = progress;
         this.indicators = indicators;
@@ -86,6 +88,7 @@ public class AsyncMainSetup extends AsyncTask {
         this.walkingDistanceFragment = walkingDistanceFragment;
         this.cyclingDistanceFragment = cyclingDistanceFragment;
         this.solarPanelSizeFragment = solarPanelSizeFragment;
+        this.electricCarFragment = electricCarFragment;
     }
 
     @Override
@@ -117,6 +120,7 @@ public class AsyncMainSetup extends AsyncTask {
         walkingDistanceFragment.setUp();
         cyclingDistanceFragment.setUp();
         solarPanelSizeFragment.setUp();
+        electricCarFragment.setUp();
 
         float[] pvSystemSizes = {3,4,5,6};
         solarPanelSizeFragment.addButtons(pvSystemSizes);

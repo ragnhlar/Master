@@ -38,6 +38,7 @@ import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.fragments.CategoryFragment;
 import com.example.desent.desent.fragments.CircleFragment;
 import com.example.desent.desent.fragments.CyclingDistanceFragment;
+import com.example.desent.desent.fragments.ElectricCarFragment;
 import com.example.desent.desent.fragments.IndicatorsBarFragment;
 import com.example.desent.desent.fragments.SolarPanelSizeFragment;
 import com.example.desent.desent.fragments.WalkingDistanceFragment;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private WalkingDistanceFragment walkingDistanceFragment;
     private CyclingDistanceFragment cyclingDistanceFragment;
     private SolarPanelSizeFragment solarPanelSizeFragment;
+    private ElectricCarFragment electricCarFragment;
 
     //Indicators
     protected ArrayList<Indicator> indicators = new ArrayList<>();
@@ -313,6 +315,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 ft.hide(walkingDistanceFragment);
                                 ft.hide(cyclingDistanceFragment);
                                 ft.hide(solarPanelSizeFragment);
+                                ft.hide(electricCarFragment);
                                 ft.commit();
 
                                 break;
@@ -337,6 +340,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 ft.hide(walkingDistanceFragment);
                                 ft.hide(cyclingDistanceFragment);
                                 ft.show(solarPanelSizeFragment);
+                                ft.hide(electricCarFragment);
                                 ft.commit();
 
                                 break;
@@ -367,6 +371,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 ft.show(walkingDistanceFragment);
                                 ft.hide(cyclingDistanceFragment);
                                 ft.hide(solarPanelSizeFragment);
+                                ft.hide(electricCarFragment);
                                 ft.commit();
 
                                 walkingDistanceFragment.refresh();
@@ -399,6 +404,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 ft.hide(walkingDistanceFragment);
                                 ft.show(cyclingDistanceFragment);
                                 ft.hide(solarPanelSizeFragment);
+                                ft.hide(electricCarFragment);
                                 ft.commit();
 
                                 cyclingDistanceFragment.refresh();
@@ -421,6 +427,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 informationOwnEnergy.setVisibility(GONE);
                                 informationSeparator.setVisibility(VISIBLE);
 
+                                ft.show(electricCarFragment);
                                 ft.hide(walkingDistanceFragment);
                                 ft.hide(cyclingDistanceFragment);
                                 ft.hide(solarPanelSizeFragment);
@@ -448,6 +455,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ft.hide(walkingDistanceFragment);
         ft.hide(cyclingDistanceFragment);
         ft.hide(solarPanelSizeFragment);
+        ft.hide(electricCarFragment);
         ft.commit();
 
         //DistanceTracker
@@ -474,7 +482,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 energyFragment,
                 walkingDistanceFragment,
                 cyclingDistanceFragment,
-                solarPanelSizeFragment);
+                solarPanelSizeFragment,
+                electricCarFragment);
 
         asyncMainSetup.execute();
 
@@ -762,6 +771,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         walkingDistanceFragment = (WalkingDistanceFragment) getFragmentManager().findFragmentById(R.id.walking_distance);
         cyclingDistanceFragment = (CyclingDistanceFragment) getFragmentManager().findFragmentById(R.id.cycling_distance);
         solarPanelSizeFragment = (SolarPanelSizeFragment) getFragmentManager().findFragmentById(R.id.solar_panel_size);
+        electricCarFragment = (ElectricCarFragment) getFragmentManager().findFragmentById(R.id.electric_car);
 
         categoriesBar = findViewById(R.id.categories_bar);
 
