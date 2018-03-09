@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bnveTime.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
         bnveTime.setIconSize(25,25);
         bnveTime.setTextSize(14);
-        bnveTime.setIconsMarginTop(10);
+        bnveTime.setIconsMarginTop(20);
 
         bnveTime.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
