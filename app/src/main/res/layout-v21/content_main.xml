@@ -10,9 +10,9 @@
 
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
         android:id="@+id/navTime"
-        android:background="?attr/colorPrimary"
-        app:itemTextColor="@color/selector_time_navigation_white_grey"
-        app:itemIconTint="@color/selector_time_navigation_white_grey"
+        android:background="?android:attr/colorPrimary"
+        app:itemTextColor="@color/textColorPrimary"
+        app:itemIconTint="@color/textColorPrimary"
         app:menu="@menu/activity_main_time_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

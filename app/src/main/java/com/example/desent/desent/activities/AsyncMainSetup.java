@@ -125,7 +125,7 @@ public class AsyncMainSetup extends AsyncTask {
         float[] pvSystemSizes = {3,4,5,6};
         solarPanelSizeFragment.addButtons(pvSystemSizes);
 
-        activity.initTimeSpinner();
+        //activity.initTimeSpinner();
         activity.setFirstDisplay(false);
         activity.refreshAll();
     }

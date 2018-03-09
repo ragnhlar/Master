@@ -75,8 +75,11 @@ import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    Spinner timeSpinner;
+    //Spinner timeSpinner;
     TextView textViewTimeScale;
+
+    BottomNavigationViewEx bnve;
+    BottomNavigationViewEx bnveTime;
 
     TableLayout tableInfo;
     //TextView tvWalkInfo;
@@ -201,7 +204,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        timeSpinner.setSelection(0);
+        //timeSpinner.setSelection(0);
+        bnveTime.setSelectedItemId(R.id.time_today);
 
         // Implement when back button is pressed show "dashboard"
 
@@ -254,10 +258,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         //Spinners
-        timeSpinner = (Spinner) findViewById(R.id.time_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.time_spinner_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        timeSpinner.setAdapter(adapter);
+        //timeSpinner = (Spinner) findViewById(R.id.time_spinner);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.time_spinner_array, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        //timeSpinner.setAdapter(adapter);
 
         textViewTimeScale = (TextView) findViewById(R.id.textViewTimeScale);
 
@@ -268,7 +272,96 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
-        final BottomNavigationViewEx bnve = (BottomNavigationViewEx) findViewById(R.id.bnve);
+        //Time navigation
+        bnveTime = (BottomNavigationViewEx) findViewById(R.id.navTime);
+        bnveTime.setSelectedItemId(R.id.time_today);
+        bnveTime.enableAnimation(true);
+        bnveTime.enableShiftingMode(false);
+        bnveTime.enableItemShiftingMode(false);
+        bnveTime.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
+        bnveTime.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+        bnveTime.setIconSize(25,25);
+        bnveTime.setTextSize(14);
+        bnveTime.setIconsMarginTop(10);
+
+        bnveTime.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.time_today:
+                        bnveTime.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
+                        bnveTime.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+
+                        if (carbonFootprint.getEstimationType() == EstimationType.NONE)
+                            informationCO2Left.setVisibility(VISIBLE);
+                        textViewTimeScale.setVisibility(View.GONE);
+                        for (Indicator indicator: indicators)
+                            indicator.setTimeScale(TimeScale.TODAY);
+                        break;
+
+                    case R.id.time_week:
+                        bnveTime.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+                        bnveTime.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+
+                        informationCO2Left.setVisibility(GONE);
+                        textViewTimeScale.setVisibility(View.VISIBLE);
+                        textViewTimeScale.setText("Average this week");
+                        for (Indicator indicator: indicators)
+                            indicator.setTimeScale(TimeScale.WEEK);
+                        break;
+
+                    case R.id.time_month:
+                        bnveTime.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+                        bnveTime.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+
+                        informationCO2Left.setVisibility(GONE);
+                        textViewTimeScale.setVisibility(View.VISIBLE);
+                        textViewTimeScale.setText("Average this month");
+                        for (Indicator indicator: indicators)
+                            indicator.setTimeScale(TimeScale.MONTH);
+                }
+                refreshAll();
+
+                return true;
+            }
+        });
+
+        /*
+        AdapterView.OnItemSelectedListener timeSpinnerHandler = new AdapterView.OnItemSelectedListener() {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+            switch (pos) {
+                case 0:
+                    if (carbonFootprint.getEstimationType() == EstimationType.NONE)
+                        informationCO2Left.setVisibility(VISIBLE);
+                        textViewTimeScale.setVisibility(View.GONE);
+                    for (Indicator indicator: indicators)
+                        indicator.setTimeScale(TimeScale.TODAY);
+                    break;
+                case 1:
+                    informationCO2Left.setVisibility(GONE);
+                    textViewTimeScale.setVisibility(View.VISIBLE);
+                    textViewTimeScale.setText("Average this week");
+                    for (Indicator indicator: indicators)
+                        indicator.setTimeScale(TimeScale.WEEK);
+                    break;
+                case 2:
+                    informationCO2Left.setVisibility(GONE);
+                    textViewTimeScale.setVisibility(View.VISIBLE);
+                    textViewTimeScale.setText("Average this month");
+                    for (Indicator indicator: indicators)
+                        indicator.setTimeScale(TimeScale.MONTH);
+            }
+            refreshAll();
+        }
+
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
+    };
+         */
+
+        bnve = (BottomNavigationViewEx) findViewById(R.id.bnve);
         bnve.enableAnimation(false);
         bnve.enableShiftingMode(false);
         bnve.enableItemShiftingMode(false);
@@ -298,14 +391,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             case R.id.navigation_none:
 
+                                bnveTime.setVisibility(View.VISIBLE);
+
                                 tableInfo.setVisibility(View.GONE);
                                 //tvWalkInfo.setVisibility(View.GONE);
 
                                 for (Indicator indicator:indicators)
                                     indicator.setEstimationType(EstimationType.NONE);
 
-                                if (timeSpinner.getSelectedItemPosition() == 0)
+                                //if (timeSpinner.getSelectedItemPosition() == 0)
+                                if (bnveTime.getCurrentItem() == R.id.time_today) {
                                     informationCO2Left.setVisibility(View.VISIBLE);
+                                }
 
                                 informationSavings.setVisibility(View.GONE);
                                 informationDaysLeftSolarPanel.setVisibility(View.GONE);
@@ -324,6 +421,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_blue));
+
+                                bnveTime.setVisibility(View.GONE);
 
                                 tableInfo.setVisibility(View.VISIBLE);
                                 //tvWalkInfo.setVisibility(View.GONE);
@@ -348,6 +447,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+
+                                bnveTime.setVisibility(View.GONE);
 
                                 tableInfo.setVisibility(View.VISIBLE);
                                 //tvWalkInfo.setVisibility(View.VISIBLE);
@@ -382,6 +483,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
 
+                                bnveTime.setVisibility(View.GONE);
+
                                 tableInfo.setVisibility(View.VISIBLE);
                                 //tvWalkInfo.setVisibility(View.GONE);
 
@@ -414,6 +517,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                 bnve.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
                                 bnve.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_bottom_navigation_green));
+
+                                bnveTime.setVisibility(View.GONE);
 
                                 tableInfo.setVisibility(View.VISIBLE);
                                 //tvWalkInfo.setVisibility(View.GONE);
@@ -665,7 +770,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBarDrawerToggle.syncState();
     }
 
-    AdapterView.OnItemSelectedListener timeSpinnerHandler = new AdapterView.OnItemSelectedListener() {
+    /*AdapterView.OnItemSelectedListener timeSpinnerHandler = new AdapterView.OnItemSelectedListener() {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
@@ -696,7 +801,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         public void onNothingSelected(AdapterView<?> parent) {
         }
-    };
+    };*/
 
     public void updateDaysLeftSolarPanel() {
         int days = expenses.calculateDaysLeftForSolarRoof();
@@ -738,9 +843,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void initTimeSpinner(){
+    /*public void initTimeSpinner(){
         timeSpinner.setOnItemSelectedListener(timeSpinnerHandler);
-    }
+    }*/
 
     protected void init() {
 
