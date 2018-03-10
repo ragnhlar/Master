@@ -64,7 +64,7 @@
     <string name="slide_1_title">Welcome!</string>
     <string name="slide_1_desc">The goal of this app is to make you more aware of how your daily habits and energy use affect the environment. The Earth is happy when you have a carbon footprint below 4 kgCO&#x2082; per day. If you cross the limit of 4 kgCO&#x2082;, the Earth´s mood and health changes accordingly.</string>
 
-    <string name="slide_2_desc">The app does this by tracking your movement and automatically detectign whether you walk, cycle or drive a car. If the app detects that you are driving, the CO&#x2082; emission from the drive is calculated.</string>
+    <string name="slide_2_desc">The app does this by tracking your movement and automatically detecting whether you walk, cycle or drive a car. If the app detects that you are driving, the CO&#x2082; emission from the drive is calculated.</string>
 
     <string name="slide_3_desc">The app also checks the outside temperature where you live and calculates how much energy is needed to heat your home and how much CO&#x2082; are emitted to produce this amount of energy, based on heating type you have in your home.</string>
 
@@ -75,7 +75,7 @@
     <string name="slide_6_desc">You can also reduce your emissions by changing to an electric car, or by installing a solar panel to provide your house with energy. Estimate how much you can save by clicking the estimation buttons at the bottom of the screen on the dashboard.</string>
 
     <!-- mangler litt beskrivelse her ettersom hva game mechanics jeg bruker -->
-    <string name="slide_7_desc">Collect points by making green choices.</string>
+    <string name="slide_7_desc">Collect Earth Coins by making green choices.</string>
 
     <string name="slide_8_desc">Connect with your neighbors and friends, and challenge each other on who can reduce their carbon footprint the most.</string>
 

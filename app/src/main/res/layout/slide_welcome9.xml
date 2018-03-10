@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <!--<ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:tint="@color/blue"
@@ -25,7 +25,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:tint="@color/blue"
-            android:src="@drawable/ic_electric_car" />
+            android:src="@drawable/ic_electric_car" />-->
 
     </LinearLayout>
 

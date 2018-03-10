@@ -23,18 +23,20 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView10"
-            android:layout_width="60dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:src="@drawable/housing" />
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="50dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="50dp"
             android:tint="@color/blue"
             android:src="@drawable/ic_wb_incandescent_black_24dp" />

@@ -11,21 +11,21 @@
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:tint="@color/blue"
-            android:src="@drawable/ic_solar_installation" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:src="@drawable/neighborhood"/>
 
-        <ImageView
+        <!--<ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:tint="@color/blue"
-            android:src="@drawable/ic_electric_car" />
+            android:src="@drawable/ic_electric_car" />-->
 
     </LinearLayout>
 
@@ -42,7 +42,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:paddingLeft="@dimen/desc_padding"
         android:paddingRight="@dimen/desc_padding"
         android:text="@string/slide_8_desc"
