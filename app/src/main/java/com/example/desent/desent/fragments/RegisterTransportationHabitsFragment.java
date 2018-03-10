@@ -23,9 +23,9 @@ import com.example.desent.desent.R;
 
 public class RegisterTransportationHabitsFragment extends Fragment{
 
-    private boolean isProfileValid;
+    //private boolean isProfileValid;
 
-    private ImageView img;
+    //private ImageView img;
 
     private CheckBox checkBoxWalk;
     private CheckBox checkBoxBicycle;
@@ -56,8 +56,8 @@ public class RegisterTransportationHabitsFragment extends Fragment{
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_register_transportation_habits, container, false);
 
-        img = (ImageView) rootView.findViewById(R.id.image);
-        img.setImageResource(R.drawable.circle_green);
+        //img = (ImageView) rootView.findViewById(R.id.image);
+        //img.setImageResource(R.drawable.circle_green);
 
         habits = "";
 

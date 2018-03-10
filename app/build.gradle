@@ -35,4 +35,5 @@ dependencies {
     compile 'com.jjoe64:graphview:4.2.1'
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }

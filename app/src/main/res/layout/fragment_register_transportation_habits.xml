@@ -12,12 +12,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/image"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/image_transportation_habits"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/circle_green" />
+            android:layout_gravity="center_horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:tint="@color/green"
+            android:src="@drawable/transportation_habits"
+            />
+        
+        <!--<android.support.v7.widget.CardView
+            android:elevation="12dp"
+            android:id="@+id/cardView"
+            app:cardCornerRadius="40dp"
+            android:layout_gravity="center_horizontal"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:src="@drawable/transportation_habits"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"/>
+
+        </android.support.v7.widget.CardView>-->
 
         <TextView
             android:id="@+id/textView3"

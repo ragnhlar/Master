@@ -12,6 +12,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
+
         <FrameLayout
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -41,80 +42,187 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Car owner?"
-            android:layout_marginLeft="5dp"
-            android:layout_alignParentLeft="true"/>
-        <CheckBox
-            android:id="@+id/checkbox_car_owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:state_checked="true"
-            android:layout_marginLeft="5dp"
-            android:layout_alignParentRight="true"/>
-
-    </LinearLayout>
-
-    <android.support.design.widget.TextInputLayout
+    <ScrollView
+        android:id="@+id/scrollViewTransportation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/reg_nr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Registration nr.:"
-        android:inputType="text"
-        android:maxLines="1" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/car_price"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Car value (kr)"
-            android:inputType="number"
-            android:maxLines="1" />
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Car owner?"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignParentLeft="true"/>
 
-    </android.support.design.widget.TextInputLayout>
+                <CheckBox
+                    android:id="@+id/checkbox_car_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:state_checked="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignParentRight="true"/>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/car_driving_distance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Yearly driving distance (km)"
-            android:inputType="number"
-            android:maxLines="1" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/reg_nr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Registration nr.:"
+                    android:inputType="text"
+                    android:maxLines="1" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/car_ownership_period"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Planned duration of ownership (years)"
-            android:inputType="number"
-            android:maxLines="1" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/car_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Car value (kr)"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/car_driving_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Yearly driving distance (km)"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/car_ownership_period"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Planned duration of ownership (years)"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/car_nr_2"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Do you own more than one car?"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentLeft="true"/>
+                    <CheckBox
+                        android:id="@+id/checkbox_car_owner_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:state_checked="false"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/car_nr_2_info"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/reg_nr_car_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Registration nr.:"
+                            android:inputType="text"
+                            android:maxLines="1" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/car_price_nr_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Car value (kr)"
+                            android:inputType="number"
+                            android:maxLines="1" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/car_driving_distance_nr_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Yearly driving distance (km)"
+                            android:inputType="number"
+                            android:maxLines="1" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/car_ownership_period_nr_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Planned duration of ownership (years)"
+                            android:inputType="number"
+                            android:maxLines="1" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,13 +24,24 @@ import com.example.desent.desent.R;
 
 public class RegisterTransportationFragment extends Fragment {
 
+    private ScrollView scrollView;
+
     //private boolean isProfileValid;
     private CheckBox carOwner;
-    //private Spinner carSizeSpinner;
     private EditText priceTextView;
     private EditText drivingDistanceTextView;
     private EditText ownershipPeriodTextView;
     private EditText editTextRegNr;
+
+    //private Spinner carSizeSpinner;
+
+    private CheckBox carOwner2;
+    private EditText priceTextView2;
+    private EditText drivingDistanceTextView2;
+    private EditText ownershipPeriodTextView2;
+    private EditText editTextRegNr2;
+    private LinearLayout car_nr_2_info;
+
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -40,8 +53,14 @@ public class RegisterTransportationFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_register_transportation, container, false);
 
+        scrollView = (ScrollView) rootView.findViewById(R.id.scrollViewTransportation);
+
         //TODO: button
         carOwner = rootView.findViewById(R.id.checkbox_car_owner);
+        editTextRegNr = rootView.findViewById(R.id.reg_nr);
+        priceTextView = rootView.findViewById(R.id.car_price);
+        drivingDistanceTextView = rootView.findViewById(R.id.car_driving_distance);
+        ownershipPeriodTextView = rootView.findViewById(R.id.car_ownership_period);
         //carOwner.setChecked(true);
         carOwner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -56,10 +75,22 @@ public class RegisterTransportationFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         carSizeSpinner.setAdapter(adapter);
         */
-        editTextRegNr = rootView.findViewById(R.id.reg_nr);
-        priceTextView = rootView.findViewById(R.id.car_price);
-        drivingDistanceTextView = rootView.findViewById(R.id.car_driving_distance);
-        ownershipPeriodTextView = rootView.findViewById(R.id.car_ownership_period);
+
+        carOwner2 = rootView.findViewById(R.id.checkbox_car_owner_2);
+        editTextRegNr2 = rootView.findViewById(R.id.reg_nr_car_2);
+        priceTextView2 = rootView.findViewById(R.id.car_price_nr_2);
+        drivingDistanceTextView2 = rootView.findViewById(R.id.car_driving_distance_nr_2);
+        ownershipPeriodTextView2 = rootView.findViewById(R.id.car_ownership_period_nr_2);
+        car_nr_2_info = rootView.findViewById(R.id.car_nr_2_info);
+        //carOwner.setChecked(true);
+        carOwner2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                car_nr_2_info.setVisibility(View.VISIBLE);
+                onCheckboxClicked(compoundButton, b);
+            }
+
+        });
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         restorePreferences();
@@ -81,6 +112,7 @@ public class RegisterTransportationFragment extends Fragment {
         super.onDestroyView();
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
+
         editor.putBoolean("pref_key_car_owner", carOwner.isChecked());
         System.out.println("Car owner ODW: " + carOwner.isChecked());
         //editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
@@ -91,6 +123,15 @@ public class RegisterTransportationFragment extends Fragment {
         System.out.println("Car reg nr ODW: " + editTextRegNr.getText());
         editor.putString("pref_key_car_distance", drivingDistanceTextView.getText().toString());
         editor.putString("pref_key_car_ownership_period", ownershipPeriodTextView.getText().toString());
+
+        if (carOwner2.isChecked()) {
+            editor.putBoolean("pref_key_car_owner_2", carOwner2.isChecked());
+            editor.putString("pref_key_car_price_2", priceTextView2.getText().toString());
+            editor.putString("pref_key_reg_nr_2", editTextRegNr2.getText().toString());
+            editor.putString("pref_key_car_distance_nr_2", drivingDistanceTextView2.getText().toString());
+            editor.putString("pref_key_car_ownership_period", ownershipPeriodTextView2.getText().toString());
+        }
+
         /*if(carOwner.isChecked()){
             editor.putBoolean("pref_key_car_owner", carOwner.isChecked());
             //editor.putString("pref_key_car_size", carSizeSpinner.getSelectedItem().toString());
@@ -116,5 +157,12 @@ public class RegisterTransportationFragment extends Fragment {
         priceTextView.setText(sharedPreferences.getString("pref_key_car_price", "300000"), TextView.BufferType.EDITABLE);
         drivingDistanceTextView.setText(sharedPreferences.getString("pref_key_car_distance", "8000"), TextView.BufferType.EDITABLE);
         ownershipPeriodTextView.setText(sharedPreferences.getString("pref_key_car_ownership_period", "3"), TextView.BufferType.EDITABLE);
+
+        carOwner2.setChecked(sharedPreferences.getBoolean("pref_key_car_owner_2", false));
+        //carSizeSpinner.setSelection(((ArrayAdapter<String>) carSizeSpinner.getAdapter()).getPosition(sharedPreferences.getString("pref_key_car_size", "Small")));
+        editTextRegNr2.setText(sharedPreferences.getString("pref_key_reg_nr_2", "HJ 20005"), TextView.BufferType.EDITABLE);
+        priceTextView2.setText(sharedPreferences.getString("pref_key_car_price_2", "300000"), TextView.BufferType.EDITABLE);
+        drivingDistanceTextView2.setText(sharedPreferences.getString("pref_key_car_distance_2", "8000"), TextView.BufferType.EDITABLE);
+        ownershipPeriodTextView2.setText(sharedPreferences.getString("pref_key_car_ownership_period_2", "3"), TextView.BufferType.EDITABLE);
     }
 }
