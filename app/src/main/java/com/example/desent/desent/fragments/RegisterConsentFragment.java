@@ -79,7 +79,7 @@ public class RegisterConsentFragment extends Fragment {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (sharedPreferences.contains("pref_key_personal_consent") && sharedPreferences.getBoolean("pref_key_personal_consent", false) == true) {
+        if (sharedPreferences.contains("pref_key_personal_consent") && sharedPreferences.getString("pref_key_personal_consent", "") == "true") {
             cbConsent.setChecked(true);
         } else {
             cbConsent.setChecked(false);
@@ -89,10 +89,10 @@ public class RegisterConsentFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (cbConsent.isChecked()) {
                     myDb.insertConsent("true");
-                    editor.putBoolean("pref_key_personal_consent", true);
+                    editor.putString("pref_key_personal_consent", "true");
                     editor.apply();
                 } else {
-                    editor.putBoolean("pref_key_personal_consent", false);
+                    editor.putString("pref_key_personal_consent", "false");
                     myDb.insertConsent("false");
                     editor.apply();
                 }
@@ -109,10 +109,18 @@ public class RegisterConsentFragment extends Fragment {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putBoolean("pref_key_personal_consent", cbConsent.isChecked());
+        String consent;
+
+        if (cbConsent.isChecked()) {
+            consent = "true";
+        } else {
+            consent = "false";
+        }
+
+        editor.putString("pref_key_personal_consent", consent);
         /*editor.putString("pref_key_personal_name", String.valueOf(nameTextView.getText()));
         editor.putString("pref_key_personal_email", String.valueOf(emailTextView.getText()));*/
-        System.out.println("Consent stored in shared preferences: " + sharedPreferences.getBoolean("pref_key_personal_consent", false));
+        System.out.println("Consent stored in shared preferences: " + sharedPreferences.getString("pref_key_personal_consent", "false"));
         /*
         try {
             editor.putString("pref_key_personal_password", AESHelper.encrypt(CIPHER_KEY, String.valueOf(passwordTextView.getText())));
@@ -280,7 +288,13 @@ public class RegisterConsentFragment extends Fragment {
         nameTextView.setText(sharedPreferences.getString("pref_key_personal_name", ""), TextView.BufferType.EDITABLE);
         emailTextView.setText(sharedPreferences.getString("pref_key_personal_email", ""), TextView.BufferType.EDITABLE);
         */
-        cbConsent.setChecked(sharedPreferences.getBoolean("pref_key_personal_consent", false));
+        String consent = sharedPreferences.getString("pref_key_personal_consent","");
+        if (consent == "true"){
+            cbConsent.setChecked(true);
+        } else {
+            cbConsent.setChecked(false);
+        }
+        //cbConsent.setChecked(sharedPreferences.getBoolean("pref_key_personal_consent", false));
         /*try {
             passwordTextView.setText(AESHelper.decrypt(CIPHER_KEY, sharedPreferences.getString("pref_key_personal_password", "")), TextView.BufferType.EDITABLE);
         } catch (Exception e) {

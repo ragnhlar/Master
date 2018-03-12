@@ -69,6 +69,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String T_COL_4 = "CAR_VALUE";
     public static final String T_COL_5 = "YEARLY_D_DIST";
     public static final String T_COL_6 = "DUR_OWNERSHIP";
+    public static final String T_COL_7 = "CAR_OWNER_2"; //True/False
+    public static final String T_COL_8 = "REG_NR_2";
+    public static final String T_COL_9 = "CAR_VALUE_2";
+    public static final String T_COL_10 = "YEARLY_D_DIST_2";
+    public static final String T_COL_11 = "DUR_OWNERSHIP_2";
 
     // COL's for TABLE_DISTANCE
     public static final String D_COL_1 = "DATE";
@@ -168,7 +173,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + T_COL_3 + " TEXT,"
                 + T_COL_4 + " TEXT,"
                 + T_COL_5 + " TEXT,"
-                + T_COL_6 + " TEXT)");
+                + T_COL_6 + " TEXT, "
+                + T_COL_7 + " BOOLEAN,"
+                + T_COL_8 + " TEXT,"
+                + T_COL_9 + " TEXT,"
+                + T_COL_10 + " TEXT,"
+                + T_COL_11 + " TEXT)");
     }
 
     @Override
@@ -1088,20 +1098,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public Boolean registerTHabits(String habits, Boolean car_owner, String reg_nr, String car_value, String yearly_d_dist, String dur_ownership) {
+    public Boolean registerTHabits(String habits,
+                                   Boolean car_owner, String reg_nr, String car_value, String yearly_d_dist, String dur_ownership,
+                                   Boolean car_owner_2, String reg_nr_2, String car_value_2, String yearly_d_dist_2, String dur_ownership_2) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(T_COL_1, habits);
-        System.out.println("SharedPref habits: " + habits);
         contentValues.put(T_COL_2, car_owner);
         contentValues.put(T_COL_3, reg_nr);
         contentValues.put(T_COL_4, car_value);
         contentValues.put(T_COL_5, yearly_d_dist);
         contentValues.put(T_COL_6, dur_ownership);
+        contentValues.put(T_COL_7, car_owner_2);
+        contentValues.put(T_COL_8, reg_nr_2);
+        contentValues.put(T_COL_9, car_value_2);
+        contentValues.put(T_COL_10, yearly_d_dist_2);
+        contentValues.put(T_COL_11, dur_ownership_2);
 
+        System.out.println("SharedPref habits: " + habits);
         System.out.println("Koden kommer hit");
+
         long result = db.insert(TABLE_TRANSPORTATION, null, contentValues);
+
         System.out.println("Koden kommer hit ogsaa");
+
         db.close();
         return result != -1;
     }

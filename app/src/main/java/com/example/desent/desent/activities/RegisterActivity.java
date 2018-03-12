@@ -20,6 +20,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.fragments.RegisterConsentFragment;
@@ -31,7 +38,12 @@ import com.example.desent.desent.fragments.RegisterTransportationHabitsFragment;
 import com.example.desent.desent.models.DatabaseHelper;
 import com.example.desent.desent.models.PreferencesManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import static android.view.View.GONE;
@@ -41,6 +53,12 @@ import static android.view.View.GONE;
  */
 
 public class RegisterActivity extends FragmentActivity {
+
+    // To insert in database in phpmyadmin
+    private RequestQueue requestQueue;
+    private static final String URL = "http://129.241.105.20:80/smiling_earth/user_registration.php";
+    private StringRequest request;
+
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
@@ -73,6 +91,8 @@ public class RegisterActivity extends FragmentActivity {
         session = new SessionManagement(getApplicationContext());
         myDb = new DatabaseHelper(getApplicationContext());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         List fragments = new Vector();
         fragments.add(Fragment.instantiate(this, RegisterCredentialFragment.class.getName()));
@@ -132,7 +152,7 @@ public class RegisterActivity extends FragmentActivity {
         session.createLoginSession(myDb.getUserEmail());
         System.out.println("Consent: " + myDb.getConsent());
         //maybe in async task?
-        Boolean reg = myDb.registerUser(sharedPreferences.getString("pref_key_personal_email",""),
+        /*Boolean reg = myDb.registerUser(sharedPreferences.getString("pref_key_personal_email",""),
                 sharedPreferences.getString("pref_key_personal_name", ""),
                 sharedPreferences.getString("pref_key_personal_gender", ""),
                 sharedPreferences.getString("pref_key_personal_weight", ""),
@@ -156,22 +176,63 @@ public class RegisterActivity extends FragmentActivity {
             Toast.makeText(getApplicationContext(),"Home not registered in db", Toast.LENGTH_LONG).show();
         }
 
-        Boolean reg3 = myDb.registerTHabits(sharedPreferences.getString("pref_key_transportation_habits", ""),
+        Boolean reg3 = myDb.registerTHabits(
+                sharedPreferences.getString("pref_key_transportation_habits", ""),
                 sharedPreferences.getBoolean("pref_key_car_owner", false),
                 sharedPreferences.getString("pref_key_car_reg_nr", ""),
                 sharedPreferences.getString("pref_key_car_price", ""),
                 sharedPreferences.getString("pref_key_car_distance", ""),
-                sharedPreferences.getString("pref_key_car_ownership_period", ""));
+                sharedPreferences.getString("pref_key_car_ownership_period", ""),
+                sharedPreferences.getBoolean("pref_key_car_owner_2", false),
+                sharedPreferences.getString("pref_key_car_reg_nr_2", ""),
+                sharedPreferences.getString("pref_key_car_price_2", ""),
+                sharedPreferences.getString("pref_key_car_distance_2", ""),
+                sharedPreferences.getString("pref_key_car_ownership_period_2", ""));
         System.out.println("Car owner: " + sharedPreferences.getBoolean("pref_key_car_owner", false));
         System.out.println("Reg nr car: " + sharedPreferences.getString("pref_key_car_reg_nr", ""));
         if (reg3 == true) {
             Toast.makeText(getApplicationContext(),"Transportation habits registered in db", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getApplicationContext(),"Transportation habits not registered in db", Toast.LENGTH_LONG).show();
-        }
+        }*/
+        request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response);
+                    if (jsonObject.names().get(0).equals("success")) {
+                        Toast.makeText(getApplicationContext(), "SUCCESS " + jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<String, String>();
+                hashMap.put("email", sharedPreferences.getString("pref_key_personal_email","").toString());
+                hashMap.put("password", sharedPreferences.getString("pref_key_personal_password","").toString());
+                hashMap.put("gender", sharedPreferences.getString("pref_key_personal_gender","").toString());
+                hashMap.put("weight", sharedPreferences.getString("pref_key_personal_weight","").toString());
+                hashMap.put("birthdate", sharedPreferences.getString("pref_key_personal_birthdate","").toString());
+                hashMap.put("consent", sharedPreferences.getString("pref_key_personal_consent","").toString());
+                hashMap.put("address", sharedPreferences.getString("pref_key_personal_address","").toString());
+                hashMap.put("zip_code", sharedPreferences.getString("pref_key_personal_zip_code","").toString());
+                hashMap.put("city", sharedPreferences.getString("pref_key_personal_city","").toString());
+                return hashMap;
+            }
+        };
+        requestQueue.add(request);
         //myDb.registerUser();
-        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+        //startActivity(new Intent(RegisterActivity.this, MainActivity.class));
         finish();
 
         /*if (myDb.getConsent() == "true") {

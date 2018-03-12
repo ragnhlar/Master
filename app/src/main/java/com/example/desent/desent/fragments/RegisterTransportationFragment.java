@@ -129,7 +129,7 @@ public class RegisterTransportationFragment extends Fragment {
             editor.putString("pref_key_car_price_2", priceTextView2.getText().toString());
             editor.putString("pref_key_reg_nr_2", editTextRegNr2.getText().toString());
             editor.putString("pref_key_car_distance_nr_2", drivingDistanceTextView2.getText().toString());
-            editor.putString("pref_key_car_ownership_period", ownershipPeriodTextView2.getText().toString());
+            editor.putString("pref_key_car_ownership_period_2", ownershipPeriodTextView2.getText().toString());
         }
 
         /*if(carOwner.isChecked()){
