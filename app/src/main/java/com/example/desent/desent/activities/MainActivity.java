@@ -75,6 +75,9 @@ import static android.view.View.VISIBLE;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    ImageView earthCoin;
+    TextView numCoin;
+
     //Spinner timeSpinner;
     TextView textViewTimeScale;
 
@@ -257,11 +260,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        earthCoin = findViewById(R.id.earth_coin);
+        numCoin = findViewById(R.id.coin_score);
+
         //Spinners
         //timeSpinner = (Spinner) findViewById(R.id.time_spinner);
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.time_spinner_array, android.R.layout.simple_spinner_item);
         //adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         //timeSpinner.setAdapter(adapter);
+
 
         textViewTimeScale = (TextView) findViewById(R.id.textViewTimeScale);
 
