@@ -220,6 +220,7 @@ public class RegisterActivity extends FragmentActivity {
                 HashMap<String, String> hashMap = new HashMap<String, String>();
                 hashMap.put("email", sharedPreferences.getString("pref_key_personal_email","").toString());
                 hashMap.put("password", sharedPreferences.getString("pref_key_personal_password","").toString());
+                hashMap.put("name", sharedPreferences.getString("pref_key_personal_name","").toString());
                 hashMap.put("gender", sharedPreferences.getString("pref_key_personal_gender","").toString());
                 hashMap.put("weight", sharedPreferences.getString("pref_key_personal_weight","").toString());
                 hashMap.put("birthdate", sharedPreferences.getString("pref_key_personal_birthdate","").toString());

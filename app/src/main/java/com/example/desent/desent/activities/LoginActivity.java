@@ -124,37 +124,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject = new JSONObject(response);
-                            if(jsonObject.names().get(0).equals("success")){
-                                Toast.makeText(getApplicationContext(), "SUCCESS " + jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Error " + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener(){
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String, String> hashMap = new HashMap<String, String>();
-                        hashMap.put("email",mEmailView.getText().toString());
-                        hashMap.put("password",mPasswordView.getText().toString());
-                        return hashMap;
-                    }
-                };
-                requestQueue.add(request);
-                //attemptLogin();
+                attemptLogin();
             }
         });
 
@@ -285,8 +255,38 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(response);
+                        if(jsonObject.names().get(0).equals("success")){
+                            Toast.makeText(getApplicationContext(), "SUCCESS " + jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Error " + jsonObject.getString("error"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener(){
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    HashMap<String, String> hashMap = new HashMap<String, String>();
+                    hashMap.put("email", mEmailView.getText().toString());
+                    hashMap.put("password", mPasswordView.getText().toString());
+                    return hashMap;
+                }
+            };
+            requestQueue.add(request);
             session.createLoginSession(email);
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
             /**showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);**/
