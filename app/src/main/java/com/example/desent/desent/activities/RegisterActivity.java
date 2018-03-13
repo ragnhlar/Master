@@ -56,7 +56,9 @@ public class RegisterActivity extends FragmentActivity {
 
     // To insert in database in phpmyadmin
     private RequestQueue requestQueue;
-    private static final String URL = "http://129.241.105.20:80/smiling_earth/user_registration.php";
+    private static final String URL_USER_REG = "http://129.241.105.20:80/smiling_earth/user_registration.php";
+    private static final String URL_HOUSE_REG = "http://129.241.105.20:80/smiling_earth/house_registration.php";
+    private static final String URL_TRANS_REG = "http://129.241.105.20:80/smiling_earth/trans_registration.php";
     private StringRequest request;
 
     /**
@@ -195,7 +197,10 @@ public class RegisterActivity extends FragmentActivity {
         } else {
             Toast.makeText(getApplicationContext(),"Transportation habits not registered in db", Toast.LENGTH_LONG).show();
         }*/
-        request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        registerUser();
+        registerHouseInfo();
+        registerTransportation();
+        /*request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject jsonObject = null;
@@ -231,9 +236,12 @@ public class RegisterActivity extends FragmentActivity {
                 return hashMap;
             }
         };
-        requestQueue.add(request);
+        requestQueue.add(request);*/
+
         //myDb.registerUser();
-        //startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+
+        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+
         finish();
 
         /*if (myDb.getConsent() == "true") {
@@ -244,6 +252,124 @@ public class RegisterActivity extends FragmentActivity {
             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             finish();
         }*/
+    }
+
+    private void registerTransportation() {
+        request = new StringRequest(Request.Method.POST, URL_TRANS_REG, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response);
+                    if (jsonObject.names().get(0).equals("success")) {
+                        Toast.makeText(getApplicationContext(), "SUCCESS " + jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<String, String>();
+                hashMap.put("habits", sharedPreferences.getString("pref_key_transportation_habits","").toString());
+                hashMap.put("car_owner_1", sharedPreferences.getString("pref_key_car_owner","").toString());
+                hashMap.put("reg_nr_1", sharedPreferences.getString("pref_key_reg_nr","").toString());
+                hashMap.put("car_value_1", sharedPreferences.getString("pref_key_car_price","").toString());
+                hashMap.put("yearly_driving_distance_1", sharedPreferences.getString("pref_key_car_distance","").toString());
+                hashMap.put("dur_ownership_1", sharedPreferences.getString("pref_key_car_ownership_period","").toString());
+                hashMap.put("car_owner_2", sharedPreferences.getString("pref_key_car_owner_2","").toString());
+                hashMap.put("reg_nr_2", sharedPreferences.getString("pref_key_reg_nr_2","").toString());
+                hashMap.put("car_value_2", sharedPreferences.getString("pref_key_car_price_2","").toString());
+                hashMap.put("yearly_driving_distance_2", sharedPreferences.getString("pref_key_car_distance_nr_2","").toString());
+                hashMap.put("dur_ownership_2", sharedPreferences.getString("pref_key_car_ownership_period_2","").toString());
+
+                return hashMap;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    private void registerHouseInfo() {
+        request = new StringRequest(Request.Method.POST, URL_HOUSE_REG, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response);
+                    if (jsonObject.names().get(0).equals("success")) {
+                        Toast.makeText(getApplicationContext(), "SUCCESS " + jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<String, String>();
+                hashMap.put("address", sharedPreferences.getString("pref_key_personal_address","").toString());
+                hashMap.put("zip_code", sharedPreferences.getString("pref_key_personal_zip_code","").toString());
+                hashMap.put("city", sharedPreferences.getString("pref_key_personal_city","").toString());
+                hashMap.put("heat_type", sharedPreferences.getString("pref_key_heat_type","").toString());
+                hashMap.put("b_year", sharedPreferences.getString("pref_key_b_year","").toString());
+                hashMap.put("r_year", sharedPreferences.getString("pref_key_r_year","").toString());
+                return hashMap;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    private void registerUser() {
+        request = new StringRequest(Request.Method.POST, URL_USER_REG, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response);
+                    if (jsonObject.names().get(0).equals("success")) {
+                        Toast.makeText(getApplicationContext(), "SUCCESS " + jsonObject.getString("success"), Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<String, String>();
+                hashMap.put("email", sharedPreferences.getString("pref_key_personal_email","").toString());
+                hashMap.put("password", sharedPreferences.getString("pref_key_personal_password","").toString());
+                hashMap.put("name", sharedPreferences.getString("pref_key_personal_name","").toString());
+                hashMap.put("gender", sharedPreferences.getString("pref_key_personal_gender","").toString());
+                hashMap.put("weight", sharedPreferences.getString("pref_key_personal_weight","").toString());
+                hashMap.put("birthdate", sharedPreferences.getString("pref_key_personal_birthdate","").toString());
+                hashMap.put("consent", sharedPreferences.getString("pref_key_personal_consent","").toString());
+                hashMap.put("address", sharedPreferences.getString("pref_key_personal_address","").toString());
+                hashMap.put("zip_code", sharedPreferences.getString("pref_key_personal_zip_code","").toString());
+                hashMap.put("city", sharedPreferences.getString("pref_key_personal_city","").toString());
+                return hashMap;
+            }
+        };
+        requestQueue.add(request);
     }
 
     @Override

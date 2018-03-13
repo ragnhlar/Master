@@ -49,7 +49,6 @@ public class RegisterHousingFragment extends Fragment {
         spinnerRenovationYear.setAdapter(adapter2);
         spinnerRenovationYear.setSelection(adapter.getPosition("2011 - 2015"));
 
-
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         restorePreferences();
 
