@@ -63,6 +63,9 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        //getActionBar().setTitle("History");
+        //getSupportActionBar().setTitle("History");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

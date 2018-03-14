@@ -38,6 +38,9 @@ public class ProfileActivity extends AppCompatActivity
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+        //getActionBar().setTitle("Profile");
+        //getSupportActionBar().setTitle("Profile");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

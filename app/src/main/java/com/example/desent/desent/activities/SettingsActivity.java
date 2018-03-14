@@ -43,6 +43,9 @@ public class SettingsActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getActionBar().setTitle("Settings");
+        getSupportActionBar().setTitle("Settings");
+
         profilePic = (ImageView) findViewById(R.id.profile_pic);
 
         profilePic.setOnClickListener(new View.OnClickListener(){ //TODO:request permission

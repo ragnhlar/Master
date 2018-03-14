@@ -241,6 +241,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //getActionBar().setTitle("Home");
+        //getSupportActionBar().setTitle("Home");
+
         session = new SessionManagement(getApplicationContext());
         Toast.makeText(getApplicationContext(), "User login status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
         session.checkLogin();
