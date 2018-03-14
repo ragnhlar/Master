@@ -204,9 +204,9 @@ public class SettingsActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             drawer.closeDrawer(GravityCompat.START);
 
-        } else if (id == R.id.nav_about_us) {
+        } /*else if (id == R.id.nav_about_us) {
             drawer.closeDrawer(GravityCompat.START);
-        }
+        }*/
         return true;
     }
 }

@@ -713,7 +713,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         drawer.closeDrawers();
                         return true;
-                    case R.id.nav_about_us:
+                    /*case R.id.nav_about_us:
 
                         // launch new intent instead of loading fragment
                         /*
@@ -725,11 +725,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         //startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         drawer.closeDrawers();
                         return true;
-                    case R.id.nav_history_graph:
+                    /*case R.id.nav_history_graph:
 
                         startActivity(new Intent(MainActivity.this, HistoryGraphActivity.class));
                         drawer.closeDrawers();
-                        return true;
+                        return true;*/
                     case R.id.nav_info_app:
 
                         startActivity(new Intent(MainActivity.this, InformationActivity.class));

@@ -115,9 +115,9 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(HistoryActivity.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_about_us) {
+        } /*else if (id == R.id.nav_about_us) {
             drawer.closeDrawer(GravityCompat.START);
-        }
+        }*/
         return true;
     }
 
