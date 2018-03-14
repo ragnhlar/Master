@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"
+            android:label="Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +28,8 @@
             android:name=".activities.RegisterActivity"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
-        <activity android:name=".activities.HistoryActivity" />
+        <activity android:name=".activities.HistoryActivity"
+            android:label="History"/>
         <activity
             android:name=".activities.WelcomeActivity"
             android:label="@string/app_name"
@@ -43,9 +45,12 @@
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar.Settings" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name=".activities.HistoryGraphActivity" />
-        <activity android:name=".activities.InformationActivity" />
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.HistoryGraphActivity"
+            android:label="History"/>
+        <activity android:name=".activities.InformationActivity"
+            android:label="Info"/>
+        <activity android:name=".activities.ProfileActivity"
+            android:label="Profile"></activity>
     </application>
 
 </manifest>
