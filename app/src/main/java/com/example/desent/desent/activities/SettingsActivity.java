@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.desent.desent.R;
+import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.utils.Utility;
 import com.soundcloud.android.crop.Crop;
 
@@ -59,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-       setUpNavigationView();
+        setUpNavigationView();
     }
 
     private void pickImage() {
@@ -200,11 +201,21 @@ public class SettingsActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_history) {
             startActivity(new Intent(SettingsActivity.this, HistoryActivity.class));
-            drawer.closeDrawers();
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_settings) {
             drawer.closeDrawer(GravityCompat.START);
-
-        } /*else if (id == R.id.nav_about_us) {
+        } else if (id == R.id.nav_user_profile) {
+            startActivity(new Intent(SettingsActivity.this, ProfileActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_info_app) {
+            startActivity(new Intent(SettingsActivity.this, InformationActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_log_out){
+            SessionManagement session = new SessionManagement(getApplicationContext());
+            session.logoutUser();
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        /*else if (id == R.id.nav_about_us) {
             drawer.closeDrawer(GravityCompat.START);
         }*/
         return true;
