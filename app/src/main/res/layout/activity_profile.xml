@@ -9,6 +9,15 @@
     tools:context="com.example.desent.desent.activities.ProfileActivity">
 
     <ImageView
+        android:id="@+id/changeUserInfo"
+        android:tint="@color/dark_grey"
+        android:layout_gravity="right"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_menu_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
         android:id="@+id/imgProfilePicture"
         android:layout_width="80dp"
         android:layout_height="80dp"
