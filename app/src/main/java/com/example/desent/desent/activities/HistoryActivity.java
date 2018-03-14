@@ -25,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
+import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.models.DatabaseHelper;
 import com.example.desent.desent.models.Energy;
 import com.example.desent.desent.models.Transportation;
@@ -115,7 +116,18 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_settings) {
             startActivity(new Intent(HistoryActivity.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } /*else if (id == R.id.nav_about_us) {
+        } else if (id == R.id.nav_user_profile) {
+            startActivity(new Intent(HistoryActivity.this, ProfileActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_info_app) {
+            startActivity(new Intent(HistoryActivity.this, InformationActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_log_out){
+            SessionManagement session = new SessionManagement(getApplicationContext());
+            session.logoutUser();
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        /*else if (id == R.id.nav_about_us) {
             drawer.closeDrawer(GravityCompat.START);
         }*/
         return true;
