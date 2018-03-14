@@ -72,6 +72,7 @@ import android.widget.Toast;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.example.desent.desent.R.id.nav_user_profile;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -268,7 +269,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.time_spinner_array, android.R.layout.simple_spinner_item);
         //adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         //timeSpinner.setAdapter(adapter);
-
 
         textViewTimeScale = (TextView) findViewById(R.id.textViewTimeScale);
 
@@ -701,12 +701,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         drawer.closeDrawers();
 
                         return true;
+
                     case R.id.nav_history:
 
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(MainActivity.this, HistoryActivity.class));
                         drawer.closeDrawers();
                         return true;
+
+                    case R.id.nav_user_profile:
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
+                    case R.id.nav_info_app:
+                        startActivity(new Intent(MainActivity.this, InformationActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
                     case R.id.nav_settings:
 
                         // launch new intent instead of loading fragment
@@ -730,17 +742,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         startActivity(new Intent(MainActivity.this, HistoryGraphActivity.class));
                         drawer.closeDrawers();
                         return true;*/
-                    case R.id.nav_info_app:
 
-                        startActivity(new Intent(MainActivity.this, InformationActivity.class));
-                        drawer.closeDrawers();
-                        return true;
-
-                    case R.id.nav_user_profile:
-
-                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-                        drawer.closeDrawers();
-                        return true;
                     default:
                 }
                 //Checking if the item is in checked state or not, if not make it in checked state
