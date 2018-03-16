@@ -1,4 +1,4 @@
-package com.example.ragnhlar.androidphpmysql;
+package com.example.desent.desent.models;
 
 import android.content.Context;
 

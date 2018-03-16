@@ -1,11 +1,7 @@
-package com.example.ragnhlar.androidphpmysql;
+package com.example.desent.desent.models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 
 /**
  * Created by ragnhlar on 15.03.2018.
@@ -17,8 +13,7 @@ public class SharedPrefManager {
     private static SharedPrefManager mInstance;
     private static Context mCtx;
 
-    private static final String SHARED_PREF_NAME = "mysharedpref12";
-    private static final String KEY_USERNAME = "username";
+    private static final String SHARED_PREF_NAME = "mysharedpref";
     private static final String KEY_USER_EMAIL = "useremail";
     private static final String KEY_USER_ID = "userid";
 
@@ -35,13 +30,12 @@ public class SharedPrefManager {
         return mInstance;
     }
 
-    public boolean userLogin(int id, String username, String email){
+    public boolean userLogin(int id, String email){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt(KEY_USER_ID, id);
         editor.putString(KEY_USER_EMAIL, email);
-        editor.putString(KEY_USERNAME, username);
 
         editor.apply();
 
@@ -50,7 +44,7 @@ public class SharedPrefManager {
 
     public boolean isLoggedIn(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        if (sharedPreferences.getString(KEY_USERNAME, null) != null){
+        if (sharedPreferences.getString(KEY_USER_EMAIL, null) != null){
             return true;
         }
         return false;
@@ -62,11 +56,6 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
         return true;
-    }
-
-    public String getUsername(){
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_USERNAME, null);
     }
 
     public String getUserEmail(){
