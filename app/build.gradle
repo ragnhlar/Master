@@ -38,4 +38,5 @@ dependencies {
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.github.bmarrdev:android-DecoView-charting:v1.2'
 }

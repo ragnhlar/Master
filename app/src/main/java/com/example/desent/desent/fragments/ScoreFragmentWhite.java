@@ -1,11 +1,7 @@
 package com.example.desent.desent.fragments;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +13,15 @@ import com.example.desent.desent.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ScoreFragment.OnFragmentInteractionListener} interface
+ * {@link ScoreFragmentWhite.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ScoreFragment#newInstance} factory method to
+ * Use the {@link ScoreFragmentWhite#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoreFragment extends Fragment {
+public class ScoreFragmentWhite extends Fragment {
 
     TextView tv_coin_score;
     ImageView img_earth_coin;
-
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,17 +65,16 @@ public class ScoreFragment extends Fragment {
         }
     }*/
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_score, null);
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup) inflater.inflate(
+                R.layout.fragment_score_white, container, false);
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        tv_coin_score = (TextView) rootView.findViewById(R.id.coin_score_text);
+        img_earth_coin = (ImageView) rootView.findViewById(R.id.earth_coin);
 
-        tv_coin_score = (TextView) view.findViewById(R.id.coin_score_text);
-        img_earth_coin = (ImageView) view.findViewById(R.id.earth_coin);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
