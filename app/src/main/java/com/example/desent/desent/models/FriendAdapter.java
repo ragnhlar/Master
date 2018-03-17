@@ -1,6 +1,7 @@
 package com.example.desent.desent.models;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,8 +45,9 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.FriendView
 
         //binding the data with the viewholder views
         holder.tvName.setText(friend.getName());
-        holder.tvNumCoins.setText(friend.getNum_coins());
-        holder.tvAvgCf.setText(String.valueOf(friend.getAvg_cf()) + R.string.carbon_footprint_unit);
+        holder.tvNumCoins.setText(String.valueOf(friend.getNum_coins()));
+        Resources resources = context.getResources();
+        holder.tvAvgCf.setText(String.valueOf(friend.getAvg_cf()) + " " + resources.getString(R.string.carbon_footprint_unit));
 
         holder.image.setImageDrawable(context.getResources().getDrawable(friend.getImage()));
     }

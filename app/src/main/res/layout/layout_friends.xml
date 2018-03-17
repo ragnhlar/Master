@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         android:elevation="5dp"
@@ -20,8 +21,8 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:src="@drawable/earth"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:padding="4dp" />
 
             <TextView
@@ -58,6 +59,7 @@
 
             <ImageView
                 android:src="@drawable/earthcoin"
+                android:id="@+id/earth_coin"
                 android:layout_toRightOf="@id/textViewNumCoins"
                 android:layout_below="@id/textViewName"
                 android:layout_marginLeft="5dp"
@@ -68,20 +70,19 @@
                 android:id="@+id/textViewAvgCf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewNumCoins"
+                android:layout_below="@id/textViewName"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/imageView"
-                android:paddingLeft="5dp"
-                android:paddingRight="15dp"
+                android:layout_toRightOf="@id/earth_coin"
                 android:text="4.7 kgCO2"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textStyle="bold" />
 
             <Button
-                android:layout_toRightOf="@+id/textViewName"
                 android:id="@+id/btnContact"
                 android:text="Contact"
+                android:layout_alignParentRight="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="25dp"
                 android:layout_width="wrap_content"
