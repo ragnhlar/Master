@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".activities.MainActivity"
-            android:label="Home">
+            android:label="Smiling Earth">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,8 +57,10 @@
         <activity
             android:name=".activities.ProfileActivity"
             android:label="Profile" />
-        <activity android:name=".activities.LeaderboardActivity" />
-        <activity android:name=".activities.FriendsActivity"></activity>
+        <activity android:name=".activities.LeaderboardActivity"
+            android:label="Leaderboard"/>
+        <activity android:name=".activities.FriendsActivity"
+            android:label="Friends"></activity>
     </application>
 
 </manifest>

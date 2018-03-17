@@ -224,6 +224,12 @@ public class InformationActivity extends AppCompatActivity implements Navigation
         } else if (id == R.id.nav_user_profile) {
             startActivity(new Intent(InformationActivity.this, ProfileActivity.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_friend_list) {
+            startActivity(new Intent(InformationActivity.this, FriendsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_leaderboard) {
+            startActivity(new Intent(InformationActivity.this, LeaderboardActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {
             //startActivity(new Intent(InformationActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);

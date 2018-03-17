@@ -122,6 +122,12 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_user_profile) {
             startActivity(new Intent(HistoryActivity.this, ProfileActivity.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_friend_list) {
+            startActivity(new Intent(HistoryActivity.this, FriendsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_leaderboard) {
+            startActivity(new Intent(HistoryActivity.this, LeaderboardActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {
             startActivity(new Intent(HistoryActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);

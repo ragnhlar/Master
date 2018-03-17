@@ -245,6 +245,12 @@ public class ProfileActivity extends AppCompatActivity
         } else if (id == R.id.nav_user_profile) {
             //startActivity(new Intent(ProfileActivity.this, ProfileActivity.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_friend_list) {
+            startActivity(new Intent(ProfileActivity.this, FriendsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_leaderboard) {
+            startActivity(new Intent(ProfileActivity.this, LeaderboardActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {
             startActivity(new Intent(ProfileActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);

@@ -717,6 +717,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         drawer.closeDrawers();
                         return true;
 
+                    case R.id.nav_friend_list:
+                        startActivity(new Intent(MainActivity.this, FriendsActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
+                    case R.id.nav_leaderboard:
+                        startActivity(new Intent(MainActivity.this, LeaderboardActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
                     case R.id.nav_info_app:
                         startActivity(new Intent(MainActivity.this, InformationActivity.class));
                         drawer.closeDrawers();

@@ -60,7 +60,7 @@
 
                 <fragment android:name="com.example.desent.desent.fragments.ScoreFragmentWhite"
                     android:id="@+id/scoreFragment"
-                    android:layout_marginLeft="150dp"
+                    android:layout_marginLeft="80dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:layout="@layout/fragment_score_white" />
