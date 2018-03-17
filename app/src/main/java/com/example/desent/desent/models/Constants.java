@@ -7,6 +7,7 @@ package com.example.desent.desent.models;
 public class Constants {
 
     public static final String ROOT_URL = "http://129.241.105.20/smiling_earth/v1/";
+    //public static final String ROOT_URL = "http://10.0.0.132/smiling_earth/v1/";
 
     public static final String URL_REGISTER = ROOT_URL + "registerUser.php";
 

@@ -26,6 +26,16 @@
             android:icon="@drawable/ic_account_circle_black_24dp"/>
 
         <item
+            android:id="@+id/nav_friend_list"
+            android:title="Friends"
+            android:icon="@drawable/ic_group_black_24dp"/>
+
+        <item
+            android:id="@+id/nav_leaderboard"
+            android:title="Leaderboard"
+            android:icon="@drawable/ic_assessment_black_24dp"/>
+
+        <item
             android:id="@+id/nav_info_app"
             android:title="How does this app work?"
             android:icon="@drawable/ic_menu_info"/>
