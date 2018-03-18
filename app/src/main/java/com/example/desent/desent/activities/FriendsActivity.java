@@ -56,7 +56,7 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //initializing the productlist
+        //initializing the friendlist
         friendList = new ArrayList<>();
 
         friendList.add(

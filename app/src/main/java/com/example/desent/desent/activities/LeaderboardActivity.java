@@ -12,6 +12,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -19,13 +21,20 @@ import android.widget.TextView;
 
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
+import com.example.desent.desent.models.Score;
+import com.example.desent.desent.models.ScoreAdapter;
 import com.example.desent.desent.utils.Utility;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LeaderboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawer;
+
+    List<Score> scoreList;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,44 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         toggle.syncState();
 
         setUpNavigationView();
+
+        //getting the recyclerview from xml
+        recyclerView = (RecyclerView) findViewById(R.id.rvLeaderboard);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //initializing the scorelist
+        scoreList = new ArrayList<>();
+
+        scoreList.add(
+                new Score(
+                        1,
+                        "Navn Navnesen 1",
+                        35,
+                        4.5,
+                        R.drawable.earth1));
+
+        scoreList.add(
+                new Score(
+                        2,
+                        "Navn Navnesen 2",
+                        43,
+                        3.2,
+                        R.drawable.earth2));
+
+        scoreList.add(
+                new Score(
+                        3,
+                        "Navn Navnesen 3",
+                        13,
+                        6.7,
+                        R.drawable.earth4));
+
+        //creating recyclerview adapter
+        ScoreAdapter adapter = new ScoreAdapter(this, scoreList);
+
+        //setting adapter to recyclerview
+        recyclerView.setAdapter(adapter);
     }
 
     protected void setUpNavigationView() {
