@@ -35,8 +35,10 @@ import com.example.desent.desent.fragments.RegisterHousingFragment;
 import com.example.desent.desent.fragments.RegisterPersonalFragment;
 import com.example.desent.desent.fragments.RegisterTransportationFragment;
 import com.example.desent.desent.fragments.RegisterTransportationHabitsFragment;
+import com.example.desent.desent.models.Constants;
 import com.example.desent.desent.models.DatabaseHelper;
 import com.example.desent.desent.models.PreferencesManager;
+import com.example.desent.desent.models.RequestHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -333,7 +335,43 @@ public class RegisterActivity extends FragmentActivity {
     }
 
     private void registerUser() {
-        request = new StringRequest(Request.Method.POST, URL_USER_REG, new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                Constants.URL_REGISTER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("email", sharedPreferences.getString("pref_key_personal_email","").toString());
+                params.put("password", sharedPreferences.getString("pref_key_personal_password","").toString());
+                params.put("name", sharedPreferences.getString("pref_key_personal_name","").toString());
+                params.put("gender", sharedPreferences.getString("pref_key_personal_gender","").toString());
+                params.put("weight", sharedPreferences.getString("pref_key_personal_weight","").toString());
+                params.put("birthdate", sharedPreferences.getString("pref_key_personal_birthdate","").toString());
+                params.put("consent", sharedPreferences.getString("pref_key_personal_consent","").toString());
+                params.put("address", sharedPreferences.getString("pref_key_personal_address","").toString());
+                params.put("zip_code", sharedPreferences.getString("pref_key_personal_zip_code","").toString());
+                params.put("city", sharedPreferences.getString("pref_key_personal_city","").toString());
+                return params;
+            }
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        /*request = new StringRequest(Request.Method.POST, URL_USER_REG, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject jsonObject = null;
@@ -369,7 +407,7 @@ public class RegisterActivity extends FragmentActivity {
                 return hashMap;
             }
         };
-        requestQueue.add(request);
+        requestQueue.add(request);*/
     }
 
     @Override
