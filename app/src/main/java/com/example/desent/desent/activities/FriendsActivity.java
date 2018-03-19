@@ -1,5 +1,6 @@
 package com.example.desent.desent.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,12 +19,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
+import com.example.desent.desent.models.Constants;
 import com.example.desent.desent.models.Friend;
 import com.example.desent.desent.models.FriendAdapter;
+import com.example.desent.desent.models.RequestHandler;
 import com.example.desent.desent.utils.Utility;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -31,8 +43,11 @@ import java.util.List;
 
 public class FriendsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    private ProgressDialog progressDialog;
+
     DrawerLayout drawer;
 
+    FriendAdapter adapter;
     List<Friend> friendList;
     RecyclerView recyclerView;
 
@@ -59,7 +74,12 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         //initializing the friendlist
         friendList = new ArrayList<>();
 
-        friendList.add(
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+
+        loadFriends();
+
+        /*friendList.add(
                 new Friend(
                         1,
                         "Navn Navnesen 1",
@@ -87,7 +107,55 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         FriendAdapter adapter = new FriendAdapter(this, friendList);
 
         //setting adapter to recyclerview
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);*/
+    }
+
+    private void loadFriends() {
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.GET,
+                Constants.URL_RETRIEVE_FRIENDS,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressDialog.dismiss();
+                        try {
+                            JSONArray scores = new JSONArray(response);
+
+                            for (int i = 0; i < scores.length(); i++){
+                                JSONObject scoreObject = scores.getJSONObject(i);
+
+                                int id = scoreObject.getInt("id");
+                                //String email = scoreObject.getString("email");
+                                String name = scoreObject.getString("name");
+                                int num_coins = scoreObject.getInt("num_coins");
+                                /*int walk = scoreObject.getInt("walk");
+                                int cycle = scoreObject.getInt("cycle");
+                                int drive = scoreObject.getInt("drive");*/
+                                double avg_cf = scoreObject.getDouble("avg_cf");
+
+                                Friend friend = new Friend(id, name, num_coins, avg_cf, R.drawable.earth1);
+                                friendList.add(friend);
+                            }
+                            //creating recyclerview adapter
+                            adapter = new FriendAdapter(FriendsActivity.this, friendList);
+
+                            //setting adapter to recyclerview
+                            recyclerView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     protected void setUpNavigationView() {

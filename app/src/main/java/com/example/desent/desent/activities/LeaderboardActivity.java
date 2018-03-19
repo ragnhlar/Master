@@ -68,9 +68,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
     Boolean sortListByAvgCf = true;
 
-    double lastAvgCf;
-    double bestAvgCf1, bestAvgCf2, bestAvgCf3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -200,52 +197,44 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                     public void onResponse(String response) {
                         try {
                             progressDialog.dismiss();
-                            JSONArray scores = new JSONArray(response);
-                            for (int i = 0; i < scores.length(); i++){
+                            if (scoreList.isEmpty()){
+                                JSONArray scores = new JSONArray(response);
+                                for (int i = 0; i < scores.length(); i++){
+                                    JSONObject scoreObject = scores.getJSONObject(i);
 
-                                JSONObject scoreObject = scores.getJSONObject(i);
-
-                                int id = scoreObject.getInt("id");
-                                String email = scoreObject.getString("email");
-                                //String name = scoreObject.getString("name");
-                                int num_coins = scoreObject.getInt("num_coins");
+                                    int id = scoreObject.getInt("id");
+                                    String email = scoreObject.getString("email");
+                                    //String name = scoreObject.getString("name");
+                                    int num_coins = scoreObject.getInt("num_coins");
                                     /*int walk = scoreObject.getInt("walk");
                                     int cycle = scoreObject.getInt("cycle");
                                     int drive = scoreObject.getInt("drive");*/
-                                double avg_cf = scoreObject.getDouble("avg_cf");
-                                //int image = scoreObject.getInt("image");
+                                    double avg_cf = scoreObject.getDouble("avg_cf");
+                                    //int image = scoreObject.getInt("image");
 
-                                lastAvgCf = scoreObject.getDouble("avg_cf");
-
-                                Score score = new Score(id, email, num_coins, avg_cf, R.drawable.earth1);
-                                scoreList.add(score);
+                                    Score score = new Score(id, email, num_coins, avg_cf, R.drawable.earth1);
+                                    scoreList.add(score);
+                                }
                             }
 
-                            //List<Score> sortedScoreList = new ArrayList<>();
-
                             if (sortListByAvgCf){
+                                // sort list by lowest to highest average carbon footprint
                                 Collections.sort(scoreList, new Comparator<Score>() {
                                     @Override
                                     public int compare(Score score, Score t1) {
                                         return Double.compare(score.getAvg_cf(), t1.getAvg_cf());
                                     }
                                 });
-                                for (Score score : scoreList){
-                                    System.out.println("For-loop gjennom score list: "+ score.getAvg_cf());
-                                    lastAvgCf = score.getAvg_cf();
-                                }
                             } else {
+                                //sort list by highest to lowest number of Earth Coins
                                 Collections.sort(scoreList, new Comparator<Score>() {
-                                    @SuppressLint("NewApi")
                                     @Override
                                     public int compare(Score score, Score t1) {
-                                        return Integer.compare(score.getNum_coins(), score.getNum_coins());
+                                        Integer num_coins_1 = score.getNum_coins();
+                                        Integer num_coins_2 = t1.getNum_coins();
+                                        return num_coins_2.compareTo(num_coins_1);
                                     }
                                 });
-                                for (Score score : scoreList){
-                                    System.out.println("For-loop gjennom score list: "+ score.getNum_coins());
-                                    lastAvgCf = score.getAvg_cf();
-                                }
                             }
                             //creating recyclerview adapter
                             adapter = new ScoreAdapter(LeaderboardActivity.this, scoreList);

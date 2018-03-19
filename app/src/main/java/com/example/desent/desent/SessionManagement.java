@@ -121,6 +121,8 @@ public class SessionManagement {
 
         //after logout redirect user to login activity
         Intent i = new Intent(_context, LoginActivity.class);
+        //Intent i = new Intent(_context, Login2Activity.class);
+
         //closing all the activities
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         //add new flag to start new activity
