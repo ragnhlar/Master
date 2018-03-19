@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //Drawer
     private DrawerLayout drawer;
-    private  Toolbar toolbar;
+    private Toolbar toolbar;
     private NavigationView navigationView;
 
     //DistanceTracker

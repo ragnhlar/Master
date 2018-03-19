@@ -21,6 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +65,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
     RecyclerView recyclerView;
     ScoreAdapter adapter;
 
+    FrameLayout frameLayout;
+
     BottomNavigationViewEx bnveSort;
 
     Boolean sortListByAvgCf = true;
@@ -88,11 +91,16 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //getting the framelayout from xml
+        frameLayout = (FrameLayout) findViewById(R.id.frameLayoutPodium);
+
         //initializing the scorelist
         scoreList = new ArrayList<>();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
+
+        loadScores(sortListByAvgCf);
 
         bnveSort = (BottomNavigationViewEx) findViewById(R.id.navLeaderboardSort);
         bnveSort.setSelectedItemId(R.id.best_avg_cf);
@@ -102,7 +110,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
         bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
         //bnveSort.setIconSize(25,25);
-        bnveSort.setTextSize(14);
+        bnveSort.setTextSize(15);
         //bnveSort.setIconsMarginTop(20);
 
         bnveSort.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

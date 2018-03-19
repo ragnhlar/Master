@@ -6,14 +6,117 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/frameLayoutPodium"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/navLeaderboardSort"
+        android:layout_height="220dp"
+        android:layout_centerHorizontal="true" >
+
+        <ImageView
+            android:id="@+id/imgPodium"
+            android:src="@drawable/podium"
+            android:layout_gravity="bottom"
+            android:tint="@color/blue"
+            android:layout_width="match_parent"
+            android:layout_height="130dp" />
+
+        <ImageView
+            android:id="@+id/imgFirstPlace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center|top"
+            android:background="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNameFirstPlace"
+            android:text="Navn Navnesen 1"
+            android:layout_marginTop="55dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_gravity="center|top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvAvgCfFirstPlace"
+            android:text="2.0 kgCO2"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_marginTop="70dp"
+            android:layout_gravity="center|top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imgSecondPlace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="55dp"
+            android:layout_gravity="left"
+            android:background="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNameSecondPlace"
+            android:text="Navn Navnsesen 2"
+            android:layout_marginTop="90dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="33dp"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvAvgCfSecondPlace"
+            android:text="2.0 kgCO2"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_marginTop="110dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imgThirdPlace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_gravity="right"
+            android:background="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNameThirdPlace"
+            android:text="Navn Navnesen 3"
+            android:layout_marginTop="110dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginRight="28dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvAvgCfThirdPlace"
+            android:text="2.0 kgCO2"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_marginTop="130dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
     <android.support.v7.widget.CardView
-        android:layout_width="360dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         android:elevation="5dp"
         android:layout_margin="3dp">
 
         <LinearLayout
+            android:gravity="center"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
