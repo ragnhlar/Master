@@ -11,17 +11,17 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         android:elevation="5dp"
-        android:layout_margin="5dp">
+        android:layout_margin="3dp">
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/tvPlaceOnLeaderboard"
-                android:layout_marginTop="10dp"
-                android:textSize="32sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:text="4."
                 android:layout_width="wrap_content"
@@ -30,20 +30,71 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:src="@drawable/earth"
-                android:layout_marginLeft="25dp"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:padding="4dp" />
 
-            <TextView
-                android:id="@+id/textViewName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/imageView"
-                android:text="Navn Navnesen"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="#000000" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imageView"
+                    android:text="Navn Navnesen"
+                    android:textSize="16sp"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewAvgCf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/textViewName"
+                        android:layout_toRightOf="@id/earth_coin"
+                        android:text="4.7 kgCO2"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textViewNumCoins"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:textStyle="bold"
+                            android:text="230"
+                            android:textSize="14sp"/>
+
+                        <ImageView
+                            android:src="@drawable/earthcoin"
+                            android:id="@+id/earth_coin"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
 
             <!--<fragment
                 android:name="com.example.desent.desent.fragments.ScoreFragment"
@@ -55,40 +106,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"></fragment>-->
 
-            <TextView
-                android:id="@+id/textViewNumCoins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewName"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"
-                android:layout_toRightOf="@id/imageView"
-                android:text="230"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-
-            <ImageView
-                android:src="@drawable/earthcoin"
-                android:id="@+id/earth_coin"
-                android:layout_toRightOf="@id/textViewNumCoins"
-                android:layout_below="@id/textViewName"
-                android:layout_marginLeft="5dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-
-            <TextView
-                android:id="@+id/textViewAvgCf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewName"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/earth_coin"
-                android:text="4.7 kgCO2"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textStyle="bold" />
-
             <!--<Button
                 android:id="@+id/btnContact"
                 android:text="Contact"
@@ -98,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />-->
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 

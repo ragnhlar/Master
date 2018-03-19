@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/best_avg_cf"
+        android:title="Avg. Carbon Footprint"/>
+
+    <item
+        android:id="@+id/most_ec"
+        android:title="Earth Coins" />
+</menu>

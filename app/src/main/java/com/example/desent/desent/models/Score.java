@@ -1,10 +1,12 @@
 package com.example.desent.desent.models;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by ragnhildlarsen on 18.03.2018.
  */
 
-public class Score {
+public class Score implements Comparable<Score>{
 
     private int id;
     private String name;
@@ -39,4 +41,18 @@ public class Score {
     public int getImage() {
         return image;
     }
+
+    @Override
+    public int compareTo(@NonNull Score score) {
+        double compareAvgCf = score.getAvg_cf();
+        return Double.compare(this.avg_cf, compareAvgCf);
+    }
+    /*
+    @Override
+    public int CompareTo(Score score){
+        int compareNumCoins = score.getNum_coins();
+        return compareNumCoins - this.num_coins;
+
+    }*/
+
 }

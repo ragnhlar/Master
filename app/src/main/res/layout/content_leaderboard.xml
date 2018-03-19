@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="?attr/actionBarSize"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+        android:id="@+id/navLeaderboardSort"
+        app:elevation="0dp"
+        android:background="?attr/colorPrimary"
+        app:itemTextColor="@color/selector_time_navigation_white_grey"
+        app:itemIconTint="@color/selector_time_navigation_white_grey"
+        app:menu="@menu/activity_leaderboard_sort_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/frameLayoutPodium"
         android:layout_width="wrap_content"
-        android:layout_height="240dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/navLeaderboardSort"
+        android:layout_height="220dp"
         android:layout_centerHorizontal="true" >
 
         <ImageView
@@ -18,7 +29,7 @@
             android:layout_gravity="bottom"
             android:tint="@color/blue"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="130dp" />
 
         <ImageView
             android:id="@+id/imgFirstPlace"
@@ -31,7 +42,7 @@
             android:id="@+id/tvNameFirstPlace"
             android:text="Navn Navnesen 1"
             android:layout_marginTop="55dp"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:layout_gravity="center|top"
             android:layout_width="wrap_content"
@@ -47,6 +58,36 @@
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:id="@+id/imgSecondPlace"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="55dp"
+            android:layout_gravity="left"
+            android:background="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvNameSecondPlace"
+            android:text="Navn Navnsesen 2"
+            android:layout_marginTop="90dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="33dp"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvAvgCfSecondPlace"
+            android:text="2.0 kgCO2"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_marginTop="110dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
             android:id="@+id/imgThirdPlace"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -57,9 +98,9 @@
 
         <TextView
             android:id="@+id/tvNameThirdPlace"
-            android:text="Navn Navnesen"
+            android:text="Navn Navnesen 3"
             android:layout_marginTop="110dp"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:layout_marginRight="28dp"
             android:layout_gravity="right"
@@ -76,35 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/imgSecondPlace"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginLeft="55dp"
-            android:layout_gravity="left"
-            android:background="@drawable/ic_launcher" />
 
-        <TextView
-            android:id="@+id/tvNameSecondPlace"
-            android:text="Navn Navnsesen"
-            android:layout_marginTop="90dp"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="33dp"
-            android:layout_gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/tvAvgCfSecondPlace"
-            android:text="2.0 kgCO2"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:layout_marginTop="110dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="55dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </FrameLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -1,5 +1,6 @@
 package com.example.desent.desent.activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,7 +8,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +20,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,10 +32,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.models.Constants;
+import com.example.desent.desent.models.Indicator;
 import com.example.desent.desent.models.RequestHandler;
 import com.example.desent.desent.models.Score;
 import com.example.desent.desent.models.ScoreAdapter;
+import com.example.desent.desent.utils.EstimationType;
+import com.example.desent.desent.utils.TimeScale;
 import com.example.desent.desent.utils.Utility;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +47,12 @@ import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class LeaderboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -50,6 +63,13 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
     List<Score> scoreList;
     RecyclerView recyclerView;
     ScoreAdapter adapter;
+
+    BottomNavigationViewEx bnveSort;
+
+    Boolean sortListByAvgCf = true;
+
+    double lastAvgCf;
+    double bestAvgCf1, bestAvgCf2, bestAvgCf3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +96,62 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
+
+        bnveSort = (BottomNavigationViewEx) findViewById(R.id.navLeaderboardSort);
+        bnveSort.setSelectedItemId(R.id.best_avg_cf);
+        bnveSort.enableAnimation(true);
+        bnveSort.enableShiftingMode(false);
+        bnveSort.enableItemShiftingMode(false);
+        bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
+        bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+        //bnveSort.setIconSize(25,25);
+        bnveSort.setTextSize(14);
+        //bnveSort.setIconsMarginTop(20);
+
+        bnveSort.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.best_avg_cf:
+                        bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
+                        bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+
+                        //sortListByAvgCf();
+
+                        sortListByAvgCf = true;
+
+                        loadScores(sortListByAvgCf);
+
+                        /*if (carbonFootprint.getEstimationType() == EstimationType.NONE)
+                            informationCO2Left.setVisibility(VISIBLE);
+                        textViewTimeScale.setVisibility(View.GONE);
+                        for (Indicator indicator: indicators)
+                            indicator.setTimeScale(TimeScale.TODAY);*/
+                        break;
+
+                    case R.id.most_ec:
+                        bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+                        bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+
+                        //sortListByEarthCoins();
+
+                        sortListByAvgCf = false;
+
+                        loadScores(sortListByAvgCf);
+
+
+                        /*informationCO2Left.setVisibility(GONE);
+                        textViewTimeScale.setVisibility(View.VISIBLE);
+                        textViewTimeScale.setText("Average this week");
+                        for (Indicator indicator: indicators)
+                            indicator.setTimeScale(TimeScale.WEEK);*/
+                        break;
+                }
+                return true;
+            }
+        });
         
-        loadScores();
+        //loadScores();
         /*
         scoreList.add(
                 new Score(
@@ -110,7 +184,13 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         //recyclerView.setAdapter(adapter);
     }
 
-    private void loadScores() {
+    private void sortListByEarthCoins() {
+    }
+
+    private void sortListByAvgCf() {
+    }
+
+    private void loadScores(final Boolean sortListByAvgCf) {
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
@@ -122,20 +202,50 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                             progressDialog.dismiss();
                             JSONArray scores = new JSONArray(response);
                             for (int i = 0; i < scores.length(); i++){
+
                                 JSONObject scoreObject = scores.getJSONObject(i);
 
                                 int id = scoreObject.getInt("id");
                                 String email = scoreObject.getString("email");
                                 //String name = scoreObject.getString("name");
                                 int num_coins = scoreObject.getInt("num_coins");
-                                /*int walk = scoreObject.getInt("walk");
-                                int cycle = scoreObject.getInt("cycle");
-                                int drive = scoreObject.getInt("drive");*/
+                                    /*int walk = scoreObject.getInt("walk");
+                                    int cycle = scoreObject.getInt("cycle");
+                                    int drive = scoreObject.getInt("drive");*/
                                 double avg_cf = scoreObject.getDouble("avg_cf");
                                 //int image = scoreObject.getInt("image");
 
+                                lastAvgCf = scoreObject.getDouble("avg_cf");
+
                                 Score score = new Score(id, email, num_coins, avg_cf, R.drawable.earth1);
                                 scoreList.add(score);
+                            }
+
+                            //List<Score> sortedScoreList = new ArrayList<>();
+
+                            if (sortListByAvgCf){
+                                Collections.sort(scoreList, new Comparator<Score>() {
+                                    @Override
+                                    public int compare(Score score, Score t1) {
+                                        return Double.compare(score.getAvg_cf(), t1.getAvg_cf());
+                                    }
+                                });
+                                for (Score score : scoreList){
+                                    System.out.println("For-loop gjennom score list: "+ score.getAvg_cf());
+                                    lastAvgCf = score.getAvg_cf();
+                                }
+                            } else {
+                                Collections.sort(scoreList, new Comparator<Score>() {
+                                    @SuppressLint("NewApi")
+                                    @Override
+                                    public int compare(Score score, Score t1) {
+                                        return Integer.compare(score.getNum_coins(), score.getNum_coins());
+                                    }
+                                });
+                                for (Score score : scoreList){
+                                    System.out.println("For-loop gjennom score list: "+ score.getNum_coins());
+                                    lastAvgCf = score.getAvg_cf();
+                                }
                             }
                             //creating recyclerview adapter
                             adapter = new ScoreAdapter(LeaderboardActivity.this, scoreList);

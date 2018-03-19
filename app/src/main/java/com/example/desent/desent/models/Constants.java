@@ -18,4 +18,6 @@ public class Constants {
     public static final String URL_RETRIEVE = ROOT_URL + "retrieveNumbers.php";
 
     public static final String URL_RETRIEVE_ALL = ROOT_URL + "retrieveAllScores.php";
+
+    public static final String URL_RETRIEVE_FRIENDS = ROOT_URL + "retrieveFriends.php";
 }

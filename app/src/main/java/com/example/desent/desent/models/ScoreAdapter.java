@@ -24,6 +24,16 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     //storing all the friends in a list
     private List<Score> scoreList;
 
+    TextView tvPlaceOnLeaderboard,
+            tvNameFirstPlace, tvAvgCfFirstPlace,
+            tvNameSecondPlace, tvAvgCfSecondPlace,
+            tvNameThirdPlace, tvAvgCfThirdPlace;
+    ImageView imgFirstPlace,
+            imgSecondPlace,
+            imgThirdPlace;
+
+
+
     public ScoreAdapter(Context context, List<Score> scoreList) {
         this.context = context;
         this.scoreList = scoreList;
@@ -40,6 +50,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     @Override
     public void onBindViewHolder(ScoreViewHolder holder, int position) {
         Score score = scoreList.get(position);
+        System.out.println("Position onbindviewholder: " + position);
 
         //binding the data with the viewholder views
         holder.tvName.setText(score.getName());
