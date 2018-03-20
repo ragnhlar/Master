@@ -40,11 +40,12 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
 
     @Override
     public void onBindViewHolder(ScoreViewHolder holder, int position) {
+        int initialPosition = position + 3;
         Score score = scoreList.get(position);
-        System.out.println("Position onbindviewholder: " + position);
+        System.out.println("Position onbindviewholder: " + initialPosition);
 
         //binding the data with the viewholder views
-        holder.tvPlaceOnLeaderboard.setText(position + 1 + ".");
+        holder.tvPlaceOnLeaderboard.setText(initialPosition + 1 + ".");
         holder.tvName.setText(score.getName());
         holder.tvNumCoins.setText(String.valueOf(score.getNum_coins()));
         Resources resources = context.getResources();

@@ -137,7 +137,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                 switch (item.getItemId()) {
                     case R.id.best_avg_cf:
                         tempList.clear();
-                        
+
                         bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
                         bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
 
