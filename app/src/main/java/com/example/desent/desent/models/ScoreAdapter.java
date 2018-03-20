@@ -24,7 +24,6 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
     private Context context;
     //storing all the friends in a list
     private List<Score> scoreList;
-    private List<Score> deletedItems;
 
     public ScoreAdapter(Context context, List<Score> scoreList) {
         this.context = context;

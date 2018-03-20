@@ -26,7 +26,7 @@
         <ImageView
             android:id="@+id/imgPodium"
             android:src="@drawable/podium"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center|bottom"
             android:tint="@color/blue"
             android:layout_width="match_parent"
             android:layout_height="130dp" />
@@ -121,7 +121,9 @@
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/frameLayoutPodium"
         android:id="@+id/rvLeaderboard"
-        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_centerInParent="true"
+        android:layout_width="280dp"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>

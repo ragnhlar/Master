@@ -63,6 +63,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
     DrawerLayout drawer;
 
     List<Score> scoreList;
+    List<Score> tempList;
     RecyclerView recyclerView;
     ScoreAdapter adapter;
 
@@ -112,6 +113,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
         //initializing the scorelist
         scoreList = new ArrayList<>();
+        tempList = new ArrayList<>();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
@@ -134,6 +136,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.best_avg_cf:
+                        tempList.clear();
+                        
                         bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
                         bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
 
@@ -151,6 +155,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                         break;
 
                     case R.id.most_ec:
+                        tempList.clear();
+
                         bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
                         bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
 
@@ -240,7 +246,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                                     scoreList.add(score);
                                 }
                             }
-
                             if (sortListByAvgCf){
                                 // sort list by lowest to highest average carbon footprint
                                 Collections.sort(scoreList, new Comparator<Score>() {
@@ -262,7 +267,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                             }
                             updatePodium(scoreList, sortListByAvgCf);
                             //creating recyclerview adapter
-                            adapter = new ScoreAdapter(LeaderboardActivity.this, scoreList);
+                            adapter = new ScoreAdapter(LeaderboardActivity.this, tempList);
 
                             //setting adapter to recyclerview
                             recyclerView.setAdapter(adapter);
@@ -298,6 +303,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
     }*/
 
     private void updatePodium(List<Score> scoreList, Boolean sortListByAvgCf) {
+
         int counter = 0;
         for (Score score : scoreList){
             if (sortListByAvgCf){
@@ -316,6 +322,9 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                     tvAvgCfThirdPlace.setText(String.valueOf(score.getAvg_cf()) + " " + getResources().getString(R.string.carbon_footprint_unit));
                     imgThirdPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
                 }
+                if (counter > 2){
+                    tempList.add(score);
+                }
                 counter++;
             } else {
                 if (counter == 0){
@@ -333,9 +342,13 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                     tvAvgCfThirdPlace.setText(String.valueOf(score.getNum_coins()) + " Earth Coins");
                     imgThirdPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
                 }
+                if (counter > 2){
+                    tempList.add(score);
+                }
                 counter++;
             }
         }
+        System.out.println("Str på templist, 2?: " + tempList.size());
     }
 
     protected void setUpNavigationView() {
