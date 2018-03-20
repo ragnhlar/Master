@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,10 +72,12 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
     Boolean sortListByAvgCf = true;
 
-    TextView tvNameFirstPlace, tvAvgCfFirstPlace,
-            tvNameSecondPlace, tvAvgCfSecondPlace,
-            tvNameThirdPlace, tvAvgCfThirdPlace;
+    TextView tvNameFirstPlace, tvAvgCfFirstPlace, tvNumCoinsFirstPlace,
+            tvNameSecondPlace, tvAvgCfSecondPlace, tvNumCoinsSecondPlace,
+            tvNameThirdPlace, tvAvgCfThirdPlace, tvNumCoinsThirdPlace;
     ImageView imgFirstPlace, imgSecondPlace, imgThirdPlace;
+
+    LinearLayout llFirst, llSecond, llThird;
 
     FrameLayout frameLayout;
 
@@ -100,16 +103,24 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
         //getting the framelayout from xml
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutPodium);
+
         tvNameFirstPlace = findViewById(R.id.tvNameFirstPlace);
         tvAvgCfFirstPlace = findViewById(R.id.tvAvgCfFirstPlace);
+        imgFirstPlace = findViewById(R.id.imgFirstPlace);
+        tvNumCoinsFirstPlace = findViewById(R.id.tvNumCoinsFirstPlace);
+        llFirst = findViewById(R.id.llNumCoinsFirst);
+
         tvNameSecondPlace = findViewById(R.id.tvNameSecondPlace);
         tvAvgCfSecondPlace = findViewById(R.id.tvAvgCfSecondPlace);
+        imgSecondPlace = findViewById(R.id.imgSecondPlace);
+        tvNumCoinsSecondPlace = findViewById(R.id.tvNumCoinsSecondPlace);
+        llSecond = findViewById(R.id.llNumCoinsSecond);
+
         tvNameThirdPlace = findViewById(R.id.tvNameThirdPlace);
         tvAvgCfThirdPlace = findViewById(R.id.tvAvgCfThirdPlace);
-        imgFirstPlace = findViewById(R.id.imgFirstPlace);
-        imgSecondPlace = findViewById(R.id.imgSecondPlace);
         imgThirdPlace = findViewById(R.id.imgThirdPlace);
-        frameLayout = findViewById(R.id.frameLayoutPodium);
+        tvNumCoinsThirdPlace = findViewById(R.id.tvNumCoinsThirdPlace);
+        llThird = findViewById(R.id.llNumCoinsThird);
 
         //initializing the scorelist
         scoreList = new ArrayList<>();
@@ -141,17 +152,17 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                         bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
                         bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
 
-                        //sortListByAvgCf();
+                        llFirst.setVisibility(View.GONE);
+                        llSecond.setVisibility(View.GONE);
+                        llThird.setVisibility(View.GONE);
+
+                        tvAvgCfFirstPlace.setVisibility(View.VISIBLE);
+                        tvAvgCfSecondPlace.setVisibility(View.VISIBLE);
+                        tvAvgCfThirdPlace.setVisibility(View.VISIBLE);
 
                         sortListByAvgCf = true;
 
                         loadScores(sortListByAvgCf);
-
-                        /*if (carbonFootprint.getEstimationType() == EstimationType.NONE)
-                            informationCO2Left.setVisibility(VISIBLE);
-                        textViewTimeScale.setVisibility(View.GONE);
-                        for (Indicator indicator: indicators)
-                            indicator.setTimeScale(TimeScale.TODAY);*/
                         break;
 
                     case R.id.most_ec:
@@ -160,61 +171,22 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                         bnveSort.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
                         bnveSort.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
 
-                        //sortListByEarthCoins();
+                        llFirst.setVisibility(View.VISIBLE);
+                        llSecond.setVisibility(View.VISIBLE);
+                        llThird.setVisibility(View.VISIBLE);
+
+                        tvAvgCfFirstPlace.setVisibility(View.GONE);
+                        tvAvgCfSecondPlace.setVisibility(View.GONE);
+                        tvAvgCfThirdPlace.setVisibility(View.GONE);
 
                         sortListByAvgCf = false;
 
                         loadScores(sortListByAvgCf);
-
-
-                        /*informationCO2Left.setVisibility(GONE);
-                        textViewTimeScale.setVisibility(View.VISIBLE);
-                        textViewTimeScale.setText("Average this week");
-                        for (Indicator indicator: indicators)
-                            indicator.setTimeScale(TimeScale.WEEK);*/
                         break;
                 }
                 return true;
             }
         });
-        
-        //loadScores();
-        /*
-        scoreList.add(
-                new Score(
-                        1,
-                        "Navn Navnesen 1",
-                        35,
-                        4.5,
-                        R.drawable.earth1));
-
-        scoreList.add(
-                new Score(
-                        2,
-                        "Navn Navnesen 2",
-                        43,
-                        3.2,
-                        R.drawable.earth2));
-
-        scoreList.add(
-                new Score(
-                        3,
-                        "Navn Navnesen 3",
-                        13,
-                        6.7,
-                        R.drawable.earth4));
-        */
-        //creating recyclerview adapter
-        //ScoreAdapter adapter = new ScoreAdapter(this, scoreList);
-
-        //setting adapter to recyclerview
-        //recyclerView.setAdapter(adapter);
-    }
-
-    private void sortListByEarthCoins() {
-    }
-
-    private void sortListByAvgCf() {
     }
 
     private void loadScores(final Boolean sortListByAvgCf) {
@@ -287,21 +259,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    /*private List<Score> removeTopThreeFromScoreList(List<Score> scoreList) {
-        List<Score> updatedList = new ArrayList<>();
-        int counter = 0;
-        for (Score score : scoreList){
-            System.out.println("Remove top three: " + score.getName());
-            if (counter < 3){
-                updatedList.add(score);
-            }
-            System.out.println("Counter: " + counter);
-            counter++;
-        }
-        scoreList.removeAll(updatedList);
-        return scoreList;
-    }*/
-
     private void updatePodium(List<Score> scoreList, Boolean sortListByAvgCf) {
 
         int counter = 0;
@@ -329,17 +286,17 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
             } else {
                 if (counter == 0){
                     tvNameFirstPlace.setText(score.getName());
-                    tvAvgCfFirstPlace.setText(String.valueOf(score.getNum_coins()) + " Earth Coins");
+                    tvNumCoinsFirstPlace.setText(String.valueOf(score.getNum_coins()));
                     imgFirstPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
                 }
                 if (counter == 1){
                     tvNameSecondPlace.setText(score.getName());
-                    tvAvgCfSecondPlace.setText(String.valueOf(score.getNum_coins()) + " Earth Coins");
+                    tvNumCoinsSecondPlace.setText(String.valueOf(score.getNum_coins()));
                     imgSecondPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
                 }
                 if (counter == 2){
                     tvNameThirdPlace.setText(score.getName());
-                    tvAvgCfThirdPlace.setText(String.valueOf(score.getNum_coins()) + " Earth Coins");
+                    tvNumCoinsThirdPlace.setText(String.valueOf(score.getNum_coins()));
                     imgThirdPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
                 }
                 if (counter > 2){
@@ -348,7 +305,6 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                 counter++;
             }
         }
-        System.out.println("Str på templist, 2?: " + tempList.size());
     }
 
     protected void setUpNavigationView() {
