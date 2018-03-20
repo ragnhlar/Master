@@ -50,6 +50,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -65,11 +66,16 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
     RecyclerView recyclerView;
     ScoreAdapter adapter;
 
-    FrameLayout frameLayout;
-
     BottomNavigationViewEx bnveSort;
 
     Boolean sortListByAvgCf = true;
+
+    TextView tvNameFirstPlace, tvAvgCfFirstPlace,
+            tvNameSecondPlace, tvAvgCfSecondPlace,
+            tvNameThirdPlace, tvAvgCfThirdPlace;
+    ImageView imgFirstPlace, imgSecondPlace, imgThirdPlace;
+
+    FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,16 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
         //getting the framelayout from xml
         frameLayout = (FrameLayout) findViewById(R.id.frameLayoutPodium);
+        tvNameFirstPlace = findViewById(R.id.tvNameFirstPlace);
+        tvAvgCfFirstPlace = findViewById(R.id.tvAvgCfFirstPlace);
+        tvNameSecondPlace = findViewById(R.id.tvNameSecondPlace);
+        tvAvgCfSecondPlace = findViewById(R.id.tvAvgCfSecondPlace);
+        tvNameThirdPlace = findViewById(R.id.tvNameThirdPlace);
+        tvAvgCfThirdPlace = findViewById(R.id.tvAvgCfThirdPlace);
+        imgFirstPlace = findViewById(R.id.imgFirstPlace);
+        imgSecondPlace = findViewById(R.id.imgSecondPlace);
+        imgThirdPlace = findViewById(R.id.imgThirdPlace);
+        frameLayout = findViewById(R.id.frameLayoutPodium);
 
         //initializing the scorelist
         scoreList = new ArrayList<>();
@@ -244,6 +260,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                                     }
                                 });
                             }
+                            updatePodium(scoreList, sortListByAvgCf);
                             //creating recyclerview adapter
                             adapter = new ScoreAdapter(LeaderboardActivity.this, scoreList);
 
@@ -263,6 +280,62 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                 }
         );
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    /*private List<Score> removeTopThreeFromScoreList(List<Score> scoreList) {
+        List<Score> updatedList = new ArrayList<>();
+        int counter = 0;
+        for (Score score : scoreList){
+            System.out.println("Remove top three: " + score.getName());
+            if (counter < 3){
+                updatedList.add(score);
+            }
+            System.out.println("Counter: " + counter);
+            counter++;
+        }
+        scoreList.removeAll(updatedList);
+        return scoreList;
+    }*/
+
+    private void updatePodium(List<Score> scoreList, Boolean sortListByAvgCf) {
+        int counter = 0;
+        for (Score score : scoreList){
+            if (sortListByAvgCf){
+                if (counter == 0){
+                    tvNameFirstPlace.setText(score.getName());
+                    tvAvgCfFirstPlace.setText(String.valueOf(score.getAvg_cf()) + " " + getResources().getString(R.string.carbon_footprint_unit));
+                    imgFirstPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
+                }
+                if (counter == 1){
+                    tvNameSecondPlace.setText(score.getName());
+                    tvAvgCfSecondPlace.setText(String.valueOf(score.getAvg_cf()) + " " + getResources().getString(R.string.carbon_footprint_unit));
+                    imgSecondPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
+                }
+                if (counter == 2){
+                    tvNameThirdPlace.setText(score.getName());
+                    tvAvgCfThirdPlace.setText(String.valueOf(score.getAvg_cf()) + " " + getResources().getString(R.string.carbon_footprint_unit));
+                    imgThirdPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
+                }
+                counter++;
+            } else {
+                if (counter == 0){
+                    tvNameFirstPlace.setText(score.getName());
+                    tvAvgCfFirstPlace.setText(String.valueOf(score.getNum_coins()) + " Earth Coins");
+                    imgFirstPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
+                }
+                if (counter == 1){
+                    tvNameSecondPlace.setText(score.getName());
+                    tvAvgCfSecondPlace.setText(String.valueOf(score.getNum_coins()) + " Earth Coins");
+                    imgSecondPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
+                }
+                if (counter == 2){
+                    tvNameThirdPlace.setText(score.getName());
+                    tvAvgCfThirdPlace.setText(String.valueOf(score.getNum_coins()) + " Earth Coins");
+                    imgThirdPlace.setImageDrawable(getApplicationContext().getResources().getDrawable(score.getImage()));
+                }
+                counter++;
+            }
+        }
     }
 
     protected void setUpNavigationView() {

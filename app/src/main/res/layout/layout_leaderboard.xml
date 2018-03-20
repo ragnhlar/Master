@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/frameLayoutPodium"
         android:layout_width="wrap_content"
         android:layout_below="@+id/navLeaderboardSort"
@@ -106,14 +106,14 @@
             android:layout_marginRight="55dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </FrameLayout>
+    </FrameLayout>-->
 
     <android.support.v7.widget.CardView
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         android:elevation="5dp"
-        android:layout_margin="3dp">
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:gravity="center"
@@ -140,7 +140,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
@@ -191,13 +191,9 @@
 
                     </LinearLayout>
 
-
-
                 </LinearLayout>
 
             </LinearLayout>
-
-
 
             <!--<fragment
                 android:name="com.example.desent.desent.fragments.ScoreFragment"

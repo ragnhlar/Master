@@ -254,7 +254,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Navigation drawer
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -277,10 +276,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         tableInfo = (TableLayout) findViewById(R.id.tableInfo);
         //tvWalkInfo = (TextView) findViewById(R.id.tvWalkInfo);
-
-        //Bottom navigation
-
-        //final BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         //Time navigation
         bnveTime = (BottomNavigationViewEx) findViewById(R.id.navTime);
@@ -371,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     };
          */
 
+        //Bottom navigation
         bnve = (BottomNavigationViewEx) findViewById(R.id.bnve);
         bnve.enableAnimation(false);
         bnve.enableShiftingMode(false);
