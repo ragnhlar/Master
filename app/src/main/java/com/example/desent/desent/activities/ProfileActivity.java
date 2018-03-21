@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,26 +19,40 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
-import com.example.desent.desent.models.Indicator;
+import com.example.desent.desent.fragments.ScoreFragment;
+import com.example.desent.desent.fragments.ScoreFragmentWhite;
+import com.example.desent.desent.models.Constants;
+import com.example.desent.desent.models.RequestHandler;
+import com.example.desent.desent.models.SharedPrefManager;
 import com.example.desent.desent.utils.Utility;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
 
     SharedPreferences sharedPreferences;
-    TextView name, avgCf, tv_coin_score, tvProgress;
+    TextView name, tvAvgCf, tv_coin_score, tvProgress;
     //, email, address, zipcode, city, birthdate, gender;
     ImageView changeInfo, profilePic;
     LinearLayout ll_coin_score;
@@ -74,7 +89,7 @@ public class ProfileActivity extends AppCompatActivity
         name = findViewById(R.id.tvName);
         name.setText(sharedPreferences.getString("pref_key_personal_name",""));
 
-        avgCf = findViewById(R.id.avgCF);
+        tvAvgCf = findViewById(R.id.avgCF);
 
         //tv_coin_score = findViewById(R.id.tv_coin_score);
         //tv_coin_score.setText("You have " + getCoinScore());
@@ -140,6 +155,8 @@ public class ProfileActivity extends AppCompatActivity
                 }
             }
         }).start();
+
+        loadUserScores();
 
         /*email = findViewById(R.id.tvEmail);
         email.setText(sharedPreferences.getString("pref_key_personal_email",""));
@@ -208,6 +225,50 @@ public class ProfileActivity extends AppCompatActivity
         arcView.setHorizGravity(DecoView.HorizGravity.GRAVITY_HORIZONTAL_LEFT);
         arcView.setVertGravity(DecoView.VertGravity.GRAVITY_VERTICAL_BOTTOM);*/
 
+    }
+
+    private void loadUserScores() {
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, //maybe change to GET?
+                Constants.URL_RETRIEVE,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject userObject = new JSONObject(response);
+                            int id = userObject.getInt("id");
+
+                            String email = userObject.getString("email");
+                            name.setText(email);
+
+                            int num_coins = userObject.getInt("num_coins");
+
+                            double avg_cf = userObject.getDouble("avg_cf");
+                            tvAvgCf.setText("Avg. carbon footprint: " + String.valueOf(avg_cf) + " " + getResources().getString(R.string.carbon_footprint_unit));
+
+                            Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        System.out.println(error.getMessage());
+
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", sharedPreferences.getString("pref_key_personal_email",""));
+                return params;
+            }
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     protected void setUpNavigationView(){

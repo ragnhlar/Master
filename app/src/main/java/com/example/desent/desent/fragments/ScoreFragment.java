@@ -27,8 +27,6 @@ public class ScoreFragment extends Fragment {
     TextView tv_coin_score;
     ImageView img_earth_coin;
 
-
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     //private static final String ARG_PARAM1 = "param1";
@@ -74,7 +72,9 @@ public class ScoreFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_score, null);
+        View view = inflater.inflate(R.layout.fragment_score, null);
+        tv_coin_score = view.findViewById(R.id.coin_score_text);
+        return view;
     }
 
     @Override
