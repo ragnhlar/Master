@@ -19,6 +19,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -49,7 +51,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity
-    implements NavigationView.OnNavigationItemSelectedListener{
+    implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
     SharedPreferences sharedPreferences;
     TextView name, tvAvgCf, tv_coin_score, tvProgress;
@@ -367,5 +369,17 @@ public class ProfileActivity extends AppCompatActivity
             dailyCoinScore += 1;
         }
         return dailyCoinScore;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i), Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
