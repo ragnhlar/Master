@@ -19,9 +19,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
@@ -35,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener{
 
     SharedPreferences sharedPreferences;
-    TextView name, avgCf, tv_coin_score, tv;
+    TextView name, avgCf, tv_coin_score, tvProgress;
     //, email, address, zipcode, city, birthdate, gender;
     ImageView changeInfo, profilePic;
     LinearLayout ll_coin_score;
@@ -96,6 +98,15 @@ public class ProfileActivity extends AppCompatActivity
                 });
         builder.create();
 
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerPersonalGoal);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
+                (this, R.array.personal_goal_array, R.layout.spinner_layout);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.spinner_layout);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
         //ll_coin_score = (LinearLayout) findViewById(R.id.ll_coin_score);
         /*ll_coin_score.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity
             }
         });*/
 
-        tv = findViewById(R.id.tv);
+        tvProgress = findViewById(R.id.tvProgress);
 
         personalGoal = (ProgressBar) findViewById(R.id.personalGoalPB);
 
@@ -123,7 +134,7 @@ public class ProfileActivity extends AppCompatActivity
                         @Override
                         public void run() {
                             personalGoal.setProgress(progressStatus);
-                            tv.setText(progressStatus+"");
+                            tvProgress.setText(progressStatus+"");
                         }
                     });
                 }

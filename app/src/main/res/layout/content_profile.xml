@@ -8,38 +8,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
+    <RelativeLayout
+        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/changeUserInfo"
             android:tint="@color/dark_grey"
-            android:layout_gravity="right"
-            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_alignParentRight="true"
             android:src="@drawable/ic_menu_settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <ImageView
-            android:id="@+id/imgProfilePicture"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:srcCompat="@drawable/earth" />
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/frameLayoutProfilePicture"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" >
+
+            <ImageView
+                android:id="@+id/imgProfilePicture"
+                android:src="@drawable/earth"
+                android:layout_gravity="center|top"
+                android:layout_margin="5dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <ImageView
+                android:id="@+id/btnChangeProfilePicture"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right|bottom"
+                app:srcCompat="@drawable/ic_menu_camera"/>
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tvName"
             android:text="Navn Navnesen"
+            android:layout_below="@+id/frameLayoutProfilePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:textStyle="bold"
-            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:layout_marginTop="5dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <TextView
             android:id="@+id/avgCF"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/tvName"
             android:text="Avg. carbon footprint"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -47,6 +69,8 @@
 
         <fragment android:name="com.example.desent.desent.fragments.ScoreFragment"
             android:id="@+id/scoreFragment"
+            android:layout_below="@+id/avgCF"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_score" />
@@ -74,21 +98,41 @@
         </LinearLayout>-->
 
         <TextView
+            android:id="@+id/tvPersonalGoal"
             android:text="Your personal goal:"
+            android:layout_below="@id/scoreFragment"
+            android:layout_marginLeft="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinnerPersonalGoal"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RtlOverlay.Widget.AppCompat.Search.DropDown"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/tvPersonalGoal" />
 
         <TextView
-            android:id="@+id/tv"
+            android:id="@+id/tvProgress"
+            android:layout_below="@id/spinnerPersonalGoal"
+            android:layout_centerInParent="true"
             android:text="0"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
 
         <ProgressBar
             android:id="@+id/personalGoalPB"
+            android:layout_below="@+id/tvProgress"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <!--<com.hookedonplay.decoviewlib.DecoView
@@ -145,6 +189,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />-->
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
