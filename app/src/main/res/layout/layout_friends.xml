@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
-        android:layout_width="360dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         android:elevation="5dp"
@@ -21,8 +21,8 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:src="@drawable/earth"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:padding="4dp" />
 
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/imageView"
                 android:text="Navn Navnesen"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="#000000" />
 
             <!--<fragment
@@ -55,7 +55,7 @@
                 android:textStyle="bold"
                 android:layout_toRightOf="@id/imageView"
                 android:text="230"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             <ImageView
                 android:src="@drawable/earthcoin"
@@ -63,28 +63,27 @@
                 android:layout_toRightOf="@id/textViewNumCoins"
                 android:layout_below="@id/textViewName"
                 android:layout_marginLeft="5dp"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
 
             <TextView
                 android:id="@+id/textViewAvgCf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewName"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/earth_coin"
                 android:text="4.7 kgCO2"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnContact"
                 android:text="Contact"
                 android:layout_alignParentRight="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="25dp"
+                android:textSize="10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
