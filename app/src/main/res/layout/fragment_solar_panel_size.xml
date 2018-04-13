@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:text="See how much you can save by getting a solar panel to provide energy to heat your house. Instead of using your currently source, by switching to a solar panel of chosen size, your carbon footprint will be (based on your current energy consumption):"
+        android:text="See how much you can save by switching to solar panel as energy source. By switching to a solar panel of chosen size, your carbon footprint will be (based on your current energy consumption):"
         android:paddingBottom="6dp"/>
 
     <LinearLayout
