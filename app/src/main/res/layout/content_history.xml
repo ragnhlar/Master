@@ -65,7 +65,7 @@
             <com.example.desent.desent.views.Yaxis
                 android:id="@+id/y_axis"
                 android:layout_height="match_parent"
-                android:layout_width="33dp"
+                android:layout_width="45dp"
                 android:visibility="gone"
                 />
 

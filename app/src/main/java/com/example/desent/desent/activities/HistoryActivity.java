@@ -264,9 +264,18 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         Float[] value1 = new Float[7];
         Float[] value2 = new Float[7];
         for (int i=0; i<7; i++) {
+            /* to visualize when no values in db
+            value1[i] = (float) i + (float) 1;
+            value2[i] = (float) i + (float) 1;
+            */
             value1[i] = carbonFootprintEnergy[i];
             value2[i] = carbonFootprintTransportation[i];
+
         }
+
+        String limitColor = "#FF0000";
+
+
 
         String barColor1 = "#03a9f4";
         String barColor2 = "#64dd17";
@@ -311,7 +320,10 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         float[] weekEnergyConsumption = energy.generateArrayWeekEnergyConsumption();
         Float[] value1 = new Float[7];
         for (int i=0; i<7; i++)
+
             value1[i] = weekEnergyConsumption[i];
+            //added to visualize graph with no values in db
+            //value1[i] = (float) i + (float) + 1;
 
         String barColor1 = "#03a9f4";
 
@@ -357,9 +369,16 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         Float[] value3 = new Float[7];
 
         for (int i=0; i<7; i++) {
+            /* to see how graph look likes
+            value1[i] = (float) i + (float) 1.0;
+            value2[i] = (float) i + (float) 1.0;
+            value3[i] = (float) i + (float) 1.0;
+            */
+            //retrieves actual historical data
             value1[i] = walkingDistance[i];
             value2[i] = cyclingDistance[i];
             value3[i] = drivingDistance[i];
+
         }
 
         String barColor1 = "#00ff00";

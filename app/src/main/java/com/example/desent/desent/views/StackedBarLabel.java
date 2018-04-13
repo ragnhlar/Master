@@ -22,7 +22,7 @@ public class StackedBarLabel extends View {
     private Canvas canvas;
     private int parentWidth, parentHeight;
     private float left, top, right, bottom;
-    private float textHeight = 40;
+    private float textHeight = 38;
     private List<String> colorLabels = new ArrayList<>();
     private List<String> labels = new ArrayList<>();
 
