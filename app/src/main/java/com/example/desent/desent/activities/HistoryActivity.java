@@ -52,7 +52,7 @@ import java.util.List;
 public class HistoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
-    Spinner spinner;
+    //Spinner spinner;
     final static String LOGG = "HistoryPage";
     DatabaseHelper myDb;
     Energy energy;
@@ -61,6 +61,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
     StackedBarLabel labelOrganizer;
     Yaxis yaxis;
     BottomNavigationViewEx bnveHistory;
+    TextView histAnnotation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +126,8 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         myDb = new DatabaseHelper(this);
         myDb.getWeekDrivingDistance();
-
+        histAnnotation = (TextView) findViewById(R.id.hist_annotation);
+        histAnnotation.setText(getResources().getString(R.string.carbon_footprint_unit));
         stackBarChart = (StackBarChart) findViewById(R.id.chart);
         labelOrganizer = (StackedBarLabel) findViewById(R.id.labelStackedBar);
         yaxis = (Yaxis) findViewById(R.id.y_axis);
@@ -252,6 +254,8 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
     public void displayCarbonFootprintGraph() {
 
+        histAnnotation.setText(getResources().getString(R.string.carbon_footprint_unit));
+
         List<ChartData> value = new ArrayList<>();
 
         float[] carbonFootprintTransportation = transportation.getWeekCarbonFootprint();
@@ -300,6 +304,8 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
     public void displayEnergyConsumptionGraph() {
 
+        histAnnotation.setText("kWh");
+
         List<ChartData> value = new ArrayList<>();
 
         float[] weekEnergyConsumption = energy.generateArrayWeekEnergyConsumption();
@@ -307,9 +313,9 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         for (int i=0; i<7; i++)
             value1[i] = weekEnergyConsumption[i];
 
-        String barColor1 = "#FF53BCD6";
+        String barColor1 = "#03a9f4";
 
-        String labelText1 = "Energy consumption (kWh)";
+        String labelText1 = "Energy consumption";
 
         value.add(new ChartData(value1, labelText1, barColor1));
 
@@ -338,6 +344,8 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
     public void displayDistanceGraph() {
 
+        histAnnotation.setText("km");
+
         List<ChartData> value = new ArrayList<>();
 
         float[] walkingDistance = myDb.getWeekWalkingDistance();
@@ -358,9 +366,9 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         String barColor2 = "#4f8714";
         String barColor3 = "#875c14";
 
-        String labelText1 = "Distance walked (km)";
-        String labelText2 = "Distance cycled (km)";
-        String labelText3 = "Distance driven (km)";
+        String labelText1 = "Distance walked";
+        String labelText2 = "Distance cycled";
+        String labelText3 = "Distance driven";
 
         value.add(new ChartData(value1, labelText1, barColor1));
         value.add(new ChartData(value2, labelText2, barColor2));

@@ -18,8 +18,7 @@
     </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
 
     <LinearLayout
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
+        android:layout_margin="16dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,10 +41,20 @@
             android:id="@+id/labelStackedBar"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="3"
             android:visibility="gone"
 
             />
+
+        <TextView
+            android:id="@+id/hist_annotation"
+            android:text="value"
+            android:textColor="@color/dark_text_and_icon"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -56,7 +65,7 @@
             <com.example.desent.desent.views.Yaxis
                 android:id="@+id/y_axis"
                 android:layout_height="match_parent"
-                android:layout_width="35dp"
+                android:layout_width="33dp"
                 android:visibility="gone"
                 />
 
@@ -73,11 +82,18 @@
                     <com.example.desent.desent.views.StackBarChart
                         android:id="@+id/chart"
                         android:layout_height="match_parent"
-                        android:layout_width="800dp"
+                        android:layout_width="700dp"
                         android:visibility="gone"
                         />
                 </LinearLayout>
             </HorizontalScrollView>
         </LinearLayout>
+
+        <TextView
+            android:text="Scroll horizontally to view historical data"
+            android:textStyle="italic"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
