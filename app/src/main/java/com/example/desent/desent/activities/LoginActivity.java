@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private SharedPreferences sharedPreferences;
     private final static String CIPHER_KEY = "p2m8j0DgoqjJGxnDYfq70fV92h7sCg0N";
 
+    //Added to not have to log in every time if already logged in: currently not in use
     SessionManagement session;
 
     @Override
@@ -105,16 +106,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Added to not have to log in every time if already logged in
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
             finish();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             return;
         }
 
-        /*
+        //Added to not have to log in every time if already logged in: currently not in use
         session = new SessionManagement(getApplicationContext());
         Toast.makeText(getApplicationContext(), "User login status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
-        */
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -132,8 +133,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        //added to send request to php mysql db
         //requestQueue = Volley.newRequestQueue(this);
 
+        //Todo: show and hide progressdialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
 
@@ -274,6 +277,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             progressDialog.show();
 
+            session.createLoginSession(email);
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+            // code for connecting with db php mysql
+            /*
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,
                     Constants.URL_LOGIN,

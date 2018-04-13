@@ -57,12 +57,13 @@ import static android.view.View.GONE;
 public class RegisterActivity extends FragmentActivity {
 
     // To insert in database in phpmyadmin
+    /*
     private RequestQueue requestQueue;
     private static final String URL_USER_REG = "http://129.241.105.20:80/smiling_earth/user_registration.php";
     private static final String URL_HOUSE_REG = "http://129.241.105.20:80/smiling_earth/house_registration.php";
     private static final String URL_TRANS_REG = "http://129.241.105.20:80/smiling_earth/trans_registration.php";
     private StringRequest request;
-
+    */
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
@@ -79,9 +80,14 @@ public class RegisterActivity extends FragmentActivity {
      */
     private PagerAdapter mPagerAdapter;
 
+    //session management added to remember user on login
     SessionManagement session;
+
+    //not used
     PreferencesManager pref;
     SharedPreferences sharedPreferences;
+
+    //added by ,e
     private DatabaseHelper myDb;
 
     private LinearLayout dotsLayout;
@@ -92,11 +98,13 @@ public class RegisterActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //to manage login session
         session = new SessionManagement(getApplicationContext());
         myDb = new DatabaseHelper(getApplicationContext());
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        //added to connect to php db
+        //requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         List fragments = new Vector();
         fragments.add(Fragment.instantiate(this, RegisterCredentialFragment.class.getName()));
@@ -153,8 +161,18 @@ public class RegisterActivity extends FragmentActivity {
     }
 
     private void launchHomeScreen() {
-        session.createLoginSession(myDb.getUserEmail());
         System.out.println("Consent: " + myDb.getConsent());
+
+        /*
+        registerUser();
+        registerHouseInfo();
+        registerTransportation();
+        */
+
+        session.createLoginSession(myDb.getUserEmail());
+        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+        finish();
+
         //maybe in async task?
         /*Boolean reg = myDb.registerUser(sharedPreferences.getString("pref_key_personal_email",""),
                 sharedPreferences.getString("pref_key_personal_name", ""),
@@ -167,7 +185,6 @@ public class RegisterActivity extends FragmentActivity {
         } else {
             Toast.makeText(getApplicationContext(),"User not registered in db", Toast.LENGTH_LONG).show();
         }
-
         Boolean reg2 = myDb.registerHome2(sharedPreferences.getString("pref_key_personal_address",""),
                 sharedPreferences.getString("pref_key_personal_zip_code", ""),
                 sharedPreferences.getString("pref_key_personal_city", ""),
@@ -199,9 +216,7 @@ public class RegisterActivity extends FragmentActivity {
         } else {
             Toast.makeText(getApplicationContext(),"Transportation habits not registered in db", Toast.LENGTH_LONG).show();
         }*/
-        registerUser();
-        registerHouseInfo();
-        registerTransportation();
+
         /*request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -239,13 +254,7 @@ public class RegisterActivity extends FragmentActivity {
             }
         };
         requestQueue.add(request);*/
-
         //myDb.registerUser();
-
-        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-
-        finish();
-
         /*if (myDb.getConsent() == "true") {
             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             finish();
@@ -256,6 +265,7 @@ public class RegisterActivity extends FragmentActivity {
         }*/
     }
 
+    /*
     private void registerTransportation() {
         request = new StringRequest(Request.Method.POST, URL_TRANS_REG, new Response.Listener<String>() {
             @Override
@@ -297,7 +307,9 @@ public class RegisterActivity extends FragmentActivity {
         };
         requestQueue.add(request);
     }
+    */
 
+    /*
     private void registerHouseInfo() {
         request = new StringRequest(Request.Method.POST, URL_HOUSE_REG, new Response.Listener<String>() {
             @Override
@@ -333,7 +345,9 @@ public class RegisterActivity extends FragmentActivity {
         };
         requestQueue.add(request);
     }
+    */
 
+    /*
     private void registerUser() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 Constants.URL_REGISTER,
@@ -408,7 +422,7 @@ public class RegisterActivity extends FragmentActivity {
             }
         };
         requestQueue.add(request);*/
-    }
+    //}
 
     @Override
     public void onBackPressed() {
