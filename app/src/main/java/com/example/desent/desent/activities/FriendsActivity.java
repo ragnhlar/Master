@@ -2,6 +2,7 @@ package com.example.desent.desent.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -32,6 +33,7 @@ import com.example.desent.desent.models.Constants;
 import com.example.desent.desent.models.Friend;
 import com.example.desent.desent.models.FriendAdapter;
 import com.example.desent.desent.models.RequestHandler;
+import com.example.desent.desent.models.Score;
 import com.example.desent.desent.utils.Utility;
 
 import org.json.JSONArray;
@@ -52,6 +54,8 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
     List<Friend> friendList;
     RecyclerView recyclerView;
 
+    //SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,8 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        //sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setUpNavigationView();
 
@@ -78,7 +84,7 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
 
-        loadFriends();
+        //loadFriends();
 
         /*friendList.add(
                 new Friend(
@@ -102,15 +108,22 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
                         "Navn Navnesen 3",
                         13,
                         6.7,
-                        R.drawable.earth4));
+                        R.drawable.earth4));*/
+        //friendList.add(new Friend(0, sharedPreferences.getString("pref_key_personal_name",""), 167, 3.6, R.drawable.earth));
+        friendList.add(new Friend(1, "Rob Adams", 135, 3.2, R.drawable.robadams));
+        friendList.add(new Friend(2, "Mary Jones", 230, 2.2, R.drawable.maryjones));
+        friendList.add(new Friend(3, "Patricia Clarkson", 53, 6.2, R.drawable.patriciaclarkson));
+        friendList.add(new Friend(4, "Michael Smith", 310, 1.2, R.drawable.michaelsmith));
+        friendList.add(new Friend(5, "James Pitt", 32, 6.4, R.drawable.jamespitt));
 
         //creating recyclerview adapter
         FriendAdapter adapter = new FriendAdapter(this, friendList);
 
         //setting adapter to recyclerview
-        recyclerView.setAdapter(adapter);*/
+        recyclerView.setAdapter(adapter);
     }
 
+    /*
     private void loadFriends() {
         progressDialog.show();
         StringRequest stringRequest = new StringRequest(
@@ -133,6 +146,7 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
                                 /*int walk = scoreObject.getInt("walk");
                                 int cycle = scoreObject.getInt("cycle");
                                 int drive = scoreObject.getInt("drive");*/
+    /*
                                 double avg_cf = scoreObject.getDouble("avg_cf");
 
                                 Friend friend = new Friend(id, name, num_coins, avg_cf, R.drawable.earth1);
@@ -158,6 +172,7 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         );
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
+    */
 
     protected void setUpNavigationView() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

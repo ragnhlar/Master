@@ -3,6 +3,7 @@ package com.example.desent.desent.activities;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -81,6 +82,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
     FrameLayout frameLayout;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +96,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setUpNavigationView();
 
@@ -124,6 +129,15 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
         //initializing the scorelist
         scoreList = new ArrayList<>();
+
+        //"friends" inserted until server is up an running
+        scoreList.add(new Score(0, sharedPreferences.getString("pref_key_personal_name",""), 167, 3.6, R.drawable.earth));
+        scoreList.add(new Score(1, "Rob Adams", 135, 3.2, R.drawable.robadams));
+        scoreList.add(new Score(2, "Mary Jones", 230, 2.2, R.drawable.maryjones));
+        scoreList.add(new Score(3, "Patricia Clarkson", 53, 6.2, R.drawable.patriciaclarkson));
+        scoreList.add(new Score(4, "Michael Smith", 310, 1.2, R.drawable.michaelsmith));
+        scoreList.add(new Score(5, "James Pitt", 32, 6.4, R.drawable.jamespitt));
+
         tempList = new ArrayList<>();
 
         progressDialog = new ProgressDialog(this);
@@ -191,6 +205,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
     private void loadScores(final Boolean sortListByAvgCf) {
         progressDialog.show();
+        /*
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
                 Constants.URL_RETRIEVE_ALL,
@@ -211,14 +226,16 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                                     /*int walk = scoreObject.getInt("walk");
                                     int cycle = scoreObject.getInt("cycle");
                                     int drive = scoreObject.getInt("drive");*/
-                                    double avg_cf = scoreObject.getDouble("avg_cf");
+                                    /*double avg_cf = scoreObject.getDouble("avg_cf");
                                     //int image = scoreObject.getInt("image");
 
                                     Score score = new Score(id, email, num_coins, avg_cf, R.drawable.earth1);
                                     scoreList.add(score);
                                 }
                             }
+                            */
                             if (sortListByAvgCf){
+                                progressDialog.dismiss();
                                 // sort list by lowest to highest average carbon footprint
                                 Collections.sort(scoreList, new Comparator<Score>() {
                                     @Override
@@ -227,6 +244,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                                     }
                                 });
                             } else {
+                                progressDialog.dismiss();
+
                                 //sort list by highest to lowest number of Earth Coins
                                 Collections.sort(scoreList, new Comparator<Score>() {
                                     @Override
@@ -243,6 +262,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
                             //setting adapter to recyclerview
                             recyclerView.setAdapter(adapter);
+                            /*
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -256,7 +276,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
                     }
                 }
         );
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);*/
     }
 
     private void updatePodium(List<Score> scoreList, Boolean sortListByAvgCf) {
