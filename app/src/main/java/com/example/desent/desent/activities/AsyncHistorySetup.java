@@ -115,7 +115,7 @@ public class AsyncHistorySetup extends AsyncTask {
         historyActivity.setEnergy(energy);
         historyActivity.setTransportation(transportation);
 
-        historyActivity.initSpinner();
+        //historyActivity.initSpinner();
     }
 
 }

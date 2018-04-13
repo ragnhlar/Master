@@ -9,7 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -35,6 +37,7 @@ import com.example.desent.desent.utils.Utility;
 import com.example.desent.desent.views.StackBarChart;
 import com.example.desent.desent.views.StackedBarLabel;
 import com.example.desent.desent.views.Yaxis;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.jjoe64.graphview.series.DataPoint;
 
 import java.io.FileNotFoundException;
@@ -57,6 +60,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
     StackBarChart stackBarChart;
     StackedBarLabel labelOrganizer;
     Yaxis yaxis;
+    BottomNavigationViewEx bnveHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +81,47 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         setUpNavigationView();
 
+        /*
         spinner = (Spinner) findViewById(R.id.history_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.history_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(adapter);*/
+
+        bnveHistory = (BottomNavigationViewEx) findViewById(R.id.navHistorySort);
+        bnveHistory.setSelectedItemId(R.id.hist_cf);
+        bnveHistory.enableAnimation(true);
+        bnveHistory.enableShiftingMode(false);
+        bnveHistory.enableItemShiftingMode(false);
+        bnveHistory.setItemTextColor(ContextCompat.getColorStateList(getApplicationContext(), R.color.selector_time_navigation_white_grey));
+        bnveHistory.setItemIconTintList(ContextCompat.getColorStateList(getApplicationContext(),R.color.selector_time_navigation_white_grey));
+        //bnveSort.setIconSize(25,25);
+        bnveHistory.setTextSize(12);
+        //bnveSort.setIconsMarginTop(20);
+
+        bnveHistory.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.hist_cf:
+                        displayCarbonFootprintGraph();
+                        break;
+
+                    case R.id.hist_transportation:
+                        displayDistanceGraph();
+                        break;
+
+                    case R.id.hist_energy:
+                        displayEnergyConsumptionGraph();
+                        break;
+
+                }
+                stackBarChart.invalidate();
+                labelOrganizer.invalidate();
+                yaxis.invalidate();
+                return true;
+            }
+        });
 
         myDb = new DatabaseHelper(this);
         myDb.getWeekDrivingDistance();
@@ -95,7 +136,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onStart() {
         super.onStart();
-        spinner.setSelection(0);
+        //spinner.setSelection(0);
 
         AsyncHistorySetup asyncHistorySetup = new AsyncHistorySetup(this,
                 stackBarChart,
@@ -142,6 +183,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         return true;
     }
 
+    /*
     public void initSpinner(){
         spinner.setOnItemSelectedListener(spinnerHandler);
     }
@@ -168,7 +210,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         public void onNothingSelected(AdapterView<?> parent) {
         }
-    };
+    };*/
 
     protected void setUpNavigationView(){
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

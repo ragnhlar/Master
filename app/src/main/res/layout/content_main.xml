@@ -162,7 +162,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:text="You will save:"
+                        android:text="You will save: (per day)"
                         android:textSize="16sp"/>
 
                 </TableRow>
@@ -252,7 +252,7 @@
                     </LinearLayout>
 
                 </TableRow>
-
+                <!--
                 <TableRow
                     android:gravity="center"
                     android:layout_width="match_parent"
@@ -261,6 +261,7 @@
                         android:textSize="14sp"
                         android:text="per day"/>
                 </TableRow>
+                -->
 
             </TableLayout>
             <!--

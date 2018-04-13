@@ -2,64 +2,82 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingTop="?attr/actionBarSize">
 
-    <RelativeLayout
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+        android:id="@+id/navHistorySort"
+        app:elevation="0dp"
+        android:background="?attr/colorPrimary"
+        app:itemTextColor="@color/selector_time_navigation_white_grey"
+        app:itemIconTint="@color/selector_time_navigation_white_grey"
+        app:menu="@menu/activity_history_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/progress_bar">
-        <android.support.v4.widget.ContentLoadingProgressBar
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true"/>
+        android:layout_height="wrap_content">
+    </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
 
-    </RelativeLayout>
-
-    <com.example.desent.desent.views.StackedBarLabel
-        android:id="@+id/labelStackedBar"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:visibility="gone"
-
-        />
     <LinearLayout
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-
-        <com.example.desent.desent.views.Yaxis
-            android:id="@+id/y_axis"
-            android:layout_height="match_parent"
-            android:layout_width="35dp"
-            android:visibility="gone"
-            />
-
-        <HorizontalScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/progress_bar">
+            <android.support.v4.widget.ContentLoadingProgressBar
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"/>
+
+        </RelativeLayout>
+
+        <com.example.desent.desent.views.StackedBarLabel
+            android:id="@+id/labelStackedBar"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:visibility="gone"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_weight="1">
 
-            <LinearLayout
+
+            <com.example.desent.desent.views.Yaxis
+                android:id="@+id/y_axis"
+                android:layout_height="match_parent"
+                android:layout_width="35dp"
+                android:visibility="gone"
+                />
+
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_weight="1">
 
-                <com.example.desent.desent.views.StackBarChart
-                    android:id="@+id/chart"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_width="800dp"
-                    android:visibility="gone"
-                    />
-            </LinearLayout>
-        </HorizontalScrollView>
+                    android:orientation="horizontal">
+
+                    <com.example.desent.desent.views.StackBarChart
+                        android:id="@+id/chart"
+                        android:layout_height="match_parent"
+                        android:layout_width="800dp"
+                        android:visibility="gone"
+                        />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
