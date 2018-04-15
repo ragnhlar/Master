@@ -219,6 +219,9 @@ public class SettingsActivity extends AppCompatActivity
         } else if (id == R.id.nav_info_app) {
             startActivity(new Intent(SettingsActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_about_app) {
+            startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_log_out){
             SessionManagement session = new SessionManagement(getApplicationContext());
             session.logoutUser();

@@ -71,9 +71,6 @@ public class ProfileActivity extends AppCompatActivity
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //getActionBar().setTitle("Profile");
-        //getSupportActionBar().setTitle("Profile");
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -158,7 +155,7 @@ public class ProfileActivity extends AppCompatActivity
             }
         }).start();
 
-        loadUserScores();
+        //loadUserScores();
 
         /*email = findViewById(R.id.tvEmail);
         email.setText(sharedPreferences.getString("pref_key_personal_email",""));
@@ -229,6 +226,7 @@ public class ProfileActivity extends AppCompatActivity
 
     }
 
+    /*
     private void loadUserScores() {
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST, //maybe change to GET?
@@ -271,7 +269,7 @@ public class ProfileActivity extends AppCompatActivity
             }
         };
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
-    }
+    }*/
 
     protected void setUpNavigationView(){
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -327,6 +325,9 @@ public class ProfileActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {
             startActivity(new Intent(ProfileActivity.this, InformationActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_about_app) {
+            startActivity(new Intent(ProfileActivity.this, AboutUsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_log_out){
             SessionManagement session = new SessionManagement(getApplicationContext());

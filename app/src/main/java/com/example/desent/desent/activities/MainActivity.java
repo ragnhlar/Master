@@ -16,6 +16,7 @@ import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -726,6 +727,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     case R.id.nav_info_app:
                         startActivity(new Intent(MainActivity.this, InformationActivity.class));
                         drawer.closeDrawers();
+                        return true;
+
+                    case R.id.nav_about_app:
+                        startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
+                        drawer.closeDrawer(GravityCompat.START);
                         return true;
 
                     case R.id.nav_settings:

@@ -46,6 +46,11 @@
             android:icon="@drawable/ic_menu_settings"/>
 
         <item
+            android:id="@+id/nav_about_app"
+            android:title="About"
+            android:icon="@drawable/ic_menu_settings"/>
+
+        <item
             android:id="@+id/nav_log_out"
             android:title="Log Out"
             android:icon="@drawable/ic_clear_black_24dp"/>

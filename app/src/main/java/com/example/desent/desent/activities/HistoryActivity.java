@@ -174,7 +174,10 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_info_app) {
             startActivity(new Intent(HistoryActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_log_out){
+        } else if (id == R.id.nav_about_app) {
+            startActivity(new Intent(HistoryActivity.this, AboutUsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        }  else if (id == R.id.nav_log_out){
             SessionManagement session = new SessionManagement(getApplicationContext());
             session.logoutUser();
             drawer.closeDrawer(GravityCompat.START);

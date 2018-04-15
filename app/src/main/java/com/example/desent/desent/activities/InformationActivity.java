@@ -232,7 +232,7 @@ public class InformationActivity extends AppCompatActivity implements Navigation
             //startActivity(new Intent(InformationActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_about_app) {
-            startActivity(new Intent(InformationActivity.this, AboutActivity.class));
+            startActivity(new Intent(InformationActivity.this, AboutUsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_log_out){
             SessionManagement session = new SessionManagement(getApplicationContext());

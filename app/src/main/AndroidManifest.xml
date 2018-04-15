@@ -68,7 +68,9 @@
         <activity
             android:name=".activities.FriendsActivity"
             android:label="Friends" />
-        <activity android:name=".activities.Login2Activity"></activity>
+        <activity android:name=".activities.Login2Activity" />
+        <activity android:name=".activities.AboutUsActivity"
+            android:label="About"/>
     </application>
 
 </manifest>
