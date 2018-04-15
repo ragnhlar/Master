@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.desent.desent.activities.InformationActivity"
-    tools:showIn="@layout/app_bar_information"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
@@ -44,6 +36,7 @@
         android:text="@string/next"
         android:textColor="@color/dark_grey" />
 
+    <!--
     <Button
         android:id="@+id/btn_skip"
         android:layout_width="wrap_content"
@@ -52,8 +45,6 @@
         android:layout_alignParentLeft="true"
         android:background="@null"
         android:text="@string/skip"
-        android:textColor="@color/dark_grey" />
+        android:textColor="@color/dark_grey" />-->
 
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

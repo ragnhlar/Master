@@ -51,9 +51,6 @@ public class InformationActivity extends AppCompatActivity implements Navigation
 
         setContentView(R.layout.activity_information);
 
-        //getActionBar().setTitle("Info");
-        //getSupportActionBar().setTitle("Info");
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -66,7 +63,7 @@ public class InformationActivity extends AppCompatActivity implements Navigation
 
         viewPager = findViewById(R.id.view_pager);
         dotsLayout = findViewById(R.id.layoutDots);
-        btnSkip = findViewById(R.id.btn_skip);
+        //btnSkip = findViewById(R.id.btn_skip);
         btnNext = findViewById(R.id.btn_next);
 
         // layouts of all welcome slides
@@ -92,12 +89,13 @@ public class InformationActivity extends AppCompatActivity implements Navigation
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.setOnPageChangeListener(viewPagerPageChangeListener);
 
+        /*
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchLoginScreen();
             }
-        });
+        });*/
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,12 +156,12 @@ public class InformationActivity extends AppCompatActivity implements Navigation
                 if (position == layouts.length - 1) {
                     // last page. make button text to GOT IT
                     btnNext.setText(getString(R.string.start));
-                    btnSkip.setVisibility(View.GONE);
-                } else {
+                    //btnSkip.setVisibility(View.GONE);
+                } /*else {
                     // still pages are left
                     btnNext.setText(getString(R.string.next));
                     btnSkip.setVisibility(View.VISIBLE);
-                }
+                }*/
             }
 
             @Override
@@ -232,6 +230,9 @@ public class InformationActivity extends AppCompatActivity implements Navigation
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {
             //startActivity(new Intent(InformationActivity.this, InformationActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_about_app) {
+            startActivity(new Intent(InformationActivity.this, AboutActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_log_out){
             SessionManagement session = new SessionManagement(getApplicationContext());
