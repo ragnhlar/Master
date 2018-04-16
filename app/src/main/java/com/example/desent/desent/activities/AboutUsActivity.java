@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_information);
+        setContentView(R.layout.activity_about);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -112,5 +113,10 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
+    }
+
+    public void browser(View view){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jpi-urbaneurope.eu/project/desent/"));
+        startActivity(browserIntent);
     }
 }
