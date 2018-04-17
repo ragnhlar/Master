@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/hist_annotation"
-            android:text="value"
+            android:text="@string/value_graph"
             android:textColor="@color/dark_text_and_icon"
             android:textSize="16sp"
             android:layout_gravity="center"
@@ -70,12 +70,12 @@
                 />
 
             <HorizontalScrollView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
@@ -90,7 +90,7 @@
         </LinearLayout>
 
         <TextView
-            android:text="Scroll horizontally to view historical data"
+            android:text="@string/explanation_graph"
             android:textStyle="italic"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
