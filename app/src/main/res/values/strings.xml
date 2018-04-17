@@ -395,5 +395,35 @@
     <string name="t_c_5">and allow secondary use of the information to e.g., city planning, mapping of citizens\' transportation habits.</string>
     <string name="t_c_6">Since the main functionality of the app is to calculate your emissions through transportation, agreeing to these terms and conditions is necessary for the app to work optimally.</string>
     <string name="t_c_7">I AGREE</string>
+    <string name="reg_email">Email</string>
+    <string name="reg_password">Password</string>
+    <string name="reg_password_confirm">Confirm password</string>
+    <string name="reg_building_year">Building year:</string>
+    <string name="reg_year_of_last_renovation">Year of last renovation:</string>
+    <string name="reg_electric_resistance">Electric (resistance)</string>
+    <string name="reg_heat_pump">Heat pump</string>
+    <string name="reg_gas">Gas</string>
+    <string name="reg_oil">Oil</string>
+    <string name="reg_wood">Wood</string>
+    <string name="reg_solar_panel">Solar panel</string>
+    <string name="reg_change_profile_picture">Change profile picture</string>
+    <string name="reg_name">Name</string>
+    <string name="reg_address">Address</string>
+    <string name="reg_zip_code">Zip Code</string>
+    <string name="reg_city">City</string>
+    <string name="reg_female">Female</string>
+    <string name="reg_male">Male</string>
+    <string name="reg_weight">Weight (kg)</string>
+    <string name="reg_date_of_birth">Date of birth:</string>
+    <string name="reg_car_owner">Car owner?</string>
+    <string name="reg_registration_nr">Registration nr.:</string>
+    <string name="reg_car_value_kr">Car value (kr)</string>
+    <string name="reg_yearly_driving_distance_km">Yearly driving distance (km)</string>
+    <string name="reg_registration_nr">Registration nr.:</string>
+    <string name="reg_car_value_kr">Car value (kr)</string>
+    <string name="reg_planned_duration_of_ownership_years">Planned duration of ownership (years)</string>
+    <string name="reg_own_more_than_one_car">Do you own more than one car?</string>
+    <string name="reg_yearly_driving_distance_km">Yearly driving distance (km)</string>
+    <string name="reg_planned_duration_of_ownership_years">Planned duration of ownership (years)</string>
 
 </resources>

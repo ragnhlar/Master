@@ -43,16 +43,6 @@
             android:tint="@color/dark_grey"
             android:src="@drawable/weight_scale" />
 
-        <!--<ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:src="@drawable/slide5" />-->
-
     </LinearLayout>
 
     <TextView

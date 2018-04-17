@@ -21,23 +21,7 @@
             android:scaleY="0.7"
             android:src="@drawable/neighborhood"/>
 
-        <!--<ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:tint="@color/blue"
-            android:src="@drawable/ic_electric_car" />-->
-
     </LinearLayout>
-
-    <!--<ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:src="@drawable/slide6" />-->
 
     <TextView
         android:layout_width="match_parent"

@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="Building year:"/>
+            android:text="@string/reg_building_year"/>
 
         <Spinner
             android:layout_marginLeft="5dp"
@@ -73,7 +73,7 @@
             android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Year of last renovation:"/>
+            android:text="@string/reg_year_of_last_renovation"/>
 
         <Spinner
             android:id="@+id/spinnerBuilding"
@@ -100,32 +100,32 @@
             android:id="@+id/radio_button_electric"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Electric (resistance)"/>
+            android:text="@string/reg_electric_resistance"/>
         <RadioButton
             android:id="@+id/radio_button_heat_pump"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Heat pump"/>
+            android:text="@string/reg_heat_pump"/>
         <RadioButton
             android:id="@+id/radio_button_gas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gas"/>
+            android:text="@string/reg_gas"/>
         <RadioButton
             android:id="@+id/radio_button_oil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oil"/>
+            android:text="@string/reg_oil"/>
         <RadioButton
             android:id="@+id/radio_button_wood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wood"/>
+            android:text="@string/reg_wood"/>
         <RadioButton
             android:id="@+id/radio_button_solar_panel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Solar panel"/>
+            android:text="@string/reg_solar_panel"/>
     </RadioGroup>
 
 </LinearLayout>

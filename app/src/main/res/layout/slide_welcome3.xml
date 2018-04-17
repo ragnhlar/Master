@@ -8,16 +8,6 @@
     android:orientation="vertical"
     android:background="@color/bg_screen1">
 
-        <!--<ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:paddingLeft="@dimen/desc_padding"
-                android:paddingRight="@dimen/desc_padding"
-                android:src="@drawable/slide3" />-->
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"

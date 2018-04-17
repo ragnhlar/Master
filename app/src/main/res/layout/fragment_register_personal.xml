@@ -28,7 +28,7 @@
         <TextView
             android:textSize="16sp"
             android:id="@+id/textViewChangePicture"
-            android:text="Change profile picture"
+            android:text="@string/reg_change_profile_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -45,7 +45,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:id="@+id/nameInput"
-            android:hint="Name" />
+            android:hint="@string/reg_name" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -58,7 +58,7 @@
             android:id="@+id/addressInput"
             android:maxLines="1"
             android:inputType="textPostalAddress"
-            android:hint="Address" />
+            android:hint="@string/reg_address" />
     </android.support.design.widget.TextInputLayout>
 
     <LinearLayout
@@ -77,7 +77,7 @@
                 android:id="@+id/zipcodeInput"
                 android:maxLines="1"
                 android:inputType="number"
-                android:hint="Zip Code" />
+                android:hint="@string/reg_zip_code" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -91,7 +91,7 @@
                 android:id="@+id/cityInput"
                 android:inputType="text"
                 android:maxLines="1"
-                android:hint="City" />
+                android:hint="@string/reg_city" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
@@ -110,7 +110,7 @@
 
             <RadioButton
                 android:id="@+id/rbFemale"
-                android:text="Female"
+                android:text="@string/reg_female"
                 android:textSize="18sp"
                 android:textColor="@color/dark_grey"
                 android:layout_marginBottom="10dp"
@@ -123,7 +123,7 @@
                 android:textColor="@color/dark_grey"
                 android:textSize="18sp"
                 android:id="@+id/rbMale"
-                android:text="Male"/>
+                android:text="@string/reg_male"/>
         </RadioGroup>
 
         <android.support.design.widget.TextInputLayout
@@ -137,13 +137,13 @@
                 android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Weight (kg)" />
+                android:hint="@string/reg_weight" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
     <TextView
-        android:text="Date of birth:"
+        android:text="@string/reg_date_of_birth"
         android:textSize="18sp"
         android:paddingTop="15dp"
         android:layout_marginLeft="25dp"
@@ -162,88 +162,4 @@
 
     </DatePicker>
 
-    <!--
-    <Button
-        android:text="Pick date"
-        android:id="@+id/btnDate"
-        android:onClick="showDatepickerDialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    -->
-    <!--
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="250dp"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.TextInputEditText
-            android:layout_width="match_parent"
-            android:inputType="date"
-            android:layout_height="wrap_content"
-            android:hint="Date of Birth" />
-    </android.support.design.widget.TextInputLayout>
-    -->
-
-    <!--
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_name"
-            android:inputType="textPersonName"
-            android:maxLines="1" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_email"
-            android:inputType="textEmailAddress"
-            android:maxLines="1" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_password"
-            android:imeActionId="@+id/login"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/prompt_confirm_password"
-            android:imeActionId="@+id/login"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionUnspecified"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-
-    </android.support.design.widget.TextInputLayout>
--->
 </LinearLayout>
