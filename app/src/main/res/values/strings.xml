@@ -369,6 +369,8 @@
     <!-- About Us Activity-->
     <string name="description_about_us_page">If you are interested in reading more about the project that this app is a part of, click the button below.</string>
     <string name="btn_text_about_us">DESENT Project</string>
+
+    <!-- Leaderboard Activity-->
     <string name="name_1_place">Name Namesen 1</string>
     <string name="avg_cf_1_place">2.0 kgCO2</string>
     <string name="num_ec_1_place">120</string>
@@ -378,15 +380,23 @@
     <string name="name_3_place">Name Namesen 3</string>
     <string name="avg_cf_3_place">2.0 kgCO2</string>
     <string name="num_cf_3_place">120</string>
+
+    <!-- Login Activity-->
     <string name="login_welcome">Welcome!</string>
     <string name="login_new_user">New user?</string>
     <string name="login_already_user">Already a user, sign in below</string>
+
+    <!-- Main/Estimation Activity-->
     <string name="main_avg_this_week">Average this week</string>
     <string name="main_save_per_day">You will save: (per day)</string>
+
+    <!-- User Profile Activity-->
     <string name="name_user_profile">Name Namesen</string>
     <string name="avg_cf_user_profile">Avg. carbon footprint</string>
     <string name="personal_goal_user_profile">Your personal goal:</string>
     <string name="progress_bar_num">0</string>
+
+    <!--  Terms and condition -->
     <string name="t_c_header">Terms and Conditions</string>
     <string name="t_c_1">The app will use the GPS on your device to track how you move, but before the data are stored, it will be anonymized and it should not be possible to track you personally with the app stored by the app.</string>
     <string name="t_c_2">By clicking \'I AGREE\' below, you allow this app to store;</string>
@@ -395,6 +405,8 @@
     <string name="t_c_5">and allow secondary use of the information to e.g., city planning, mapping of citizens\' transportation habits.</string>
     <string name="t_c_6">Since the main functionality of the app is to calculate your emissions through transportation, agreeing to these terms and conditions is necessary for the app to work optimally.</string>
     <string name="t_c_7">I AGREE</string>
+
+    <!-- Registration Activity-->
     <string name="reg_email">Email</string>
     <string name="reg_password">Password</string>
     <string name="reg_password_confirm">Confirm password</string>
