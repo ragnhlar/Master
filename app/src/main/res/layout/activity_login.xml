@@ -44,7 +44,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Welcome!"
+                android:text="@string/login_welcome"
                 android:textSize="20sp"
                 android:layout_marginBottom="16dp"/>
 
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:layout_marginBottom="8dp"
-                android:text="New user?" />
+                android:text="@string/login_new_user" />
 
             <Button
                 android:id="@+id/email_sign_up_button"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="Already a user, sign in below" />
+                android:text="@string/login_already_user" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

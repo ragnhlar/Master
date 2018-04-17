@@ -41,7 +41,7 @@
 
         <TextView
             android:id="@+id/tvNameFirstPlace"
-            android:text="Navn Navnesen 1"
+            android:text="@string/name_1_place"
             android:layout_marginTop="60dp"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/tvAvgCfFirstPlace"
-            android:text="2.0 kgCO2"
+            android:text="@string/avg_cf_1_place"
             android:visibility="visible"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_marginTop="73dp"
@@ -71,7 +71,7 @@
 
             <TextView
                 android:id="@+id/tvNumCoinsFirstPlace"
-                android:text="120"
+                android:text="@string/num_ec_1_place"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -96,7 +96,7 @@
 
         <TextView
             android:id="@+id/tvNameSecondPlace"
-            android:text="Navn Navnsesen 2"
+            android:text="@string/name_2_place"
             android:layout_marginTop="100dp"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -107,7 +107,7 @@
 
         <TextView
             android:id="@+id/tvAvgCfSecondPlace"
-            android:text="2.0 kgCO2"
+            android:text="@string/avg_cf_2_place"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_marginTop="115dp"
             android:visibility="visible"
@@ -129,7 +129,7 @@
 
             <TextView
                 android:id="@+id/tvNumCoinsSecondPlace"
-                android:text="120"
+                android:text="@string/num_ec_2_place"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -153,7 +153,7 @@
 
         <TextView
             android:id="@+id/tvNameThirdPlace"
-            android:text="Navn Navnesen 3"
+            android:text="@string/name_3_place"
             android:layout_marginTop="115dp"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -164,7 +164,7 @@
 
         <TextView
             android:id="@+id/tvAvgCfThirdPlace"
-            android:text="2.0 kgCO2"
+            android:text="@string/avg_cf_3_place"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_marginTop="130dp"
             android:visibility="visible"
@@ -186,7 +186,7 @@
 
             <TextView
                 android:id="@+id/tvNumCoinsThirdPlace"
-                android:text="120"
+                android:text="@string/num_cf_3_place"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

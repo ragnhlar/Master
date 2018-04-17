@@ -369,5 +369,19 @@
     <!-- About Us Activity-->
     <string name="description_about_us_page">If you are interested in reading more about the project that this app is a part of, click the button below.</string>
     <string name="btn_text_about_us">DESENT Project</string>
+    <string name="name_1_place">Name Namesen 1</string>
+    <string name="avg_cf_1_place">2.0 kgCO2</string>
+    <string name="num_ec_1_place">120</string>
+    <string name="name_2_place">Name Namesen 2</string>
+    <string name="avg_cf_2_place">2.0 kgCO2</string>
+    <string name="num_ec_2_place">120</string>
+    <string name="name_3_place">Name Namesen 3</string>
+    <string name="avg_cf_3_place">2.0 kgCO2</string>
+    <string name="num_cf_3_place">120</string>
+    <string name="login_welcome">Welcome!</string>
+    <string name="login_new_user">New user?</string>
+    <string name="login_already_user">Already a user, sign in below</string>
+    <string name="main_avg_this_week">Average this week</string>
+    <string name="main_save_per_day">You will save: (per day)</string>
 
 </resources>
