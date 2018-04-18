@@ -121,6 +121,38 @@ public class ProfileActivity extends AppCompatActivity
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i) + ", position " + i, Toast.LENGTH_LONG).show();
+                switch (i){
+                    case 0:
+                        //save to buy a solar panel
+                        break;
+                    case 1:
+                        //save to buy an electric vehicle
+                        break;
+                    case 2:
+                        //keep average carbon footprint below 2 kgco2
+                        break;
+                    case 3:
+                        //keep average carbon footprint below 4 kg co2
+                        break;
+                    case 4:
+                        //be active or at least 30 min every day
+                        break;
+                    case 5:
+                        //create your own goal
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         //ll_coin_score = (LinearLayout) findViewById(R.id.ll_coin_score);
         /*ll_coin_score.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +186,8 @@ public class ProfileActivity extends AppCompatActivity
                 }
             }
         }).start();
+
+
 
         //loadUserScores();
 
