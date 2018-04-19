@@ -2,6 +2,7 @@ package com.example.desent.desent.activities;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,10 +20,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -63,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity
     DrawerLayout drawer;
     ProgressBar personalGoal;
     Indicator indicator;
+    String personalGoalString = "";
 
     private int progressCount = 0;
     private int progressStatus = 0;
@@ -173,30 +177,66 @@ public class ProfileActivity extends AppCompatActivity
                     case 0:
                         //save to buy a solar panel
                         //if 100 EC is earned: receive a coupon that give 20 % discount
+                        tvProgress.setVisibility(View.VISIBLE);
+                        personalGoal.setVisibility(View.VISIBLE);
                         setProgressBar("solarPanel");
                         break;
                     case 1:
                         //save to buy an electric vehicle
                         //if 200 EC is earned: receive a coupon that give 20 % discount
+                        tvProgress.setVisibility(View.VISIBLE);
+                        personalGoal.setVisibility(View.VISIBLE);
                         setProgressBar("electricVehicle");
                         break;
                     case 2:
                         //keep average carbon footprint below 2 kgco2
                         //each day the avg is below 2, get one step closer to earn EC
+                        tvProgress.setVisibility(View.VISIBLE);
+                        personalGoal.setVisibility(View.VISIBLE);
                         setProgressBar("avgBelow2");
                         break;
                     case 3:
                         //keep average carbon footprint below 4 kg co2
                         //each day the avg is below 4, get one step closer to earn EC
+                        tvProgress.setVisibility(View.VISIBLE);
+                        personalGoal.setVisibility(View.VISIBLE);
+                        setProgressBar("avgBelow4");
                         break;
                     case 4:
                         //be active for at least 30 min every day
                         //each day being active for at least 30 min, get one step closer to earn EC
+                        tvProgress.setVisibility(View.VISIBLE);
+                        personalGoal.setVisibility(View.VISIBLE);
+                        setProgressBar("activeMinutes");
                         break;
                     case 5:
                         //create your own goal
                         //display dialogbox with title, how to measure
                         //change text in spinner and display goal instead of progress bar
+
+                        final AlertDialog.Builder chooseGoalBuilder = new AlertDialog.Builder(ProfileActivity.this);
+                        chooseGoalBuilder.setTitle("Choose your own goal");
+
+                        final EditText input = new EditText(ProfileActivity.this);
+                        input.setInputType(InputType.TYPE_CLASS_TEXT);
+                        chooseGoalBuilder.setView(input);
+
+                        personalGoalString = input.getText().toString();
+
+                        chooseGoalBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                tvGoalExplanation.setText(personalGoalString);
+                                tvProgress.setVisibility(View.GONE);
+                                personalGoal.setVisibility(View.GONE);
+                            }
+                        })
+                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
                         break;
                 }
             }
@@ -497,7 +537,55 @@ public class ProfileActivity extends AppCompatActivity
                 }).start();
                 break;
             case "avgBelow2":
-                tvGoalExplanation.setText("Each day your carbon footprint is below 2 kgCO2, get one step closer to earn EC");
+                tvGoalExplanation.setText("Each day your carbon footprint is below 2 kgCO2, get one step closer to earn 50 Earth Coins.");
+                progressStatus = 0; //retrieve totNumCoins
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (progressCount <= progressStatus){
+                            progressCount += 1;
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    personalGoal.setProgress(progressCount);
+                                    tvProgress.setText(progressCount+"");
+                                }
+                            });
+                        }
+                    }
+                }).start();
+                break;
+            case "avgBelow4":
+                tvGoalExplanation.setText("Each day your carbon footprint is below 4 kgCO2, get one step closer to earn 25 Earth Coins.");
+                progressStatus = 0; //retrieve totNumCoins
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (progressCount <= progressStatus){
+                            progressCount += 1;
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    personalGoal.setProgress(progressCount);
+                                    tvProgress.setText(progressCount+"");
+                                }
+                            });
+                        }
+                    }
+                }).start();
+                break;
+            case "activeMinutes":
+                tvGoalExplanation.setText("Each day you are active more than 30 minutes, get one step closer to earn 20 Earth Coins.");
                 progressStatus = 0; //retrieve totNumCoins
                 new Thread(new Runnable() {
                     @Override
@@ -521,6 +609,5 @@ public class ProfileActivity extends AppCompatActivity
                 }).start();
                 break;
         }
-
     }
 }
