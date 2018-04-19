@@ -40,6 +40,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_HOME = "HOME";
     public static final String TABLE_FORECAST = "FORECAST";
 
+    private static final String TABLE_EC = "EARTHCOINS";
+    public static final String EC_COL_1 = "EC";
+
     public static final String TABLE_USER = "USER";
 
     public static final String U_COL_1 = "EMAIL";
@@ -179,6 +182,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + T_COL_9 + " TEXT,"
                 + T_COL_10 + " TEXT,"
                 + T_COL_11 + " TEXT)");
+        db.execSQL("create table " + TABLE_EC + " ("
+                + T_COL_1 + " NUMERIC PRIMARY KEY)");
     }
 
     @Override
@@ -186,6 +191,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENERGY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FORECAST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EC);
         onCreate(db);
     }
 
@@ -1341,5 +1347,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
         return result != -1;
+    }
+
+    public Boolean addEarthCoins() {
+        int numEarthCoins = getTotalEarthCoins();
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        float dailyWalkingDistance = getWalkingDistanceToday();
+        if (dailyWalkingDistance >= 3.0){
+            numEarthCoins += 1;
+            contentValues.put(EC_COL_1,numEarthCoins);
+        }
+        long result = db.insert(TABLE_EC, null, contentValues);
+        db.close();
+        return result != -1;
+    }
+
+    public int getTotalEarthCoins() {
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "SELECT EC_COL_1 FROM " + TABLE_EC;
+        System.out.println(db.rawQuery(query, null));
+        return 1;
     }
 }
