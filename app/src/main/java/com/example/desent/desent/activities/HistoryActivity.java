@@ -82,11 +82,15 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         setUpNavigationView();
 
-        /*
-        spinner = (Spinner) findViewById(R.id.history_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.history_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*/
+        myDb = new DatabaseHelper(this);
+        myDb.getWeekDrivingDistance();
+        histAnnotation = (TextView) findViewById(R.id.hist_annotation);
+        histAnnotation.setText(getResources().getString(R.string.carbon_footprint_unit));
+        stackBarChart = (StackBarChart) findViewById(R.id.chart);
+        labelOrganizer = (StackedBarLabel) findViewById(R.id.labelStackedBar);
+        yaxis = (Yaxis) findViewById(R.id.y_axis);
+        //displayDistanceGraph();
+        //displayCarbonFootprintGraph();
 
         bnveHistory = (BottomNavigationViewEx) findViewById(R.id.navHistorySort);
         bnveHistory.setSelectedItemId(R.id.hist_cf);
@@ -123,15 +127,6 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
                 return true;
             }
         });
-
-        myDb = new DatabaseHelper(this);
-        myDb.getWeekDrivingDistance();
-        histAnnotation = (TextView) findViewById(R.id.hist_annotation);
-        histAnnotation.setText(getResources().getString(R.string.carbon_footprint_unit));
-        stackBarChart = (StackBarChart) findViewById(R.id.chart);
-        labelOrganizer = (StackedBarLabel) findViewById(R.id.labelStackedBar);
-        yaxis = (Yaxis) findViewById(R.id.y_axis);
-        //displayDistanceGraph();
     }
 
 
@@ -182,40 +177,8 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
             session.logoutUser();
             drawer.closeDrawer(GravityCompat.START);
         }
-        /*else if (id == R.id.nav_about_us) {
-            drawer.closeDrawer(GravityCompat.START);
-        }*/
         return true;
     }
-
-    /*
-    public void initSpinner(){
-        spinner.setOnItemSelectedListener(spinnerHandler);
-    }
-
-    AdapterView.OnItemSelectedListener spinnerHandler = new AdapterView.OnItemSelectedListener() {
-
-        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-            switch (pos) {
-                case 0:
-                    displayCarbonFootprintGraph();
-                    break;
-                case 1:
-                    displayDistanceGraph();
-                    break;
-                case 2:
-                    displayEnergyConsumptionGraph();
-                    break;
-            }
-            stackBarChart.invalidate();
-            labelOrganizer.invalidate();
-            yaxis.invalidate();
-        }
-
-        public void onNothingSelected(AdapterView<?> parent) {
-        }
-    };*/
 
     protected void setUpNavigationView(){
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -261,32 +224,39 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         List<ChartData> value = new ArrayList<>();
 
+        //remove comment out to get app to work properly
         float[] carbonFootprintTransportation = transportation.getWeekCarbonFootprint();
         float[] carbonFootprintEnergy = energy.generateArrayWeekCarbonFootprint();
 
         Float[] value1 = new Float[7];
         Float[] value2 = new Float[7];
 
+        //remove to get app to work properly
         /*
+        value2[0] = (float) 1.4;
+        value1[0] = (float) 0.8;
 
-         */
-        /*value1[0] = (float) 1.4;
-        value2[0] = (float) 0.8;
+        value2[1] = (float) 1.4;
+        value1[1] = (float) 0.7;
 
-        value1[1] = (float) 1.4;
-        value2[1] = (float) 0.8;
+        value2[2] = (float) 4.5;
+        value1[2] = (float) 0.8;
 
-        value1[2] = (float) 1.4;
-        value2[2] = (float) 0.8;
+        value2[3] = (float) 4.5;
+        value1[3] = (float) 0.7;
 
-        value1[3] = (float) 1.4;
-        value2[3] = (float) 0.8;
+        value2[4] = (float) 3.1;
+        value1[4] = (float) 1.2;
 
-        value1[4] = (float) 1.4;
-        value2[5] = (float) 0.8;
+        value2[5] = (float) 3.1;
+        value1[5] = (float) 1.2;
 
-        value1[6] = (float) 1.4;
-        value2[6] = (float) 0.8;*/
+        value2[6] = (float) 3.5;
+        value1[6] = (float) 0.9;
+        */
+
+        //remove comment to get app to work properly
+
         for (int i=0; i<7; i++) {
             //to visualize when no values in db
             /*value1[i] = (float) i + (float) 1;
@@ -338,8 +308,22 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         List<ChartData> value = new ArrayList<>();
 
+        //remove comment to work properly
         float[] weekEnergyConsumption = energy.generateArrayWeekEnergyConsumption();
         Float[] value1 = new Float[7];
+
+        //remove to get app to walk properly
+        /*
+        value1[0] = (float) 4.9;
+        value1[1] = (float) 6.0;
+        value1[2] = (float) 5.2;
+        value1[3] = (float) 8.8;
+        value1[4] = (float) 8.2;
+        value1[5] = (float) 6.6;
+        value1[6] = (float) 5.5;
+        */
+
+        //remove comment to work properly
         for (int i=0; i<7; i++)
 
             value1[i] = weekEnergyConsumption[i];
@@ -381,6 +365,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         List<ChartData> value = new ArrayList<>();
 
+        //remove comment to work properly
         float[] walkingDistance = myDb.getWeekWalkingDistance();
         float[] cyclingDistance = myDb.getWeekCyclingDistance();
         float[] drivingDistance = myDb.getWeekDrivingDistance();
@@ -389,6 +374,37 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         Float[] value2 = new Float[7];
         Float[] value3 = new Float[7];
 
+        /*
+        value1[0] = (float) 3;
+        value2[0] = (float) 4;
+        value3[0] = (float) 28.3;
+
+        value1[1] = (float) 4;
+        value2[1] = (float) 0;
+        value3[1] = (float) 34.5;
+
+        value1[2] = (float) 2;
+        value2[2] = (float) 5;
+        value3[2] = (float) 34.1;
+
+        value1[3] = (float) 2;
+        value2[3] = (float) 0;
+        value3[3] = (float) 23.1;
+
+        value1[4] = (float) 3;
+        value2[4] = (float) 6;
+        value3[4] = (float) 23.6;
+
+        value1[5] = (float) 8;
+        value2[5] = (float) 2;
+        value3[5] = (float) 26.8;
+
+        value1[6] = (float) 2;
+        value2[6] = (float) 0;
+        value3[6] = (float) 30.4;
+        */
+
+        //remove comment to work properly
         for (int i=0; i<7; i++) {
             /* to see how graph look likes
             value1[i] = (float) i + (float) 1.0;
@@ -399,12 +415,11 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
             value1[i] = walkingDistance[i];
             value2[i] = cyclingDistance[i];
             value3[i] = drivingDistance[i];
-
         }
 
         String barColor1 = "#00ff00";
-        String barColor2 = "#4f8714";
-        String barColor3 = "#875c14";
+        String barColor2 = "#00cc00";
+        String barColor3 = "#009900";
 
         String labelText1 = "Distance walked";
         String labelText2 = "Distance cycled";
