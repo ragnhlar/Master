@@ -1,5 +1,6 @@
 package com.example.desent.desent.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,6 +40,7 @@ import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.fragments.ScoreFragment;
 import com.example.desent.desent.fragments.ScoreFragmentWhite;
 import com.example.desent.desent.models.Constants;
+import com.example.desent.desent.models.Indicator;
 import com.example.desent.desent.models.RequestHandler;
 import com.example.desent.desent.models.SharedPrefManager;
 import com.example.desent.desent.utils.Utility;
@@ -54,16 +56,19 @@ public class ProfileActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
     SharedPreferences sharedPreferences;
-    TextView name, tvAvgCf, tv_coin_score, tvProgress;
+    TextView name, tvAvgCf, tv_coin_score, tvProgress, tvGoalExplanation;
     //, email, address, zipcode, city, birthdate, gender;
     ImageView changeInfo, profilePic;
     LinearLayout ll_coin_score;
     DrawerLayout drawer;
     ProgressBar personalGoal;
+    Indicator indicator;
 
+    private int progressCount = 0;
     private int progressStatus = 0;
     private Handler handler = new Handler();
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +86,14 @@ public class ProfileActivity extends AppCompatActivity
 
         setUpNavigationView();
 
-        changeInfo = findViewById(R.id.changeUserInfo);
+        /*
+        indicator = new Indicator() {
+            @Override
+            public void calculateValues() {
+
+            }
+        };*/
+        //changeInfo = findViewById(R.id.changeUserInfo);
         profilePic = findViewById(R.id.imgProfilePicture);
         //profilePic.setImageResource(sharedPreferences.getString("pref_key_profile_picture",""));
 
@@ -89,7 +101,9 @@ public class ProfileActivity extends AppCompatActivity
         name.setText(sharedPreferences.getString("pref_key_personal_name",""));
 
         tvAvgCf = findViewById(R.id.avgCF);
+        tvAvgCf.setText("Avg. carbon footprint: ");
 
+        tvGoalExplanation = findViewById(R.id.tvExplanation);
         //tv_coin_score = findViewById(R.id.tv_coin_score);
         //tv_coin_score.setText("You have " + getCoinScore());
 
@@ -112,59 +126,13 @@ public class ProfileActivity extends AppCompatActivity
                 });
         builder.create();
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerPersonalGoal);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
-                (this, R.array.personal_goal_array, R.layout.spinner_layout);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(R.layout.spinner_layout);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i) + ", position " + i, Toast.LENGTH_LONG).show();
-                switch (i){
-                    case 0:
-                        //save to buy a solar panel
-                        break;
-                    case 1:
-                        //save to buy an electric vehicle
-                        break;
-                    case 2:
-                        //keep average carbon footprint below 2 kgco2
-                        break;
-                    case 3:
-                        //keep average carbon footprint below 4 kg co2
-                        break;
-                    case 4:
-                        //be active or at least 30 min every day
-                        break;
-                    case 5:
-                        //create your own goal
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        //ll_coin_score = (LinearLayout) findViewById(R.id.ll_coin_score);
-        /*ll_coin_score.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                builder.show();
-            }
-        });*/
-
         tvProgress = findViewById(R.id.tvProgress);
 
         personalGoal = (ProgressBar) findViewById(R.id.personalGoalPB);
+        //personalGoal.setScrollBarSize(100);
+        //personalGoal.setMinimumHeight(100);
 
+        /*
         progressStatus = 0;
         new Thread(new Runnable() {
             @Override
@@ -186,6 +154,66 @@ public class ProfileActivity extends AppCompatActivity
                 }
             }
         }).start();
+        */
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerPersonalGoal);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
+                (this, R.array.personal_goal_array, R.layout.spinner_layout);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.spinner_layout);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "Selected item " + adapterView.getItemAtPosition(i) + ", position " + i, Toast.LENGTH_LONG).show();
+                switch (i){
+                    case 0:
+                        //save to buy a solar panel
+                        //if 100 EC is earned: receive a coupon that give 20 % discount
+                        setProgressBar("solarPanel");
+                        break;
+                    case 1:
+                        //save to buy an electric vehicle
+                        //if 200 EC is earned: receive a coupon that give 20 % discount
+                        setProgressBar("electricVehicle");
+                        break;
+                    case 2:
+                        //keep average carbon footprint below 2 kgco2
+                        //each day the avg is below 2, get one step closer to earn EC
+                        setProgressBar("avgBelow2");
+                        break;
+                    case 3:
+                        //keep average carbon footprint below 4 kg co2
+                        //each day the avg is below 4, get one step closer to earn EC
+                        break;
+                    case 4:
+                        //be active for at least 30 min every day
+                        //each day being active for at least 30 min, get one step closer to earn EC
+                        break;
+                    case 5:
+                        //create your own goal
+                        //display dialogbox with title, how to measure
+                        //change text in spinner and display goal instead of progress bar
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //ll_coin_score = (LinearLayout) findViewById(R.id.ll_coin_score);
+        /*ll_coin_score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                builder.show();
+            }
+        });*/
 
 
 
@@ -415,6 +443,84 @@ public class ProfileActivity extends AppCompatActivity
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void setProgressBar(String progressBar) {
+        switch (progressBar){
+            case "solarPanel":
+                tvGoalExplanation.setText("Earn 100 Earth Coins to receive a coupon with a discount on solar panels.");
+                progressStatus = 50; //retrieve totNumCoins
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (progressCount < progressStatus){
+                            progressCount += 1;
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    personalGoal.setProgress(progressCount);
+                                    tvProgress.setText(progressCount+"/100");
+                                }
+                            });
+                        }
+                    }
+                }).start();
+                break;
+            case "electricVehicle":
+                tvGoalExplanation.setText("Earn 100 Earth Coins to receive a coupon with a discount on electric car.");
+                progressStatus = 0; //retrieve totNumCoins
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (progressCount <= progressStatus){
+                            progressCount += 1;
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    personalGoal.setProgress(progressCount);
+                                    tvProgress.setText(progressCount+"");
+                                }
+                            });
+                        }
+                    }
+                }).start();
+                break;
+            case "avgBelow2":
+                tvGoalExplanation.setText("Each day your carbon footprint is below 2 kgCO2, get one step closer to earn EC");
+                progressStatus = 0; //retrieve totNumCoins
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (progressCount <= progressStatus){
+                            progressCount += 1;
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e){
+                                e.printStackTrace();
+                            }
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    personalGoal.setProgress(progressCount);
+                                    tvProgress.setText(progressCount+"");
+                                }
+                            });
+                        }
+                    }
+                }).start();
+                break;
+        }
 
     }
 }

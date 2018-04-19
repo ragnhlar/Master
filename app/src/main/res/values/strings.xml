@@ -437,5 +437,6 @@
     <string name="reg_own_more_than_one_car">Do you own more than one car?</string>
     <string name="reg_yearly_driving_distance_km2">Yearly driving distance (km)</string>
     <string name="reg_planned_duration_of_ownership_years2">Planned duration of ownership (years)</string>
+    <string name="goal_explanation">Explanation of what happens when you reach goal</string>
 
 </resources>
