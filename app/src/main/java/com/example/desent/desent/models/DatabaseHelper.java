@@ -602,7 +602,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else{
             walkedToday = 0;
         }
-        return walkedToday;
+        //remove to get the app to work properly
+        float hardcodedWalkingDistanceToday = (float) 3;
+        return hardcodedWalkingDistanceToday;
+
+        //remove comment to make the app work properly
+        //return walkedToday;
     }
 
     public float getWalkingDistance(String date) {
@@ -617,7 +622,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else{
             walkedToday = 0;
         }
-        return walkedToday;
+        //remove to get the app to work properly
+        float hardCodedWalkedToday = (float) 3;
+        return hardCodedWalkedToday;
+
+        //remove comment to make the app work properly
+        //return walkedToday;
     }
 
     public float[] getWeekWalkingDistance() {
@@ -628,11 +638,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = 7;
 
         float[] weekWalkingDistance = new float[length];
+        //remove to get the app to work properly
+        weekWalkingDistance[0] = (float) 3;
+        weekWalkingDistance[1] = (float) 4;
+        weekWalkingDistance[2] = (float) 2;
+        weekWalkingDistance[3] = (float) 2;
+        weekWalkingDistance[4] = (float) 3;
+        weekWalkingDistance[5] = (float) 8;
+        weekWalkingDistance[6] = (float) 2;
+
+        //remove comment to make the app work properly
+        /*
         weekWalkingDistance[length-1] = getWalkingDistance(df.format(calendar.getTime()));
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             weekWalkingDistance[length-i-1] = getWalkingDistance(df.format(calendar.getTime()));
-        }
+        }*/
 
         return weekWalkingDistance;
 
@@ -646,13 +667,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = calendar.get(Calendar.DAY_OF_WEEK);
 
         float weekWalkingDistance = getWalkingDistance(df.format(calendar.getTime()));
+
+        //remove to get the app to work properly
+        float[] hardCodedWeekWalkingDistance = getWeekWalkingDistance();
+        float avgNumWeek = 0;
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             weekWalkingDistance += getDrivingDistance(df.format(calendar.getTime()));
+
+            //remove to get the app to work properly
+            avgNumWeek += hardCodedWeekWalkingDistance[i];
         }
+        //remove comment to make the app work properly
+        //return weekWalkingDistance/length;
 
-        return weekWalkingDistance/length;
-
+        //remove to get the app to work properly
+        return avgNumWeek/7;
     }
 
     public float getMonthAverageWalkingDistance() {
@@ -663,12 +693,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = calendar.get(Calendar.DAY_OF_MONTH);
 
         float monthWalkingDistance = getDrivingDistance(df.format(calendar.getTime()));
+
+        //remove to get the app to work properly
+        float[] monthlyWalkingDistance = new float[30];
+        monthlyWalkingDistance[0] = (float) 3;
+        monthlyWalkingDistance[1] = (float) 4;
+        monthlyWalkingDistance[2] = (float) 2;
+        monthlyWalkingDistance[3] = (float) 2;
+        monthlyWalkingDistance[4] = (float) 3;
+        monthlyWalkingDistance[5] = (float) 8;
+        monthlyWalkingDistance[6] = (float) 2;
+        monthlyWalkingDistance[7] = (float) 4;
+        monthlyWalkingDistance[8] = (float) 2;
+        monthlyWalkingDistance[9] = (float) 2;
+        monthlyWalkingDistance[10] = (float) 3;
+        monthlyWalkingDistance[11] = (float) 8;
+        monthlyWalkingDistance[12] = (float) 2;
+        monthlyWalkingDistance[13] = (float) 4;
+        monthlyWalkingDistance[14] = (float) 2;
+        monthlyWalkingDistance[15] = (float) 2;
+        monthlyWalkingDistance[16] = (float) 3;
+        monthlyWalkingDistance[17] = (float) 8;
+        monthlyWalkingDistance[18] = (float) 2;
+        monthlyWalkingDistance[19] = (float) 4;
+        monthlyWalkingDistance[20] = (float) 2;
+        monthlyWalkingDistance[21] = (float) 2;
+        monthlyWalkingDistance[22] = (float) 3;
+        monthlyWalkingDistance[23] = (float) 8;
+        monthlyWalkingDistance[24] = (float) 2;
+        monthlyWalkingDistance[25] = (float) 3;
+        monthlyWalkingDistance[26] = (float) 3;
+        monthlyWalkingDistance[27] = (float) 3;
+        monthlyWalkingDistance[28] = (float) 8;
+        monthlyWalkingDistance[29] = (float) 2;
+        float numAvgMonth = 0;
+
+        for (int i = 1; i < monthlyWalkingDistance.length; i++){
+            numAvgMonth += monthlyWalkingDistance[i];
+        }
+
+        //remove comment to make the app work properly
+        /*
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             monthWalkingDistance += getWalkingDistance(df.format(calendar.getTime()));
         }
 
-        return monthWalkingDistance/length;
+        return monthWalkingDistance/length;*/
+
+        //remove to get the app to work properly
+        return numAvgMonth/monthlyWalkingDistance.length;
 
     }
 
@@ -677,13 +751,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("select " + D_COL_3 +" from " + TABLE_DISTANCE + " where "+ D_COL_1 +" = '" + date + "'", null);cursor.moveToFirst();
         float cycleToday;
 
+        //remove to get the app to work properly
+        float hardcodedCycleToday = 4;
+
         if (cursor.getCount()>0){
             cursor.moveToLast();
             cycleToday = cursor.getFloat(0);
         }else{
             cycleToday = 0;
         }
-        return cycleToday;
+
+        //remove to get the app to work properly
+        return hardcodedCycleToday;
+
+        //remove comment to make the app work properly
+        //return cycleToday;
     }
 
     public float getCyclingDistance(String date) {
@@ -692,13 +774,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
         float cycleToday;
 
+        //remove to get the app to work properly
+        float hardcodedCycleToday = 4;
+
         if (cursor.getCount()>0){
             cursor.moveToLast();
             cycleToday = cursor.getFloat(0);
         }else{
             cycleToday = 0;
         }
-        return cycleToday;
+
+        //remove to get the app to work properly
+        return hardcodedCycleToday;
+
+        //remove comment to make the app work properly
+        //return cycleToday;
     }
 
     public float[] getWeekCyclingDistance() {
@@ -709,11 +799,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = 7;
 
         float[] weekCyclingDistance = new float[length];
+        //remove to get the app to work properly
+        weekCyclingDistance[0] = (float) 4;
+        weekCyclingDistance[1] = (float) 0;
+        weekCyclingDistance[2] = (float) 5;
+        weekCyclingDistance[3] = (float) 0;
+        weekCyclingDistance[4] = (float) 6;
+        weekCyclingDistance[5] = (float) 2;
+        weekCyclingDistance[6] = (float) 0;
+
+        //remove comment to make the app work properly
+        /*
         weekCyclingDistance[length-1] = getCyclingDistance(df.format(calendar.getTime()));
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             weekCyclingDistance[length-i-1] = getCyclingDistance(df.format(calendar.getTime()));
-        }
+        }*/
 
         return weekCyclingDistance;
 
@@ -727,13 +828,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = calendar.get(Calendar.DAY_OF_WEEK);
 
         float weekCyclingDistance = getDrivingDistance(df.format(calendar.getTime()));
+
+        //remove comment to make the app work properly
+        float[] hardCodedWeekCycleDistance = getWeekCyclingDistance();
+        float avgNumWeek = 0;
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             weekCyclingDistance += getWalkingDistance(df.format(calendar.getTime()));
+            avgNumWeek += hardCodedWeekCycleDistance[i];
+
         }
+        //remove comment to make the app work properly
+        //return weekCyclingDistance/length;
 
-        return weekCyclingDistance/length;
-
+        //remove to make the app work properly
+        return avgNumWeek/7;
     }
 
     public float getMonthAverageCyclingDistance() {
@@ -744,14 +853,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = calendar.get(Calendar.DAY_OF_MONTH);
 
         float monthWalkingDistance = getDrivingDistance(df.format(calendar.getTime()));
+
+        //remove to make the app work properly
+        float[] monthlyCyclingDistance = new float[30];
+        monthlyCyclingDistance[0] = (float) 4;
+        monthlyCyclingDistance[1] = (float) 0;
+        monthlyCyclingDistance[2] = (float) 5;
+        monthlyCyclingDistance[3] = (float) 0;
+        monthlyCyclingDistance[4] = (float) 6;
+        monthlyCyclingDistance[5] = (float) 2;
+        monthlyCyclingDistance[6] = (float) 0;
+        monthlyCyclingDistance[7] = (float) 4;
+        monthlyCyclingDistance[8] = (float) 2;
+        monthlyCyclingDistance[9] = (float) 2;
+        monthlyCyclingDistance[10] = (float) 5;
+        monthlyCyclingDistance[11] = (float) 8;
+        monthlyCyclingDistance[12] = (float) 0;
+        monthlyCyclingDistance[13] = (float) 1;
+        monthlyCyclingDistance[14] = (float) 6;
+        monthlyCyclingDistance[15] = (float) 2;
+        monthlyCyclingDistance[16] = (float) 0;
+        monthlyCyclingDistance[17] = (float) 8;
+        monthlyCyclingDistance[18] = (float) 4;
+        monthlyCyclingDistance[19] = (float) 4;
+        monthlyCyclingDistance[20] = (float) 2;
+        monthlyCyclingDistance[21] = (float) 2;
+        monthlyCyclingDistance[22] = (float) 6;
+        monthlyCyclingDistance[23] = (float) 8;
+        monthlyCyclingDistance[24] = (float) 5;
+        monthlyCyclingDistance[25] = (float) 2;
+        monthlyCyclingDistance[26] = (float) 3;
+        monthlyCyclingDistance[27] = (float) 7;
+        monthlyCyclingDistance[28] = (float) 8;
+        monthlyCyclingDistance[29] = (float) 2;
+        float numAvgMonth = 0;
+
+        for (int i = 1; i < monthlyCyclingDistance.length; i++){
+            numAvgMonth += monthlyCyclingDistance[i];
+        }
+        //remove comment to make the app work properly
+        /*
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             monthWalkingDistance += getCyclingDistance(df.format(calendar.getTime()));
         }
 
         return monthWalkingDistance/length;
+        */
 
+        //remove to make the app work properly
+        return numAvgMonth / monthlyCyclingDistance.length;
     }
+
 
     public float getDrivingDistanceToday() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -764,7 +917,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else{
             drivenToday = 0;
         }
-        return drivenToday;
+        //remove to insert real data
+        float hardCodedDrivenToday = (float) 12.2;
+        return hardCodedDrivenToday;
+        //remove comment to get the app to work properly
+        //return drivenToday;
     }
 
     public float getDrivingDistance(String date) {
@@ -778,7 +935,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }else{
             drivingDistance = 0;
         }
-        return drivingDistance;
+        float hardcodedDrivingDistance = (float) 12.2;
+        return hardcodedDrivingDistance;
+        //return drivingDistance;
     }
 
     public float[] getWeekDrivingDistance() {
@@ -789,14 +948,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = 7;
 
         float[] weekDrivingDistance = new float[length];
+        //remove to insert real data
+        weekDrivingDistance[0] = (float) 12.2;
+        weekDrivingDistance[1] = (float) 13.1;
+        weekDrivingDistance[2] = (float) 18.4;
+        weekDrivingDistance[3] = (float) 16.8;
+        weekDrivingDistance[4] = (float) 47.5;
+        weekDrivingDistance[5] = (float) 15.2;
+        weekDrivingDistance[6] = (float) 20.5;
+
+        //remove comment to get the app to work properly
+        /*
         weekDrivingDistance[length-1] = getDrivingDistance(df.format(calendar.getTime()));
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             weekDrivingDistance[length-i-1] = getDrivingDistance(df.format(calendar.getTime()));
-        }
+        }*/
 
         return weekDrivingDistance;
-
     }
 
     public float getWeekAverageDrivingDistance() {
@@ -807,13 +976,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = calendar.get(Calendar.DAY_OF_WEEK);
 
         float weekDrivingDistance = getDrivingDistance(df.format(calendar.getTime()));
+
+        //remove to make app work properly
+        float[] hardcodedWeekDrivingDistance = getWeekDrivingDistance();
+        float numAvgWeek = 0;
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             weekDrivingDistance += getDrivingDistance(df.format(calendar.getTime()));
+            numAvgWeek += hardcodedWeekDrivingDistance[i];
         }
+        return numAvgWeek/7;
 
-        return weekDrivingDistance/length;
-
+        //remove comment to make app work properly
+        //return weekDrivingDistance/length;
     }
 
     public float getMonthAverageDrivingDistance() {
@@ -824,12 +999,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int length = calendar.get(Calendar.DAY_OF_MONTH);
 
         float weekDrivingDistance = getDrivingDistance(df.format(calendar.getTime()));
+
+        //remove to make app work properly
+        float[] monthlyDrivingDistance = new float[30];
+        monthlyDrivingDistance[0] = (float) 12.2;
+        monthlyDrivingDistance[1] = (float) 13.1;
+        monthlyDrivingDistance[2] = (float) 18.4;
+        monthlyDrivingDistance[3] = (float) 16.8;
+        monthlyDrivingDistance[4] = (float) 47.5;
+        monthlyDrivingDistance[5] = (float) 15.2;
+        monthlyDrivingDistance[6] = (float) 20.5;
+        monthlyDrivingDistance[7] = (float) 36.5;
+        monthlyDrivingDistance[8] = (float) 18.8;
+        monthlyDrivingDistance[9] = (float) 26.8;
+        monthlyDrivingDistance[10] = (float) 33.9;
+        monthlyDrivingDistance[11] = (float) 23.7;
+        monthlyDrivingDistance[12] = (float) 31.4;
+        monthlyDrivingDistance[13] = (float) 35.6;
+        monthlyDrivingDistance[14] = (float) 23.1;
+        monthlyDrivingDistance[15] = (float) 24.8;
+        monthlyDrivingDistance[16] = (float) 22.6;
+        monthlyDrivingDistance[17] = (float) 11.9;
+        monthlyDrivingDistance[18] = (float) 11.1;
+        monthlyDrivingDistance[19] = (float) 31.7;
+        monthlyDrivingDistance[20] = (float) 27.9;
+        monthlyDrivingDistance[21] = (float) 36.8;
+        monthlyDrivingDistance[22] = (float) 22.4;
+        monthlyDrivingDistance[23] = (float) 43.6;
+        monthlyDrivingDistance[24] = (float) 25.0;
+        monthlyDrivingDistance[25] = (float) 40.2;
+        monthlyDrivingDistance[26] = (float) 30.8;
+        monthlyDrivingDistance[27] = (float) 32.6;
+        monthlyDrivingDistance[28] = (float) 9.6;
+        monthlyDrivingDistance[29] = (float) 28.6;
+        float numAvgMonth = 0;
+
+        for (int i = 1; i < monthlyDrivingDistance.length; i++){
+            numAvgMonth += monthlyDrivingDistance[i];
+        }
+        //remove comment to make app work properly
+        /*
         for (int i = 1; i<length; i++){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
             weekDrivingDistance += getDrivingDistance(df.format(calendar.getTime()));
         }
 
         return weekDrivingDistance/length;
+        */
+        return numAvgMonth/monthlyDrivingDistance.length;
 
     }
 
