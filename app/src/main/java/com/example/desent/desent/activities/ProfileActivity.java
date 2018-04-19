@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -67,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity
     ProgressBar personalGoal;
     Indicator indicator;
     String personalGoalString = "";
+    EditText editTextPersonalGoal;
 
     private int progressCount = 0;
     private int progressStatus = 0;
@@ -89,6 +91,8 @@ public class ProfileActivity extends AppCompatActivity
         toggle.syncState();
 
         setUpNavigationView();
+
+        editTextPersonalGoal = (EditText)findViewById(R.id.et_personalGoal);
 
         /*
         indicator = new Indicator() {
@@ -214,18 +218,24 @@ public class ProfileActivity extends AppCompatActivity
                         //display dialogbox with title, how to measure
                         //change text in spinner and display goal instead of progress bar
 
+                        LayoutInflater layoutInflater = LayoutInflater.from(ProfileActivity.this);
+                        final View inflator = layoutInflater.inflate(R.layout.dialog_personal_goal, null);
                         final AlertDialog.Builder chooseGoalBuilder = new AlertDialog.Builder(ProfileActivity.this);
                         chooseGoalBuilder.setTitle("Choose your own goal");
+                        chooseGoalBuilder.setView(inflator);
 
-                        final EditText input = new EditText(ProfileActivity.this);
+                        final EditText input = (EditText) inflator.findViewById(R.id.et_personalGoal);
+                        /*new EditText(ProfileActivity.this);
                         input.setInputType(InputType.TYPE_CLASS_TEXT);
                         chooseGoalBuilder.setView(input);
-
                         personalGoalString = input.getText().toString();
+                        */
 
+                        //chooseGoalBuilder.setView(R.layout.dialog_personal_goal);
                         chooseGoalBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                personalGoalString = input.getText().toString();
                                 tvGoalExplanation.setText(personalGoalString);
                                 tvProgress.setVisibility(View.GONE);
                                 personalGoal.setVisibility(View.GONE);
