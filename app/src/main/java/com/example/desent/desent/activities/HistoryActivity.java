@@ -266,19 +266,37 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         Float[] value1 = new Float[7];
         Float[] value2 = new Float[7];
+
+        /*
+
+         */
+        /*value1[0] = (float) 1.4;
+        value2[0] = (float) 0.8;
+
+        value1[1] = (float) 1.4;
+        value2[1] = (float) 0.8;
+
+        value1[2] = (float) 1.4;
+        value2[2] = (float) 0.8;
+
+        value1[3] = (float) 1.4;
+        value2[3] = (float) 0.8;
+
+        value1[4] = (float) 1.4;
+        value2[5] = (float) 0.8;
+
+        value1[6] = (float) 1.4;
+        value2[6] = (float) 0.8;*/
         for (int i=0; i<7; i++) {
-            /* to visualize when no values in db
-            value1[i] = (float) i + (float) 1;
-            value2[i] = (float) i + (float) 1;
-            */
+            //to visualize when no values in db
+            /*value1[i] = (float) i + (float) 1;
+            value2[i] = (float) i + (float) 1;*/
+
             value1[i] = carbonFootprintEnergy[i];
             value2[i] = carbonFootprintTransportation[i];
-
         }
 
         String limitColor = "#FF0000";
-
-
 
         String barColor1 = "#03a9f4";
         String barColor2 = "#64dd17";
