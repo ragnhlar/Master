@@ -68,10 +68,10 @@ public class CallToArmsActivity extends AppCompatActivity implements NavigationV
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
 
-        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
-        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
-        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
-        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
+        challengeList.add(new Challenge(1, "Invite Friends", "Invite 10 new friends to start using the app", 7, "40"));
+        challengeList.add(new Challenge(2, "Title2", "Description2", 7, "10"));
+        challengeList.add(new Challenge(3, "Title3", "Description3", 5, "20"));
+        challengeList.add(new Challenge(4, "Title4", "Description4", 2, "30"));
 
         //creating recyclerview adapter
         ChallengeAdapter adapter = new ChallengeAdapter(this, challengeList);

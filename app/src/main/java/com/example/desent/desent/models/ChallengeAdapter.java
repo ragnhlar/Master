@@ -48,6 +48,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
         holder.tvTitle.setText(challenge.getTitle());
         holder.tvDescription.setText(String.valueOf(challenge.getDescription()));
         holder.tvDuration.setText(String.valueOf(challenge.getDuration() + " days"));
+        holder.tvPrize.setText("Earn " + challenge.getPrize());
 
         holder.btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +65,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
 
     public class ChallengeViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvTitle, tvDescription, tvDuration;
+        TextView tvTitle, tvDescription, tvDuration, tvPrize;
         Button btnStart;
 
         public ChallengeViewHolder(View itemView) {
@@ -74,6 +75,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
             tvDescription = itemView.findViewById(R.id.textViewDescription);
             tvDuration = itemView.findViewById(R.id.textViewDuration);
             tvTitle = itemView.findViewById(R.id.textViewTitle);
+            tvPrize = itemView.findViewById(R.id.textViewPrize);
         }
     }
 }

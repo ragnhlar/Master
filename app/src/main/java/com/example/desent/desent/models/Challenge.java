@@ -9,10 +9,10 @@ public class Challenge {
     private int id;
     private String title;
     private String description;
-    private double duration;
+    private int duration;
     private String prize;
 
-    public Challenge(int id, String title, String description, double duration, String prize) {
+    public Challenge(int id, String title, String description, int duration, String prize) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -33,7 +33,7 @@ public class Challenge {
         return description;
     }
 
-    public double getDuration() {
+    public int getDuration() {
         return duration;
     }
 
