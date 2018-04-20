@@ -690,20 +690,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_home:
-
                         //not a good way to solve this...
                         startActivity(new Intent(MainActivity.this, MainActivity.class));
-
                         // launch new intent instead of loading fragment
                         /*
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                          */
                         drawer.closeDrawers();
-
                         return true;
 
                     case R.id.nav_history:
-
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(MainActivity.this, HistoryActivity.class));
                         drawer.closeDrawers();
