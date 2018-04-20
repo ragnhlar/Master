@@ -11,8 +11,6 @@ import android.net.Uri;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
@@ -25,12 +23,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -41,6 +35,8 @@ import com.example.desent.desent.fragments.CircleFragment;
 import com.example.desent.desent.fragments.CyclingDistanceFragment;
 import com.example.desent.desent.fragments.ElectricCarFragment;
 import com.example.desent.desent.fragments.IndicatorsBarFragment;
+import com.example.desent.desent.fragments.ScoreFragment;
+import com.example.desent.desent.fragments.ScoreFragmentWhite;
 import com.example.desent.desent.fragments.SolarPanelSizeFragment;
 import com.example.desent.desent.fragments.WalkingDistanceFragment;
 import com.example.desent.desent.models.ActiveMinutes;
@@ -54,18 +50,12 @@ import com.example.desent.desent.models.EnergyConsumption;
 import com.example.desent.desent.models.EnergyDatabaseUpdate;
 import com.example.desent.desent.models.Expenses;
 import com.example.desent.desent.models.Indicator;
-import com.example.desent.desent.models.Transportation;
-import com.example.desent.desent.models.VehicleCost;
 import com.example.desent.desent.utils.EstimationType;
 import com.example.desent.desent.utils.TimeScale;
 import com.example.desent.desent.utils.Utility;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import android.os.Handler;
@@ -73,7 +63,6 @@ import android.widget.Toast;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.example.desent.desent.R.id.nav_user_profile;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -94,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private CategoryFragment transportationFragment;
     private CategoryFragment energyFragment;
     private IndicatorsBarFragment indicatorsBarFragment;
+    ScoreFragmentWhite scoreFragment;
 
     private View categoriesBar;
 
@@ -300,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         if (carbonFootprint.getEstimationType() == EstimationType.NONE)
                             informationCO2Left.setVisibility(VISIBLE);
-                        textViewTimeScale.setVisibility(View.GONE);
+                            textViewTimeScale.setVisibility(View.GONE);
                         for (Indicator indicator: indicators)
                             indicator.setTimeScale(TimeScale.TODAY);
                         break;
@@ -573,6 +563,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         distanceTracking = new DistanceTracker(activityContext, this);
         distanceTracking.setActivity(activity);
         registerReceivers();
+
     }
 
     @Override
@@ -898,6 +889,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         energyFragment.init();
 
         indicatorsBarFragment = (IndicatorsBarFragment) getFragmentManager().findFragmentById(R.id.indicators_bar);
+
+        scoreFragment = (ScoreFragmentWhite) getFragmentManager().findFragmentById(R.id.scoreFragmentMain);
 
         setUpNavigationView();
     }
