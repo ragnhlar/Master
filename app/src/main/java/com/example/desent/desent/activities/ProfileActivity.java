@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -24,6 +26,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -48,6 +51,11 @@ import com.example.desent.desent.models.Indicator;
 import com.example.desent.desent.models.RequestHandler;
 import com.example.desent.desent.models.SharedPrefManager;
 import com.example.desent.desent.utils.Utility;
+import com.hookedonplay.decoviewlib.DecoView;
+import com.hookedonplay.decoviewlib.charts.EdgeDetail;
+import com.hookedonplay.decoviewlib.charts.SeriesItem;
+import com.hookedonplay.decoviewlib.charts.SeriesLabel;
+import com.hookedonplay.decoviewlib.events.DecoEvent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -286,7 +294,9 @@ public class ProfileActivity extends AppCompatActivity
 
         gender = findViewById(R.id.tvGender);
         gender.setText(sharedPreferences.getString("pref_key_personal_gender",""));*/
-        /*DecoView arcView = (DecoView) findViewById(R.id.dynamicArcView);
+
+        /*
+        DecoView arcView = (DecoView) findViewById(R.id.dynamicArcView);
 
         //create background track
         arcView.addSeries(new SeriesItem.Builder(Color.argb(255,218,218,218))
@@ -330,8 +340,8 @@ public class ProfileActivity extends AppCompatActivity
                 .build());
 
         arcView.addEvent(new DecoEvent.Builder(25).setIndex(series1Index).setDelay(4000).build());
-        arcView.addEvent(new DecoEvent.Builder(100).setIndex(series2Index).setDelay(8000).build());
-        arcView.addEvent(new DecoEvent.Builder(10).setIndex(series2Index).setDelay(12000).build());
+        //arcView.addEvent(new DecoEvent.Builder(100).setIndex(series2Index).setDelay(8000).build());
+        //arcView.addEvent(new DecoEvent.Builder(10).setIndex(series2Index).setDelay(12000).build());
 
         arcView.setHorizGravity(DecoView.HorizGravity.GRAVITY_HORIZONTAL_LEFT);
         arcView.setVertGravity(DecoView.VertGravity.GRAVITY_VERTICAL_BOTTOM);*/
