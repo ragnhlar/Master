@@ -432,6 +432,9 @@ public class ProfileActivity extends AppCompatActivity
         } else if (id == R.id.nav_friend_list) {
             startActivity(new Intent(ProfileActivity.this, FriendsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.nav_call_to_arms) {
+            startActivity(new Intent(ProfileActivity.this, CallToArmsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_leaderboard) {
             startActivity(new Intent(ProfileActivity.this, LeaderboardActivity.class));
             drawer.closeDrawer(GravityCompat.START);

@@ -71,6 +71,8 @@
         <activity android:name=".activities.Login2Activity" />
         <activity android:name=".activities.AboutUsActivity"
             android:label="About"/>
+        <activity android:name=".activities.CallToArmsActivity"
+            android:label="Challenges"/>
     </application>
 
 </manifest>

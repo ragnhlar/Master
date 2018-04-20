@@ -376,7 +376,10 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         } else if (id == R.id.nav_friend_list) {
             startActivity(new Intent(LeaderboardActivity.this, FriendsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_leaderboard) {
+        }  else if (id == R.id.nav_call_to_arms) {
+            startActivity(new Intent(LeaderboardActivity.this, CallToArmsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        }  else if (id == R.id.nav_leaderboard) {
             //startActivity(new Intent(LeaderboardActivity.this, ProfileActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {

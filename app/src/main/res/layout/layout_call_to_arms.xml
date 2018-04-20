@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <!--
+            <ImageView
+                android:id="@+id/imageView"
+                android:src="@drawable/earth"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="4dp" />-->
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Challenge title"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000" />
+
+            <!--<fragment
+                android:name="com.example.desent.desent.fragments.ScoreFragment"
+                android:layout_below="@id/textViewName"
+                android:layout_toRightOf="@id/imageView"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/NumCoins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></fragment>-->
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewTitle"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="Challenge description"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <!--
+            <ImageView
+                android:src="@drawable/earthcoin"
+                android:id="@+id/earth_coin"
+                android:layout_toRightOf="@id/textViewNumCoins"
+                android:layout_below="@id/textViewName"
+                android:layout_marginLeft="5dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />-->
+
+            <TextView
+                android:id="@+id/textViewDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textViewDescription"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="15dp"
+                android:text="7 days"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnStart"
+                android:text="Start"
+                android:layout_alignParentRight="true"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

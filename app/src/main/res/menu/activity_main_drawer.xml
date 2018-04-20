@@ -10,16 +10,6 @@
             android:icon="@drawable/ic_history_black_24dp"
             android:title="@string/nav_history" />
 
-        <!--<item
-            android:id="@+id/nav_about_us"
-            android:title="@string/nav_about_us"
-            android:icon="@drawable/ic_menu_info"/>-->
-
-        <!--<item
-            android:id="@+id/nav_history_graph"
-            android:title="History Graph"
-            android:icon="@drawable/ic_history_black_24dp"/>-->
-
         <item
             android:id="@+id/nav_user_profile"
             android:title="User Profile"
@@ -34,6 +24,11 @@
             android:id="@+id/nav_leaderboard"
             android:title="Leaderboard"
             android:icon="@drawable/ic_assessment_black_24dp"/>
+
+        <item
+            android:id="@+id/nav_call_to_arms"
+            android:title="Challenges"
+            android:icon="@drawable/ic_timer_black_24dp"/>
 
         <item
             android:id="@+id/nav_info_app"

@@ -223,7 +223,10 @@ public class FriendsActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_friend_list) {
             //startActivity(new Intent(FriendsActivity.this, FriendsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_leaderboard) {
+        }  else if (id == R.id.nav_call_to_arms) {
+            startActivity(new Intent(FriendsActivity.this, CallToArmsActivity.class));
+            drawer.closeDrawer(GravityCompat.START);
+        }else if (id == R.id.nav_leaderboard) {
             startActivity(new Intent(FriendsActivity.this, LeaderboardActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {

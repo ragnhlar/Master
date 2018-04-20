@@ -719,6 +719,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         drawer.closeDrawers();
                         return true;
 
+                    case R.id.nav_call_to_arms:
+                        startActivity(new Intent(MainActivity.this, CallToArmsActivity.class));
+                        drawer.closeDrawers();
+                        return true;
+
                     case R.id.nav_leaderboard:
                         startActivity(new Intent(MainActivity.this, LeaderboardActivity.class));
                         drawer.closeDrawers();
@@ -731,33 +736,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     case R.id.nav_about_app:
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
-                        drawer.closeDrawer(GravityCompat.START);
+                        drawer.closeDrawers();
                         return true;
 
                     case R.id.nav_settings:
-
                         // launch new intent instead of loading fragment
                         startActivity(new Intent(MainActivity.this, SettingsActivity.class));
                         drawer.closeDrawers();
                         return true;
-                    /*case R.id.nav_about_us:
 
-                        // launch new intent instead of loading fragment
-                        /*
-                        startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
-                         */
                     case R.id.nav_log_out:
-
                         session.logoutUser();
                         //startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         drawer.closeDrawers();
                         return true;
-                    /*case R.id.nav_history_graph:
-
-                        startActivity(new Intent(MainActivity.this, HistoryGraphActivity.class));
-                        drawer.closeDrawers();
-                        return true;*/
-
                     default:
                 }
                 //Checking if the item is in checked state or not, if not make it in checked state

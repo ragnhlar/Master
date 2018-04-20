@@ -1,5 +1,6 @@
 package com.example.desent.desent.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,31 +13,39 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
+import com.example.desent.desent.models.Challenge;
+import com.example.desent.desent.models.ChallengeAdapter;
+import com.example.desent.desent.models.Friend;
+import com.example.desent.desent.models.FriendAdapter;
 import com.example.desent.desent.utils.Utility;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Created by celine on 09/05/17.
- */
+public class CallToArmsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-public class AboutUsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    private ProgressDialog progressDialog;
 
-    private DrawerLayout drawer;
+    DrawerLayout drawer;
+
+    ChallengeAdapter adapter;
+    List<Challenge> challengeList;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_call_to_arms);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,9 +56,31 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
         setUpNavigationView();
+
+        //getting the recyclerview from xml
+        recyclerView = (RecyclerView) findViewById(R.id.rvCallToArms);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //initializing the challengelist
+        challengeList = new ArrayList<>();
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+
+        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
+        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
+        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
+        challengeList.add(new Challenge(1, "Title", "Description", 7, "Win 20 Eearth Coins"));
+
+        //creating recyclerview adapter
+        ChallengeAdapter adapter = new ChallengeAdapter(this, challengeList);
+
+        //setting adapter to recyclerview
+        recyclerView.setAdapter(adapter);
     }
 
-    protected void setUpNavigationView(){
+    protected void setUpNavigationView() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -84,31 +115,31 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            startActivity(new Intent(AboutUsActivity.this, MainActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, MainActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_history) {
-            startActivity(new Intent(AboutUsActivity.this, HistoryActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, HistoryActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_settings) {
-            startActivity(new Intent(AboutUsActivity.this, SettingsActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_user_profile) {
-            startActivity(new Intent(AboutUsActivity.this, ProfileActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, ProfileActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_friend_list) {
-            startActivity(new Intent(AboutUsActivity.this, FriendsActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, FriendsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_call_to_arms) {
-            startActivity(new Intent(AboutUsActivity.this, CallToArmsActivity.class));
+        }  else if (id == R.id.nav_call_to_arms) {
+            //startActivity(new Intent(AboutUsActivity.this, CallToArmsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_leaderboard) {
-            startActivity(new Intent(AboutUsActivity.this, LeaderboardActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, LeaderboardActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_info_app) {
-            //startActivity(new Intent(InformationActivity.this, InformationActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, InformationActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_about_app) {
-            //startActivity(new Intent(AboutUsActivity.this, AboutActivity.class));
+            startActivity(new Intent(CallToArmsActivity.this, AboutUsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_log_out){
             SessionManagement session = new SessionManagement(getApplicationContext());
@@ -116,10 +147,5 @@ public class AboutUsActivity extends AppCompatActivity implements NavigationView
             drawer.closeDrawer(GravityCompat.START);
         }
         return true;
-    }
-
-    public void browser(View view){
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jpi-urbaneurope.eu/project/desent/"));
-        startActivity(browserIntent);
     }
 }
