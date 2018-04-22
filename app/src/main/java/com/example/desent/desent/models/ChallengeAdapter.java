@@ -53,7 +53,7 @@ public class ChallengeAdapter extends RecyclerView.Adapter<ChallengeAdapter.Chal
         holder.btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Start challenge button clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Challenge is started. Good luck!", Toast.LENGTH_LONG).show();
             }
         });
     }
