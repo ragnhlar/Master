@@ -21,7 +21,7 @@
 
     <string name="active_minutes_name">Active minutes</string>
     <string name="active_minutes_unit">min</string>
-    <string name="active_minutes_explanation">Explanation is coming</string>
+    <string name="active_minutes_explanation">Active minutes are minutes during the day that you are not sitting still. It is recommended that you are active for at least 30 minutes each day.</string>
 
     <string name="energy_consumption_name">Energy consumption</string>
     <string name="energy_consumption_unit">kWh</string>
