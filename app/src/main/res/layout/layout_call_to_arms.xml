@@ -46,9 +46,9 @@
 
             <TextView
                 android:id="@+id/textViewDescription"
-                android:layout_width="140dp"
+                android:layout_width="240dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewTitle"
+                android:layout_below="@id/textViewDuration"
                 android:layout_marginTop="5dp"
                 android:textStyle="italic"
                 android:text="Challenge description"
@@ -58,9 +58,7 @@
                 android:id="@+id/textViewDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/textViewDescription"
                 android:layout_below="@id/textViewTitle"
-                android:layout_marginLeft="15dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:text="7 days"
@@ -69,8 +67,8 @@
 
             <TextView
                 android:id="@+id/textViewPrize"
-                android:layout_below="@id/textViewDuration"
-                android:layout_toRightOf="@id/textViewDescription"
+                android:layout_below="@id/textViewTitle"
+                android:layout_toRightOf="@id/textViewDuration"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:text="Earn 40"
@@ -82,8 +80,8 @@
             <ImageView
                 android:src="@drawable/earthcoin"
                 android:id="@+id/earth_coin"
+                android:layout_below="@id/textViewTitle"
                 android:layout_toRightOf="@id/textViewPrize"
-                android:layout_below="@id/textViewDuration"
                 android:layout_marginLeft="2dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
@@ -92,11 +90,11 @@
                 android:id="@+id/btnStart"
                 android:text="Start"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="2dp"
                 android:layout_below="@id/textViewTitle"
-                android:layout_toRightOf="@+id/earth_coin"
+                android:layout_toRightOf="@+id/textViewDescription"
                 android:textSize="10sp"
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content" />
 
         </RelativeLayout>

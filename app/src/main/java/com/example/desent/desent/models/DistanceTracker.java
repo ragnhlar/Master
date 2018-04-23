@@ -66,7 +66,6 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 public class DistanceTracker extends MainActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener{
 
-
     private MyFenceReceiver fenceReceiver;
     private PendingIntent mFencePendingIntent;
     private GoogleApiClient mGoogleApiClientAware;

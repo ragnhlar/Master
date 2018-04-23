@@ -17,8 +17,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
@@ -68,10 +71,10 @@ public class CallToArmsActivity extends AppCompatActivity implements NavigationV
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");
 
-        challengeList.add(new Challenge(1, "Invite Friends", "Invite 10 new friends to start using the app", 7, "40"));
-        challengeList.add(new Challenge(2, "Title2", "Description2", 7, "10"));
-        challengeList.add(new Challenge(3, "Title3", "Description3", 5, "20"));
-        challengeList.add(new Challenge(4, "Title4", "Description4", 2, "30"));
+        challengeList.add(new Challenge(1, "Invite Friends", "Invite 10 new friends to start using the app.", 7, "40"));
+        challengeList.add(new Challenge(2, "Car-Free Weekend", "Leave the car unused for the weekend. The air quality is poor at the moment, and driving less will help improve air quality.", 2, "20"));
+        challengeList.add(new Challenge(3, "Car-Free Work Week", "Leave the car unused during the work week. Take the bike or walk instead. This will give you health benefits as well as saving you both money and the environment.", 5, "50"));
+        challengeList.add(new Challenge(4, "Lower Your Average Carbon Footprint", "Help save the environment by lowering your avg. daily emissions. During a month, you must lower your average by 40%.", 30, "70"));
 
         //creating recyclerview adapter
         ChallengeAdapter adapter = new ChallengeAdapter(this, challengeList);
