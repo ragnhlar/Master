@@ -22,6 +22,15 @@ public class ScoreFragmentWhite extends Fragment {
 
     TextView tv_coin_score;
     ImageView img_earth_coin;
+    /*int totNumEarthCoins;
+
+    public int getTotNumEarthCoins() {
+        return totNumEarthCoins;
+    }
+
+    public void setTotNumEarthCoins(int totNumEarthCoins) {
+        this.totNumEarthCoins = totNumEarthCoins;
+    }*/
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
