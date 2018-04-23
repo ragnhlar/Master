@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.desent.desent.R;
+import com.example.desent.desent.models.DatabaseHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +23,8 @@ public class ScoreFragmentWhite extends Fragment {
 
     TextView tv_coin_score;
     ImageView img_earth_coin;
+
+    private DatabaseHelper db;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,8 +73,10 @@ public class ScoreFragmentWhite extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_score_white, container, false);
+        db = new DatabaseHelper(getActivity());
 
         tv_coin_score = (TextView) rootView.findViewById(R.id.coin_score_text);
+        //tv_coin_score.setText(db.getTotalEarthCoins());
         img_earth_coin = (ImageView) rootView.findViewById(R.id.earth_coin);
 
         return rootView;

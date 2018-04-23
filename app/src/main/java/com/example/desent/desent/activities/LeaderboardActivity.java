@@ -35,6 +35,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.desent.desent.R;
 import com.example.desent.desent.SessionManagement;
 import com.example.desent.desent.models.Constants;
+import com.example.desent.desent.models.DatabaseHelper;
 import com.example.desent.desent.models.Indicator;
 import com.example.desent.desent.models.RequestHandler;
 import com.example.desent.desent.models.Score;
@@ -84,6 +85,8 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
 
     SharedPreferences sharedPreferences;
 
+    DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +101,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         toggle.syncState();
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        db = new DatabaseHelper(getApplicationContext());
 
         setUpNavigationView();
 
@@ -131,7 +135,7 @@ public class LeaderboardActivity extends AppCompatActivity implements Navigation
         scoreList = new ArrayList<>();
 
         //"friends" inserted until server is up an running
-        scoreList.add(new Score(0, sharedPreferences.getString("pref_key_personal_name",""), 167, 3.6, R.drawable.earth));
+        scoreList.add(new Score(0, sharedPreferences.getString("pref_key_personal_name",""), db.getTotalEarthCoins(), 3.6, R.drawable.earth));
         scoreList.add(new Score(1, "Rob Adams", 135, 3.2, R.drawable.robadams));
         scoreList.add(new Score(2, "Mary Jones", 230, 2.2, R.drawable.maryjones));
         scoreList.add(new Score(3, "Patricia Clarkson", 53, 6.2, R.drawable.patriciaclarkson));

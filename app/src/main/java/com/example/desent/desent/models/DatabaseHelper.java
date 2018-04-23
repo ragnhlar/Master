@@ -182,8 +182,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + T_COL_9 + " TEXT,"
                 + T_COL_10 + " TEXT,"
                 + T_COL_11 + " TEXT)");
-        db.execSQL("create table " + TABLE_EC + " ("
-                + T_COL_1 + " NUMERIC PRIMARY KEY)");
+        //db.execSQL("create table " + TABLE_EC + " ("
+                //+ T_COL_1 + " NUMERIC PRIMARY KEY)");
+        db.execSQL("create table " + TABLE_EC + " (" + EC_COL_1 + " NUMERIC PRIMARY KEY)");
+
     }
 
     @Override
@@ -191,7 +193,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENERGY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FORECAST);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EC);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_EC);
         onCreate(db);
     }
 
@@ -402,6 +404,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         return true;
                     }
                 }
+                addEarthCoins();
                 return false;
             }
         }
@@ -472,7 +475,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     return true;
                 }
             }
-
+            addEarthCoins();
             return false;
 
         }else{
@@ -514,7 +517,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.update(TABLE_DISTANCE, contentValues,"DATE = ?" , new String[]{date});
                 return true;
             }
-
+            addEarthCoins();
             return false;
         }
     }
@@ -1354,19 +1357,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         float dailyWalkingDistance = getWalkingDistanceToday();
+        System.out.println("DailyWalkingDistance: " + dailyWalkingDistance);
         if (dailyWalkingDistance >= 3.0){
             numEarthCoins += 1;
-            contentValues.put(EC_COL_1,numEarthCoins);
         }
+        float dailyCyclingDistance = getCyclingDistanceToday();
+        System.out.println("DailyCyclingDistance: " + dailyCyclingDistance);
+        if (dailyCyclingDistance >= 5){
+            numEarthCoins += 1;
+        }
+        contentValues.put(EC_COL_1,numEarthCoins);
         long result = db.insert(TABLE_EC, null, contentValues);
         db.close();
         return result != -1;
     }
 
     public int getTotalEarthCoins() {
-        SQLiteDatabase db = getReadableDatabase();
-        String query = "SELECT EC_COL_1 FROM " + TABLE_EC;
-        System.out.println(db.rawQuery(query, null));
-        return 1;
+        int numEarthCoins = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        //String query = "SELECT EC_COL_1 FROM TABLE_EC";
+        Cursor cursor = db.rawQuery("SELECT " + EC_COL_1 + " FROM " + TABLE_EC, null);
+        //System.out.println(db.rawQuery(query, null));
+        if (cursor.moveToFirst()){
+            numEarthCoins = cursor.getInt(cursor.getColumnIndex("EC_COL_1"));
+        }
+        System.out.println("Num Earth hentet og er " + numEarthCoins);
+        return numEarthCoins;
     }
 }
