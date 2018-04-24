@@ -152,10 +152,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <!--<com.hookedonplay.decoviewlib.DecoView
+        <!--
+        <com.hookedonplay.decoviewlib.DecoView
             android:id="@+id/dynamicArcView"
+            android:layout_centerInParent="true"
             custom:dv_arc_gravity_horizontal="Fill"
             custom:dv_arc_gravity_vertical="Bottom"
+            android:layout_below="@id/tvExplanation"
             android:layout_margin="8dp"
             android:layout_width="100dp"
             android:layout_height="100dp" />-->

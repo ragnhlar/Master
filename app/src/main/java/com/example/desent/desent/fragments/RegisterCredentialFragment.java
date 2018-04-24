@@ -48,6 +48,8 @@ public class RegisterCredentialFragment extends android.support.v4.app.Fragment 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        System.out.println("OnCreateView i RegisterCredential");
+
 
         myDb = new DatabaseHelper(getContext());
 
@@ -72,8 +74,28 @@ public class RegisterCredentialFragment extends android.support.v4.app.Fragment 
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        System.out.println("OnPause i RegisterCredential");
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("pref_key_personal_email", String.valueOf(emailTextView.getText()));
+        System.out.println("Email in registration: " + sharedPreferences.getString("pref_key_personal_email", null));
+
+        try {
+            editor.putString("pref_key_personal_password", AESHelper.encrypt(CIPHER_KEY, String.valueOf(passwordTextView.getText())));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        myDb.insertEmail(emailTextView.getText().toString());
+        editor.commit();
+    }
+
+    @Override
     public void onDestroyView(){
         super.onDestroyView();
+        System.out.println("OnDestroyView i RegisterCredential");
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 

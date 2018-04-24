@@ -87,7 +87,7 @@ public class RegisterActivity extends FragmentActivity {
     PreferencesManager pref;
     SharedPreferences sharedPreferences;
 
-    //added by ,e
+    //added by me
     private DatabaseHelper myDb;
 
     private LinearLayout dotsLayout;

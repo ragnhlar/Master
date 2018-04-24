@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +26,16 @@ public class ScoreFragment extends Fragment {
 
     TextView tv_coin_score;
     ImageView img_earth_coin;
+    int totNumEarthCoins;
+
+    public int getTotNumEarthCoins() {
+        return totNumEarthCoins;
+    }
+
+    public void setTotNumEarthCoins(int totNumEarthCoins) {
+        this.totNumEarthCoins = totNumEarthCoins;
+    }
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -74,6 +84,7 @@ public class ScoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_score, null);
         tv_coin_score = view.findViewById(R.id.coin_score_text);
+        //tv_coin_score.setText(getTotNumEarthCoins());
         return view;
     }
 
@@ -82,6 +93,8 @@ public class ScoreFragment extends Fragment {
 
         tv_coin_score = (TextView) view.findViewById(R.id.coin_score_text);
         img_earth_coin = (ImageView) view.findViewById(R.id.earth_coin);
+        //tv_coin_score.setText(getTotNumEarthCoins());
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
